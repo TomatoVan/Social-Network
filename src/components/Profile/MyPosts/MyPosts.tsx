@@ -2,11 +2,19 @@ import React from 'react';
 import s from './MyPosts.module.css';
 import Post from "./Post/Post";
 
-const MyPosts = (props: any) => {
+type PostType = {
+	id: number
+	message: string
+	likes: number
+}
 
+type postsDataType = {
+	postsData: Array<PostType>
+}
 
-	let postsElements = props.postsData.map((p: any) => <Post message={p.message} likes={p.likes}/>
-	)
+const MyPosts: React.FC<postsDataType> = (props) => {
+
+	let postsElements = props.postsData.map((p: any) => <Post message={p.message} likes={p.likes}/>)
 
 	return (<div className={s.postsBlock}>
 		<h3>My posts</h3>
@@ -22,8 +30,6 @@ const MyPosts = (props: any) => {
 			{postsElements}
 		</div>
 	</div>);
-
-
 }
 
 export default MyPosts;

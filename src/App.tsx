@@ -8,17 +8,18 @@ import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 import {BrowserRouter, Routes, Route} from "react-router-dom";
+import {MainState} from "./redux/state";
 
 
-function App(props: any) {
+const App: React.FC<MainState> = (props) => {
 	return (<BrowserRouter>
 		<div className="appWrapper">
 			<Header/>
 			<Navbar/>
 			<div className="appWrapperContent">
 				<Routes>
-					<Route path='/profile' element={<Profile state={props.state.profilePage}/>}/>
-					<Route path='/dialogs/*' element={<Dialogs state={props.state.dialogsPage}/>}/>
+					<Route path='/profile' element={<Profile profilePage={props.state.profilePage}/>}/>
+					<Route path='/dialogs/*' element={<Dialogs dialogsPage={props.state.dialogsPage}/>}/>
 					<Route path="/news" element={<News/>}/>
 					<Route path="/music" element={<Music/>}/>
 					<Route path="/settings" element={<Settings/>}/>

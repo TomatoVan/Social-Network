@@ -15,13 +15,14 @@ type ProfileType = {
 
 type profilePageType = {
 	profilePage: ProfileType
+	addPost: (postMessage: string) => void
 }
 
 const Profile: React.FC<profilePageType> = (props) => {
 	return (
 		<div>
 			<ProfileInfo/>
-			<MyPosts postsData={props.profilePage.postsData}/>
+			<MyPosts postsData={props.profilePage.postsData} addPost={props.addPost}/>
 		</div>
 	);
 }

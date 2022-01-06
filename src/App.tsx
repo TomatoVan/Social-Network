@@ -18,7 +18,7 @@ const App: React.FC<MainState> = (props) => {
 			<Navbar/>
 			<div className="appWrapperContent">
 				<Routes>
-					<Route path='/profile' element={<Profile profilePage={props.state.profilePage}/>}/>
+					<Route path='/profile' element={<Profile profilePage={props.state.profilePage} addPost={props.addPost}/>}/>
 					<Route path='/dialogs/*' element={<Dialogs dialogsPage={props.state.dialogsPage}/>}/>
 					<Route path="/news" element={<News/>}/>
 					<Route path="/music" element={<Music/>}/>

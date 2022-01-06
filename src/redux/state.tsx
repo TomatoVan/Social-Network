@@ -1,3 +1,5 @@
+import {renderEntireTree} from "../render";
+
 type MessageType = {
 	id: number
 	message: string
@@ -25,7 +27,7 @@ type DialogPageType = {
 
 type SidebarType = {}
 
-type RootStateType = {
+export type RootStateType = {
 	profilePage: ProfilePageType
 	dialogsPage: DialogPageType
 	sidebar: SidebarType
@@ -33,6 +35,7 @@ type RootStateType = {
 
 export type MainState = {
 	state: RootStateType
+	addPost: (postMessage: string) => void
 }
 
 
@@ -62,5 +65,13 @@ let state: RootStateType = {
 	},
 	sidebar: {/*Сделать из 29*/}
 }
+
+export const addPost = (postMessage: string) => {
+	let newPost = {id: new Date().getTime(), message: postMessage, likes: 0}
+	state.profilePage.postsData.push(newPost)
+	renderEntireTree(state)
+}
+
+
 export default state;
 

@@ -11,18 +11,20 @@ type PostType = {
 
 type ProfileType = {
 	postsData: Array<PostType>
+	newPostText: string;
 }
 
 type profilePageType = {
 	profilePage: ProfileType
-	addPost: (postMessage: string) => void
+	addPost: () => void
+	changeNewText: (newText: string) => void
 }
 
 const Profile: React.FC<profilePageType> = (props) => {
 	return (
 		<div>
 			<ProfileInfo/>
-			<MyPosts postsData={props.profilePage.postsData} addPost={props.addPost}/>
+			<MyPosts postsData={props.profilePage.postsData} addPost={props.addPost} changeNewText={props.changeNewText} newPostText={props.profilePage.newPostText}/>
 		</div>
 	);
 }

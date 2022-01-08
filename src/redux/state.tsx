@@ -1,31 +1,38 @@
-import {renderEntireTree} from "../render";
+let onChange = () => {
+	console.log('123')
+}
 
-type MessageType = {
+export const subscribe = (observer: () => void) => {
+	onChange = observer;
+}
+
+export type MessageType = {
 	id: number
 	message: string
 }
 
-type DialogType = {
+export type DialogType = {
 	id: number
 	name: string
 }
 
-type PostType = {
+export type PostType = {
 	id: number
 	message: string
 	likes: number
 }
 
-type ProfilePageType = {
+export type ProfilePageType = {
 	postsData: Array<PostType>
+	newPostText: string
 }
 
-type DialogPageType = {
+export type DialogPageType = {
 	dialogsData: Array<DialogType>
 	messagesData: Array<MessageType>
 }
 
-type SidebarType = {}
+export type SidebarType = {}
 
 export type RootStateType = {
 	profilePage: ProfilePageType
@@ -35,7 +42,8 @@ export type RootStateType = {
 
 export type MainState = {
 	state: RootStateType
-	addPost: (postMessage: string) => void
+	addPost: () => void
+	changeNewText: (newText: string) => void
 }
 
 
@@ -45,7 +53,9 @@ let state: RootStateType = {
 		postsData: [
 			{id: 1, message: "Hi, how are you", likes: 15},
 			{id: 2, message: "My first post?", likes: 20},
-		]
+		],
+		newPostText: ''
+
 	},
 
 	dialogsPage: {
@@ -66,10 +76,16 @@ let state: RootStateType = {
 	sidebar: {/*Сделать из 29*/}
 }
 
-export const addPost = (postMessage: string) => {
-	let newPost = {id: new Date().getTime(), message: postMessage, likes: 0}
+export const addPost = () => {
+	const newPost: PostType = {id: new Date().getTime(), message: state.profilePage.newPostText, likes: 0}
 	state.profilePage.postsData.push(newPost)
-	renderEntireTree(state)
+	state.profilePage.newPostText = ''
+	onChange()
+}
+
+export const changeNewText = (newText: string) => {
+	state.profilePage.newPostText = newText
+	onChange()
 }
 
 

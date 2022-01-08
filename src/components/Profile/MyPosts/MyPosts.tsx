@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {ChangeEvent} from 'react';
 import s from './MyPosts.module.css';
 import Post from "./Post/Post";
 
@@ -10,31 +10,33 @@ type PostType = {
 
 type postsDataType = {
 	postsData: Array<PostType>
-	addPost: (postMessage: string) => void
+	newPostText: string
+	addPost: () => void
+	changeNewText: (newText: string) => void
+
 }
 
 const MyPosts: React.FC<postsDataType> = (props) => {
 
 	let postsElements = props.postsData.map((p) => <Post message={p.message} likes={p.likes}/>)
 
-	const inputRef = React.createRef<HTMLTextAreaElement>()
-	const addPost = () => {
-		let text = inputRef.current?.value
-		if (typeof text === "string") {
-			props.addPost(text)
-			// @ts-ignore
-			inputRef.current.value = '';
-		}
+
+	const addPostCallback = () => {
+		props.addPost()
+	}
+
+	const changeNewTextCallback = (e: ChangeEvent<HTMLTextAreaElement>) => {
+		props.changeNewText(e.currentTarget.value)
 	}
 
 	return (<div className={s.postsBlock}>
 		<h3>My posts</h3>
 		<div>
 			<div>
-				<textarea ref={inputRef}> </textarea>
+				<textarea onChange={changeNewTextCallback} value={props.newPostText}/>
 			</div>
 			<div>
-				<button onClick={addPost}>Add post</button>
+				<button onClick={addPostCallback}>Add post</button>
 			</div>
 		</div>
 		<div className={s.posts}>

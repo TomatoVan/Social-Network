@@ -8,7 +8,7 @@ import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 import {BrowserRouter, Routes, Route} from "react-router-dom";
-import {changeNewText, MainState} from "./redux/state";
+import {MainState} from "./redux/state";
 
 
 const App: React.FC<MainState> = (props) => {
@@ -18,8 +18,9 @@ const App: React.FC<MainState> = (props) => {
 			<Navbar/>
 			<div className="appWrapperContent">
 				<Routes>
-					<Route path='/profile' element={<Profile profilePage={props.state.profilePage} addPost={props.addPost} changeNewText={props.changeNewText}/>}/>
-					<Route path='/dialogs/*' element={<Dialogs dialogsPage={props.state.dialogsPage}/>}/>
+					<Route path='/profile'
+						   element={<Profile profilePage={props.state.profilePage} dispatch={props.dispatch}/>}/>
+					<Route path='/dialogs/*' element={<Dialogs dialogsPage={props.state.dialogsPage} dispatch={props.dispatch}/>}/>
 					<Route path="/news" element={<News/>}/>
 					<Route path="/music" element={<Music/>}/>
 					<Route path="/settings" element={<Settings/>}/>

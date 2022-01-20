@@ -80,6 +80,7 @@ const store: StoreType = {
 			],
 			newMessageBody: ''
 		},
+
 		sidebar: {/*Сделать из 29*/}
 	},
 	_onChange() {

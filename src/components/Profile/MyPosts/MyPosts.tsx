@@ -1,8 +1,6 @@
 import React, {ChangeEvent} from 'react';
 import s from './MyPosts.module.css';
 import Post from "./Post/Post";
-import {ActionTypes} from "../../../redux/state";
-import {addPostAC, changeNewTextAC} from "../../../redux/profile-reducer";
 
 type PostType = {
 	id: number
@@ -13,7 +11,9 @@ type PostType = {
 type postsDataType = {
 	postsData: Array<PostType>
 	newPostText: string
-	dispatch: (action: ActionTypes) => void
+	/*dispatch: (action: ActionTypes) => void*/
+	updateNewPostText: (event: string) => void
+	addPost: () => void
 
 }
 
@@ -23,11 +23,13 @@ const MyPosts: React.FC<postsDataType> = (props) => {
 
 
 	const addPostCallback = () => {
-		props.dispatch(addPostAC())
+		props.addPost()
+		/*props.dispatch(addPostAC())*/
 	}
 
-	const changeNewTextCallback = (e: ChangeEvent<HTMLTextAreaElement>) => {
-		props.dispatch(changeNewTextAC(e.currentTarget.value))
+	const changeNewTextCallback = (event: ChangeEvent<HTMLTextAreaElement>) => {
+		props.updateNewPostText(event.currentTarget.value)
+		/*props.dispatch(changeNewTextAC(e.currentTarget.value))*/
 	}
 
 	return (<div className={s.postsBlock}>

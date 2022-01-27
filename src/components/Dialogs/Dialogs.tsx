@@ -2,8 +2,6 @@ import React, {ChangeEvent} from 'react';
 import s from './Dialogs.module.css';
 import DialogItem from "./DiaologItem/DialogItem";
 import Message from "./Message/Message";
-import {ActionTypes} from "../../redux/state";
-import {sendMessage, updateNewMessageBody} from "../../redux/dialogs-reducer";
 
 type DialogType = {
 	id: number
@@ -21,22 +19,25 @@ type DialogPageType = {
 	newMessageBody: string
 }
 
-type dialogsPageType = {
+type DialogsPageType = {
 	dialogsPage: DialogPageType
-	dispatch: (action: ActionTypes) => void
+	sendMessage: () => void
+	updateNewMessageBody: (event: string) => void
 }
 
-const Dialogs: React.FC<dialogsPageType> = (props) => {
+const Dialogs: React.FC<DialogsPageType> = (props) => {
 	let dialogsElements = props.dialogsPage.dialogsData.map((d: any) => <DialogItem id={d.id} name={d.name}/>);
 	let messagesElements = props.dialogsPage.messagesData.map((m: any) => <Message id={m.id} message={m.message}/>);
 	let newMessageBody = props.dialogsPage.newMessageBody;
 
-	let btnHandler = () => {
-		props.dispatch(sendMessage())
+	let btnHandlerCallback = () => {
+		props.sendMessage()
+		/*props.dispatch(sendMessage())*/
 	}
 
-	let onNewMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-		props.dispatch(updateNewMessageBody(e.currentTarget.value))
+	let onNewMessageChangeCallback = (event: ChangeEvent<HTMLTextAreaElement>) => {
+		props.updateNewMessageBody(event.currentTarget.value)
+		/*props.dispatch(updateNewMessageBody(e.currentTarget.value))*/
 	}
 
 	return (
@@ -50,11 +51,11 @@ const Dialogs: React.FC<dialogsPageType> = (props) => {
 					<div>
 						<textarea value={newMessageBody}
 								  placeholder={'Enter your message'}
-								  onChange={onNewMessageChange}
+								  onChange={onNewMessageChangeCallback}
 						>1</textarea>
 					</div>
 					<div>
-						<button onClick={btnHandler}>Send</button>
+						<button onClick={btnHandlerCallback}>Send</button>
 					</div>
 				</div>
 			</div>

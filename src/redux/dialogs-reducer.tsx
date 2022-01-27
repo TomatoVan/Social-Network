@@ -1,6 +1,5 @@
 import {ActionTypes, DialogPageType} from "./state";
 
-
 export const updateNewMessageBody = (body: string) => ({type: 'UPDATE-NEW-MESSAGE-BODY', body: body} as const)
 export const sendMessage = () => ({type: 'SEND-MESSAGE'} as const)
 
@@ -22,16 +21,19 @@ let initialState = {
 }
 
 export const dialogsReducer = (state: DialogPageType = initialState, action: ActionTypes) => {
-
 	switch (action.type) {
 		case "UPDATE-NEW-MESSAGE-BODY":
-			state.newMessageBody = action.body
-			return state
+			return {
+				...state,
+				newMessageBody: action.body
+			}
 		case "SEND-MESSAGE":
 			let body = state.newMessageBody
-			state.newMessageBody = ''
-			state.messagesData.push({id: 6, message: body})
-			return state
+			return {
+				...state,
+				messagesData: [...state.messagesData, {id: new Date().getTime(), message: body}],
+				newMessageBody: ''
+			}
 		default:
 			return state
 	}

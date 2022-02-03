@@ -10,7 +10,7 @@ import {connect} from "react-redux";
 	dispatch: (action: ActionTypes) => void
 }*/
 
-let mapStateToProps = (state: any) => {
+let mapStateToProps = (state: { profilePage: { newPostText: any, postsData: any } }) => {
 	return {
 		newPostText: state.profilePage.newPostText,
 		postsData: state.profilePage.postsData

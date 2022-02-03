@@ -25,7 +25,7 @@ type DialogsPageType = {
 	dispatch: (action: ActionTypes) => void
 }*/
 
-let mapStateToProps = (state: any) => {
+let mapStateToProps = (state: { dialogsPage: any }) => {
 	return {
 		dialogsPage: state.dialogsPage
 	}

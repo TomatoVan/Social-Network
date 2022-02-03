@@ -1,0 +1,15 @@
+.userPhoto {
+    width : 70px;
+    height: 70px;
+}
+.wrapper {
+    display:flex;
+    align-items:center;
+    margin: 50px;
+}
+.firstLayer {
+    margin:10px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}

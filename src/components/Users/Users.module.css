@@ -27,3 +27,12 @@
     margin: 3px;
     cursor: pointer;
 }
+
+.hidePage {
+    display: none;
+}
+
+.preloader {
+    display: block;
+    margin: 80px auto;
+}

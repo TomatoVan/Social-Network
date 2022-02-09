@@ -4,11 +4,11 @@ import userPhoto from "../../assets/images/1.png"
 
 type PropsType = {
 	users: any,
-	changeFollow: (userId: number) => void,
+	setFollowing: (userId: number) => void,
 	pageSize: number,
 	totalUsersCount: number,
-	currentPage: number
-	onPageChange: (pageNumber: number) => void
+	currentPage: number,
+	onPageChange: (pageNumber: number) => void,
 }
 
 
@@ -16,18 +16,39 @@ let Users = (props: PropsType) => {
 
 	let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
 	let pages = []
-	for (let i = 1; i <= pagesCount; i++) {
-		pages.push(i)
+	if (pagesCount > 10) {
+		if (props.currentPage > 5) {
+			for (let i = props.currentPage - 2; i <= props.currentPage + 2; i++) {
+				pages.push(i)
+				if (i === pagesCount) break
+			}
+
+		} else {
+			for (let i = 1; i <= 6; i++) {
+				pages.push(i)
+				if (i === pagesCount) break
+			}
+		}
+	} else {
+		for (let i = 1; i <= pagesCount; i++) {
+			pages.push(i)
+		}
 	}
+
 
 	return (
 		<div>
-			<div>
+			<span className={props.currentPage <= 5 ? s.hidePage : s.notSelectedPage}
+				  onClick={() => props.onPageChange(1)}> {1}...</span>
+			<span>
 				{pages.map(p => {
 					return <span className={props.currentPage === p ? s.selectedPage : s.notSelectedPage}
 								 onClick={() => props.onPageChange(p)}>{p}</span>
 				})}
-			</div>
+			</span>
+			<span className={props.currentPage + 2 >= pagesCount ? s.hidePage : s.notSelectedPage}
+				  onClick={() => props.onPageChange(pagesCount)}> ... {pagesCount}</span>
+
 			{
 				props.users.map((u: any) => <div key={u.id} className={s.wrapper}>
 					<span className={s.firstLayer}>
@@ -37,10 +58,10 @@ let Users = (props: PropsType) => {
 						<div>
 							{u.followed
 								? <button onClick={() => {
-									props.changeFollow(u.id)
+									props.setFollowing(u.id)
 								}}>Unfollow</button>
 								: <button onClick={() => {
-									props.changeFollow(u.id)
+									props.setFollowing(u.id)
 								}}>Follow</button>}
 						</div>
 					</span>

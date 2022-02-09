@@ -1,6 +1,8 @@
 import {connect} from "react-redux";
-import Users from "./Users";
 import {followAC, GeneralType, setCurrentPageAC, setTotalUsersCountAC, setUsersAC} from "../../redux/users-reducer";
+import React from "react";
+import axios from "axios";
+import Users from "./Users";
 
 type stateType = {
 	id: number,
@@ -23,6 +25,47 @@ const mapStateToProps = (state: { usersPage: { users: stateType, pageSize: numbe
 	}
 }
 
+interface IRecipeProps {
+	users: any,
+	setUsers: (users: any) => void,
+	setCurrentPage: (CurrentPage: number) => void,
+	changeFollow: (userId: number) => void,
+	setTotalUsersCount: (totalCount: number) => void,
+	pageSize: number,
+	totalUsersCount: number,
+	currentPage: number
+}
+
+interface IRecipeState {
+}
+
+class UsersAPIComponent extends React.Component<IRecipeProps, IRecipeState> {
+
+	componentDidMount() {
+		axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
+			.then(response => {
+				this.props.setUsers(response.data.items);
+				this.props.setTotalUsersCount(51)
+			})
+	}
+
+	onPageChange = (pageNumber: number) => {
+		this.props.setCurrentPage(pageNumber)
+		axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`)
+			.then(response => this.props.setUsers(response.data.items))
+	}
+
+	render() {
+		return <Users users={this.props.users}
+					  changeFollow={this.props.changeFollow}
+					  currentPage={this.props.currentPage}
+					  totalUsersCount={this.props.totalUsersCount}
+					  pageSize={this.props.pageSize}
+					  onPageChange={this.onPageChange}
+		/>
+	}
+}
+
 const mapDispatchToProps = (dispatch: (action: GeneralType) => void) => {
 
 	return {
@@ -42,5 +85,5 @@ const mapDispatchToProps = (dispatch: (action: GeneralType) => void) => {
 	}
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Users)
+export default connect(mapStateToProps, mapDispatchToProps)(UsersAPIComponent)
 

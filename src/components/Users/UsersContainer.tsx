@@ -21,7 +21,7 @@ interface IRecipeProps {
 	users: any,
 	setUsers: (users: any) => void,
 	setCurrentPage: (CurrentPage: number) => void,
-	changeFollow: (userId: number) => void,
+	setFollowing: (userId: number) => void,
 	setTotalUsersCount: (totalCount: number) => void,
 	setFetching: (isFetching: boolean) => void,
 	pageSize: number,
@@ -47,7 +47,6 @@ class UsersContainer extends React.Component<IRecipeProps, IRecipeState> {
 
 	onPageChange = (pageNumber: number) => {
 		this.props.setFetching(true)
-		this.props.setUsers([]);
 		this.props.setCurrentPage(pageNumber)
 		axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`)
 			.then(response => {
@@ -59,13 +58,16 @@ class UsersContainer extends React.Component<IRecipeProps, IRecipeState> {
 	render() {
 		return <>
 			{this.props.isFetching ? <Preloader/> : null}
-			<Users users={this.props.users}
-				   setFollowing={this.props.changeFollow}
-				   currentPage={this.props.currentPage}
-				   totalUsersCount={this.props.totalUsersCount}
-				   pageSize={this.props.pageSize}
-				   onPageChange={this.onPageChange}
-			/>
+			{!this.props.isFetching
+				? <Users users={this.props.users}
+						 setFollowing={this.props.setFollowing}
+						 currentPage={this.props.currentPage}
+						 totalUsersCount={this.props.totalUsersCount}
+						 pageSize={this.props.pageSize}
+						 onPageChange={this.onPageChange}
+				/>
+				: null}
+
 		</>
 	}
 }

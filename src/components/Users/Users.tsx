@@ -9,6 +9,7 @@ type PropsType = {
 	totalUsersCount: number,
 	currentPage: number,
 	onPageChange: (pageNumber: number) => void,
+
 }
 
 
@@ -38,16 +39,19 @@ let Users = (props: PropsType) => {
 
 	return (
 		<div>
-			<span className={props.currentPage <= 5 ? s.hidePage : s.notSelectedPage}
-				  onClick={() => props.onPageChange(1)}> {1}...</span>
-			<span>
+			<div className={s.pagesList}>
+				<span className={props.currentPage <= 5 ? s.hidePage : s.notSelectedPage}
+					  onClick={() => props.onPageChange(1)}> 1 ...
+				</span>
 				{pages.map(p => {
 					return <span className={props.currentPage === p ? s.selectedPage : s.notSelectedPage}
-								 onClick={() => props.onPageChange(p)}>{p}</span>
+								 onClick={() => props.onPageChange(p)}>{p}
+							</span>
 				})}
-			</span>
-			<span className={props.currentPage + 2 >= pagesCount ? s.hidePage : s.notSelectedPage}
-				  onClick={() => props.onPageChange(pagesCount)}> ... {pagesCount}</span>
+				<span className={props.currentPage + 2 >= pagesCount ? s.hidePage : s.notSelectedPage}
+					  onClick={() => props.onPageChange(pagesCount)}> ... {pagesCount}
+				</span>
+			</div>
 
 			{
 				props.users.map((u: any) => <div key={u.id} className={s.wrapper}>

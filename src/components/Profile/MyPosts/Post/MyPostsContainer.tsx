@@ -1,14 +1,6 @@
-import React from 'react';
 import MyPosts from "../MyPosts";
-import {addPostAC, changeNewTextAC} from "../../../../redux/profile-reducer";
-import {ActionTypes} from "../../../../redux/state";
+import {addPost, changeNewText, GeneralTypes} from "../../../../redux/profile-reducer";
 import {connect} from "react-redux";
-
-/*type postsDataType = {
-	postsData: Array<PostType>
-	newPostText: string
-	dispatch: (action: ActionTypes) => void
-}*/
 
 let mapStateToProps = (state: { profilePage: { newPostText: any, postsData: any } }) => {
 	return {
@@ -17,13 +9,13 @@ let mapStateToProps = (state: { profilePage: { newPostText: any, postsData: any 
 	}
 }
 
-let mapDispatchToProps = (dispatch: (action: ActionTypes) => void) => {
+let mapDispatchToProps = (dispatch: (action: GeneralTypes) => void) => {
 	return {
 		updateNewPostText: (event: string) => {
-			dispatch(changeNewTextAC(event))
+			dispatch(changeNewText(event))
 		},
 		addPost: () => {
-			dispatch(addPostAC())
+			dispatch(addPost())
 		}
 	}
 }

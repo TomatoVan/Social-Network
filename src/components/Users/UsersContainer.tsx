@@ -17,7 +17,7 @@ type stateType = {
 	}
 }
 
-interface IRecipeProps {
+interface IUserProps {
 	users: any,
 	setUsers: (users: any) => void,
 	setCurrentPage: (CurrentPage: number) => void,
@@ -30,10 +30,10 @@ interface IRecipeProps {
 	isFetching: boolean
 }
 
-interface IRecipeState {
+interface IUserState {
 }
 
-class UsersContainer extends React.Component<IRecipeProps, IRecipeState> {
+class UsersContainer extends React.Component<IUserProps, IUserState> {
 
 	componentDidMount() {
 		this.props.setFetching(true)

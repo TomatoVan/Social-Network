@@ -1,8 +1,10 @@
-import {addPostAC, changeNewTextAC, profileReducer} from "./profile-reducer";
-import {dialogsReducer, sendMessage, updateNewMessageBody} from "./dialogs-reducer";
-import {sidebarReducer} from "./sidebar-reducer";
+export {}
+//import {addPost, changeNewText, profileReducer, setUserProfile} from "./profile-reducer";
+//import {dialogsReducer, sendMessage, updateNewMessageBody} from "./dialogs-reducer";
+//import {sidebarReducer} from "./sidebar-reducer";
 
-export type MessageType = {
+
+/*export type MessageType = {
 	id: number
 	message: string
 }
@@ -48,9 +50,10 @@ export type StoreType = {
 	subscribe: (observer: () => void) => void
 	getState: () => RootStateType
 	dispatch: (action: ActionTypes) => void
-}
+}*/
+/*
 
-export type ActionTypes = ReturnType<typeof addPostAC> | ReturnType<typeof changeNewTextAC> | ReturnType<typeof updateNewMessageBody> | ReturnType<typeof sendMessage>
+export type ActionTypes = ReturnType<typeof addPost> | ReturnType<typeof changeNewText> | ReturnType<typeof updateNewMessageBody> | ReturnType<typeof sendMessage> | ReturnType<typeof setUserProfile>
 
 const store: StoreType = {
 	_state: {
@@ -81,7 +84,7 @@ const store: StoreType = {
 			newMessageBody: ''
 		},
 
-		sidebar: {/*Сделать из 29*/}
+		sidebar: {/!*Сделать из 29*!/}
 	},
 	_onChange() {
 		console.log('123')
@@ -106,3 +109,4 @@ const store: StoreType = {
 
 export default store;
 
+*/

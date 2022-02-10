@@ -1,29 +1,7 @@
-import React from 'react';
-import {ActionTypes} from "../../redux/state";
 import {sendMessage, updateNewMessageBody} from "../../redux/dialogs-reducer";
 import Dialogs from "../Dialogs/Dialogs";
 import {connect} from "react-redux";
-
-/*type DialogType = {
-	id: number
-	name: string
-}
-
-type MessageType = {
-	id: number
-	message: string
-}
-
-type DialogPageType = {
-	dialogsData: Array<DialogType>
-	messagesData: Array<MessageType>
-	newMessageBody: string
-}
-
-type DialogsPageType = {
-	dialogsPage: DialogPageType
-	dispatch: (action: ActionTypes) => void
-}*/
+import {GeneralType} from "../../redux/dialogs-reducer";
 
 let mapStateToProps = (state: { dialogsPage: any }) => {
 	return {
@@ -31,7 +9,7 @@ let mapStateToProps = (state: { dialogsPage: any }) => {
 	}
 }
 
-let mapDispatchToProps = (dispatch: (action: ActionTypes) => void) => {
+let mapDispatchToProps = (dispatch: (action: GeneralType) => void) => {
 	return {
 		sendMessage: () => {
 			dispatch(sendMessage())

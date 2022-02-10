@@ -1,6 +1,9 @@
-import {ActionTypes, DialogPageType} from "./state";
+type updateNewMessageBodyType = ReturnType<typeof updateNewMessageBody>
+type sendMessageType = ReturnType<typeof sendMessage>
 
-export const updateNewMessageBody = (body: string) => ({type: 'UPDATE-NEW-MESSAGE-BODY', body: body} as const)
+export type GeneralType = updateNewMessageBodyType | sendMessageType
+
+export const updateNewMessageBody = (body: string) => ({type: 'UPDATE-NEW-MESSAGE-BODY', payload: {body}} as const)
 export const sendMessage = () => ({type: 'SEND-MESSAGE'} as const)
 
 let initialState = {
@@ -20,12 +23,12 @@ let initialState = {
 	newMessageBody: ''
 }
 
-export const dialogsReducer = (state: DialogPageType = initialState, action: ActionTypes) => {
+export const dialogsReducer = (state = initialState, action: GeneralType) => {
 	switch (action.type) {
 		case "UPDATE-NEW-MESSAGE-BODY":
 			return {
 				...state,
-				newMessageBody: action.body
+				newMessageBody: action.payload.body
 			}
 		case "SEND-MESSAGE":
 			let body = state.newMessageBody

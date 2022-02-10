@@ -1,17 +1,23 @@
-import {ActionTypes, PostType, ProfilePageType} from "./state";
+type addPostType = ReturnType<typeof addPost>
+type changeNewTextType = ReturnType<typeof changeNewText>
+type setUserProfileType = ReturnType<typeof setUserProfile>
 
-export const addPostAC = () => ({type: 'ADD-POST'} as const)
-export const changeNewTextAC = (text: string) => ({type: 'CHANGE-NEW-TEXT', newText: text} as const)
+export type GeneralTypes = addPostType | changeNewTextType | setUserProfileType
+
+export const addPost = () => ({type: 'ADD-POST'} as const)
+export const changeNewText = (newText: string) => ({type: 'CHANGE-NEW-TEXT', payload: {newText}} as const)
+export const setUserProfile = (profile: any) => ({type: 'SET-USER-PROFILE', payload: {profile}} as const)
 
 let initialState = {
 	postsData: [
 		{id: 1, message: "Hi, how are you", likes: 15},
 		{id: 2, message: "My first post?", likes: 20},
 	],
-	newPostText: ''
+	newPostText: '',
+	profile: null
 }
 
-export const profileReducer = (state: ProfilePageType = initialState, action: ActionTypes) => {
+export const profileReducer = (state = initialState, action: GeneralTypes) => {
 
 	switch (action.type) {
 		case "ADD-POST":
@@ -23,7 +29,12 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Ac
 		case "CHANGE-NEW-TEXT":
 			return {
 				...state,
-				newPostText: action.newText
+				newPostText: action.payload.newText
+			}
+		case "SET-USER-PROFILE":
+			return {
+				...state, profile: action.payload.profile
+
 			}
 		default:
 			return state

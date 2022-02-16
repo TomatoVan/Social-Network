@@ -1,10 +1,10 @@
 import React from 'react';
 import s from './Profile.module.css';
 import Profile from "./Profile";
-import axios from "axios";
 import {connect} from "react-redux";
 import {profileType, setUserProfile} from "../../redux/profileReducer";
 import {useMatch} from "react-router-dom";
+import {usersAPI} from "../../api/Api";
 
 type MatchParams = {
 	match: {
@@ -20,9 +20,8 @@ type mapStateType = {
 type mapDispatchType = {
 	setUserProfile: (profile: any) => void
 }
-type ownPropsType = {}
 
-export type MapStatePropsType = mapStateType & mapDispatchType & ownPropsType
+export type MapStatePropsType = mapStateType & mapDispatchType
 
 class ProfileContainer extends React.Component<MapStatePropsType & MatchParams> {
 
@@ -34,10 +33,10 @@ class ProfileContainer extends React.Component<MapStatePropsType & MatchParams> 
 		if (!userId) {
 			userId = String(2)
 		}
-		axios.get(`https://social-network.samuraijs.com/api/1.0/profile/` + userId)
-			.then(response => {
-				this.props.setUserProfile(response.data);
-			})
+
+		usersAPI.getProfileUser(userId).then(data => {
+			this.props.setUserProfile(data);
+		})
 	}
 
 	render() {

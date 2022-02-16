@@ -2,6 +2,7 @@ import React from 'react';
 import s from "./Users.module.css"
 import userPhoto from "../../assets/images/1.png"
 import {NavLink} from "react-router-dom";
+import {usersAPI} from "../../api/Api";
 
 type PropsType = {
 	users: any,
@@ -65,10 +66,18 @@ let Users = (props: PropsType) => {
 						<div>
 							{u.followed
 								? <button onClick={() => {
-									props.setFollowing(u.id)
+									usersAPI.setUnfollow(u.id).then(data => {
+										if (data.resultCode === 0) {
+											props.setFollowing(u.id)
+										}
+									})
 								}}>Unfollow</button>
 								: <button onClick={() => {
-									props.setFollowing(u.id)
+									usersAPI.setFollow(u.id).then(data => {
+										if (data.resultCode === 0) {
+											props.setFollowing(u.id)
+										}
+									})
 								}}>Follow</button>}
 						</div>
 					</span>

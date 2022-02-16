@@ -1,17 +1,15 @@
-type setUserDataType = ReturnType<typeof setUserData>
+type setAuthUserDataType = ReturnType<typeof setAuthUserData>
 
-export type GeneralType = setUserDataType
+export type GeneralType = setAuthUserDataType
 
-export const setUserData = (data: any) => ({type: 'SET-USER-DATA', payload: {data}} as const)
+export const setAuthUserData = (id: number, email: string, login: string) => ({type: 'SET-USER-DATA', payload: {id, email, login}} as const)
 
-
-export type usersType = {}
 
 let initialState = {
-	userId: null,
+	id: null,
 	email: null,
 	login: null,
-	isFetching: true
+	isAuth: false,
 }
 
 export const authReducer = (state = initialState, action: GeneralType) => {
@@ -19,7 +17,8 @@ export const authReducer = (state = initialState, action: GeneralType) => {
 		case "SET-USER-DATA":
 			return {
 				...state,
-				...action.payload.data
+				...action.payload,
+				isAuth: true
 			}
 		default:
 			return state

@@ -8,6 +8,12 @@ export const addPost = () => ({type: 'ADD-POST'} as const)
 export const changeNewText = (newText: string) => ({type: 'CHANGE-NEW-TEXT', payload: {newText}} as const)
 export const setUserProfile = (profile: any) => ({type: 'SET-USER-PROFILE', payload: {profile}} as const)
 
+export type profileType = {
+	postsData: { id: number, message: string, likes: number }[]
+	newPostText: string,
+	profile: null
+}
+
 let initialState = {
 	postsData: [
 		{id: 1, message: "Hi, how are you", likes: 15},
@@ -17,7 +23,7 @@ let initialState = {
 	profile: null
 }
 
-export const profileReducer = (state = initialState, action: GeneralTypes) => {
+export const profileReducer = (state: profileType = initialState, action: GeneralTypes) => {
 
 	switch (action.type) {
 		case "ADD-POST":

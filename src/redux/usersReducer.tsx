@@ -12,6 +12,14 @@ export const setCurrentPage = (currentPage: number) => ({type: 'SET-CURRENT-PAGE
 export const setTotalUsersCount = (totalCount: number) => ({type: 'SET-TOTAL-USER-COUNT', payload: {totalCount}} as const)
 export const setFetching = (isFetching: boolean) => ({type: 'TOGGLE-IS-FETCHING', payload: {isFetching}} as const)
 
+export type usersType = {
+	users: any
+	pageSize: number,
+	totalUsersCount: number,
+	currentPage: number,
+	isFetching: boolean
+}
+
 let initialState = {
 	users: [],
 	pageSize: 5,
@@ -20,7 +28,7 @@ let initialState = {
 	isFetching: true
 }
 
-export const usersReducer = (state = initialState, action: GeneralType) => {
+export const usersReducer = (state: usersType = initialState, action: GeneralType) => {
 
 	switch (action.type) {
 		case "CHANGE-FOLLOWING": {

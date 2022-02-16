@@ -1,5 +1,5 @@
 import MyPosts from "../MyPosts";
-import {addPost, changeNewText, GeneralTypes} from "../../../../redux/profile-reducer";
+import {addPost, changeNewText, GeneralTypes} from "../../../../redux/profileReducer";
 import {connect} from "react-redux";
 
 let mapStateToProps = (state: { profilePage: { newPostText: any, postsData: any } }) => {

@@ -6,6 +6,12 @@ export type GeneralType = updateNewMessageBodyType | sendMessageType
 export const updateNewMessageBody = (body: string) => ({type: 'UPDATE-NEW-MESSAGE-BODY', payload: {body}} as const)
 export const sendMessage = () => ({type: 'SEND-MESSAGE'} as const)
 
+export type dialogsType = {
+	dialogsData: { id: number, name: string }[]
+	messagesData: { id: number, message: string }[]
+	newMessageBody: string
+}
+
 let initialState = {
 	dialogsData: [
 		{id: 1, name: "Michael"},
@@ -23,7 +29,7 @@ let initialState = {
 	newMessageBody: ''
 }
 
-export const dialogsReducer = (state = initialState, action: GeneralType) => {
+export const dialogsReducer = (state: dialogsType = initialState, action: GeneralType) => {
 	switch (action.type) {
 		case "UPDATE-NEW-MESSAGE-BODY":
 			return {

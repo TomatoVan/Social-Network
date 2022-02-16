@@ -19,5 +19,3 @@ const Profile: React.FC = (props: any) => {
 }
 export default Profile;
 
-/*
-postsData={props.profilePage.postsData} dispatch={props.dispatch} newPostText={props.profilePage.newPostText}*/

@@ -1,9 +1,9 @@
-import {sendMessage, updateNewMessageBody} from "../../redux/dialogs-reducer";
+import {dialogsType, sendMessage, updateNewMessageBody} from "../../redux/dialogsReducer";
 import Dialogs from "../Dialogs/Dialogs";
 import {connect} from "react-redux";
-import {GeneralType} from "../../redux/dialogs-reducer";
+import {GeneralType} from "../../redux/dialogsReducer";
 
-let mapStateToProps = (state: { dialogsPage: any }) => {
+let mapStateToProps = (state: { dialogsPage: dialogsType }) => {
 	return {
 		dialogsPage: state.dialogsPage
 	}

@@ -1,5 +1,5 @@
 import {connect} from "react-redux";
-import {setFollowing, setCurrentPage, setFetching, setTotalUsersCount, setUsers} from "../../redux/users-reducer";
+import {setFollowing, setCurrentPage, setFetching, setTotalUsersCount, setUsers} from "../../redux/usersReducer";
 import React from "react";
 import axios from "axios";
 import Users from "./Users";

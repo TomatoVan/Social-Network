@@ -11,7 +11,8 @@ type PropsType = {
 	totalUsersCount: number,
 	currentPage: number,
 	onPageChange: (pageNumber: number) => void,
-
+	setInProgress: (isFetching: boolean, userId: number) => void,
+	inProgress: Array<number>
 }
 
 
@@ -65,18 +66,22 @@ let Users = (props: PropsType) => {
 						</div>
 						<div>
 							{u.followed
-								? <button onClick={() => {
+								? <button disabled={props.inProgress.some(id => id === u.id)} onClick={() => {
+									props.setInProgress(true, u.id)
 									usersAPI.setUnfollow(u.id).then(data => {
 										if (data.resultCode === 0) {
 											props.setFollowing(u.id)
 										}
+										props.setInProgress(false, u.id)
 									})
 								}}>Unfollow</button>
-								: <button onClick={() => {
+								: <button disabled={props.inProgress.some(id => id === u.id)} onClick={() => {
+									props.setInProgress(true, u.id)
 									usersAPI.setFollow(u.id).then(data => {
 										if (data.resultCode === 0) {
 											props.setFollowing(u.id)
 										}
+										props.setInProgress(false, u.id)
 									})
 								}}>Follow</button>}
 						</div>

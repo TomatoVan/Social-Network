@@ -1,3 +1,6 @@
+import {usersAPI} from "../api/Api";
+import {Dispatch} from "redux";
+
 type followType = ReturnType<typeof setFollowing>
 type setUsersType = ReturnType<typeof setUsers>
 type setCurrentPageType = ReturnType<typeof setCurrentPage>
@@ -13,6 +16,52 @@ export const setCurrentPage = (currentPage: number) => ({type: 'SET-CURRENT-PAGE
 export const setTotalUsersCount = (totalCount: number) => ({type: 'SET-TOTAL-USER-COUNT', payload: {totalCount}} as const)
 export const setFetching = (isFetching: boolean) => ({type: 'TOGGLE-IS-FETCHING', payload: {isFetching}} as const)
 export const setInProgress = (isFetching: boolean, userId: number) => ({type: 'TOGGLE-IN-PROGRESS', payload: {isFetching, userId}} as const)
+
+export const getUsersOnMount = (currentPage: number, pageSize: number) => {
+	return (dispatch: Dispatch) => {
+		dispatch(setFetching(true))
+		usersAPI.getUsers(currentPage, pageSize).then(data => {
+			dispatch(setFetching(false))
+			dispatch(setUsers(data.items))
+			dispatch(setTotalUsersCount(data.totalCount))
+		})
+	}
+}
+
+export const getUsersOnChange = (currentPage: number, pageSize: number) => {
+	return (dispatch: Dispatch) => {
+		dispatch(setFetching(true))
+		dispatch(setCurrentPage(currentPage))
+		usersAPI.getUsers(currentPage, pageSize).then(data => {
+			dispatch(setFetching(false))
+			dispatch(setUsers(data.items))
+		})
+	}
+}
+
+export const follow = (userId: number) => {
+	return (dispatch: Dispatch) => {
+		dispatch(setInProgress(true, userId))
+		usersAPI.setUnfollow(userId).then(data => {
+			if (data.resultCode === 0) {
+				dispatch(setFollowing(userId))
+			}
+			dispatch(setInProgress(false, userId))
+		})
+	}
+}
+
+export const unFollow = (userId: number) => {
+	return (dispatch: Dispatch) => {
+		dispatch(setInProgress(true, userId))
+		usersAPI.setFollow(userId).then(data => {
+			if (data.resultCode === 0) {
+				dispatch(setFollowing(userId))
+			}
+			dispatch(setInProgress(false, userId))
+		})
+	}
+}
 
 export type usersType = {
 	users: any

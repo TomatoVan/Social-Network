@@ -1,3 +1,6 @@
+import {Dispatch} from "redux";
+import {usersAPI} from "../api/Api";
+
 type addPostType = ReturnType<typeof addPost>
 type changeNewTextType = ReturnType<typeof changeNewText>
 type setUserProfileType = ReturnType<typeof setUserProfile>
@@ -7,6 +10,14 @@ export type GeneralTypes = addPostType | changeNewTextType | setUserProfileType
 export const addPost = () => ({type: 'ADD-POST'} as const)
 export const changeNewText = (newText: string) => ({type: 'CHANGE-NEW-TEXT', payload: {newText}} as const)
 export const setUserProfile = (profile: any) => ({type: 'SET-USER-PROFILE', payload: {profile}} as const)
+
+export const getProfileUserOnMount = (userId: string) => {
+	return (dispatch: Dispatch) => {
+		usersAPI.getProfileUser(userId).then(data => {
+			dispatch(setUserProfile(data))
+		})
+	}
+}
 
 export type profileType = {
 	postsData: { id: number, message: string, likes: number }[]

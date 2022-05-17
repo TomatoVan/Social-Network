@@ -2,9 +2,8 @@ import React from 'react';
 import s from './Profile.module.css';
 import Profile from "./Profile";
 import {connect} from "react-redux";
-import {profileType, setUserProfile} from "../../redux/profileReducer";
+import {getProfileUserOnMount, profileType, setUserProfile} from "../../redux/profileReducer";
 import {useMatch} from "react-router-dom";
-import {usersAPI} from "../../api/Api";
 
 type MatchParams = {
 	match: {
@@ -18,7 +17,7 @@ type mapStateType = {
 	profile: profileType
 }
 type mapDispatchType = {
-	setUserProfile: (profile: any) => void
+	getProfileUserOnMount: (userId: string) => void
 }
 
 export type MapStatePropsType = mapStateType & mapDispatchType
@@ -34,9 +33,7 @@ class ProfileContainer extends React.Component<MapStatePropsType & MatchParams> 
 			userId = String(2)
 		}
 
-		usersAPI.getProfileUser(userId).then(data => {
-			this.props.setUserProfile(data);
-		})
+		this.props.getProfileUserOnMount(userId)
 	}
 
 	render() {
@@ -59,4 +56,6 @@ let mapStateToProps = (state: { profilePage: { profile: profileType } }) => {
 	}
 }
 
-export default connect(mapStateToProps, {setUserProfile})(withRouter(ProfileContainer));
+export default connect(mapStateToProps, {
+	getProfileUserOnMount
+})(withRouter(ProfileContainer));

@@ -1,6 +1,5 @@
 import {connect} from "react-redux";
 import {
-	setCurrentPage,
 	getUsersOnMount,
 	getUsersOnChange, follow, unFollow
 } from "../../redux/usersReducer";

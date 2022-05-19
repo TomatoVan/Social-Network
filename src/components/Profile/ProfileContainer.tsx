@@ -6,6 +6,8 @@ import {getProfileUserOnMount, profileType, setUserProfile} from "../../redux/pr
 import {Navigate, useMatch} from "react-router-dom";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 import {AppStateType} from "../../redux/reduxStore";
+import {compose} from "redux";
+import Dialogs from "../Dialogs/Dialogs";
 
 type MatchParams = {
 	match: {
@@ -46,8 +48,6 @@ class ProfileContainer extends React.Component<MapStatePropsType & MatchParams> 
 	}
 }
 
-let AuthRedirectComponent = withAuthRedirect(ProfileContainer)
-
 
 export const withRouter = (Component: any) => {
 	return (props: any) => {
@@ -62,6 +62,14 @@ let mapStateToProps = (state: AppStateType) => {
 	}
 }
 
-export default connect(mapStateToProps, {
-	getProfileUserOnMount
-})(withRouter(AuthRedirectComponent));
+
+// let AuthRedirectComponent = withAuthRedirect(ProfileContainer)
+// export default connect(mapStateToProps, {
+// 	getProfileUserOnMount
+// })(withRouter(AuthRedirectComponent));
+
+export default compose<React.ComponentType>(
+	connect(mapStateToProps, {getProfileUserOnMount}),
+	withRouter,
+	withAuthRedirect
+)(ProfileContainer)

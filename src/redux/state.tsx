@@ -110,3 +110,5 @@ const store: StoreType = {
 export default store;
 
 */
+// @ts-ignore
+window.store = store

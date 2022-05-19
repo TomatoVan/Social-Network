@@ -2,6 +2,7 @@ import React, {ChangeEvent} from 'react';
 import s from './Dialogs.module.css';
 import DialogItem from "./DiaologItem/DialogItem";
 import Message from "./Message/Message";
+import {Navigate} from "react-router-dom";
 
 type DialogType = {
 	id: number
@@ -23,6 +24,7 @@ type DialogsPageType = {
 	dialogsPage: DialogPageType
 	sendMessage: () => void
 	updateNewMessageBody: (event: string) => void
+	isAuth: boolean
 }
 
 const Dialogs: React.FC<DialogsPageType> = (props) => {
@@ -39,6 +41,7 @@ const Dialogs: React.FC<DialogsPageType> = (props) => {
 		props.updateNewMessageBody(event.currentTarget.value)
 		/*props.dispatch(updateNewMessageBody(e.currentTarget.value))*/
 	}
+
 
 	return (
 		<div className={s.dialogs}>

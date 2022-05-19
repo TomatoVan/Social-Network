@@ -3,7 +3,9 @@ import s from './Profile.module.css';
 import Profile from "./Profile";
 import {connect} from "react-redux";
 import {getProfileUserOnMount, profileType, setUserProfile} from "../../redux/profileReducer";
-import {useMatch} from "react-router-dom";
+import {Navigate, useMatch} from "react-router-dom";
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
+import {AppStateType} from "../../redux/reduxStore";
 
 type MatchParams = {
 	match: {
@@ -14,7 +16,8 @@ type MatchParams = {
 }
 
 type mapStateType = {
-	profile: profileType
+	profile: profileType,
+	isAuth: boolean
 }
 type mapDispatchType = {
 	getProfileUserOnMount: (userId: string) => void
@@ -43,6 +46,9 @@ class ProfileContainer extends React.Component<MapStatePropsType & MatchParams> 
 	}
 }
 
+let AuthRedirectComponent = withAuthRedirect(ProfileContainer)
+
+
 export const withRouter = (Component: any) => {
 	return (props: any) => {
 		const match = useMatch('/profile/:userId/');
@@ -50,12 +56,12 @@ export const withRouter = (Component: any) => {
 	};
 }
 
-let mapStateToProps = (state: { profilePage: { profile: profileType } }) => {
+let mapStateToProps = (state: AppStateType) => {
 	return {
-		profile: state.profilePage.profile
+		profile: state.profilePage.profile,
 	}
 }
 
 export default connect(mapStateToProps, {
 	getProfileUserOnMount
-})(withRouter(ProfileContainer));
+})(withRouter(AuthRedirectComponent));

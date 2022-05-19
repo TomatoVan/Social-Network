@@ -6,7 +6,7 @@ import {usersReducer} from "./usersReducer";
 import {authReducer} from "./authReducer";
 import thunk from "redux-thunk";
 
-let reducers = combineReducers({
+let rootReducer = combineReducers({
 	profilePage: profileReducer,
 	dialogsPage: dialogsReducer,
 	sidebar: sidebarReducer,
@@ -14,7 +14,9 @@ let reducers = combineReducers({
 	auth: authReducer,
 })
 
-export let store = createStore(reducers, applyMiddleware(thunk))
+export type AppStateType = ReturnType<typeof rootReducer>
+
+export let store = createStore(rootReducer, applyMiddleware(thunk))
 
 // @ts-ignore
 window.store = store

@@ -1,15 +1,19 @@
 import React from 'react';
 import s from './ProfileInfo.module.css';
+import {ProfileStatus} from "./ProfileStatus";
 
 
 const ProfileInfo = (props: any) => {
 	return <div>
-		<div>
-			<img src='https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&h=350'
-				 alt={"prof"}/>
-		</div>
+		{/*<div>*/}
+		{/*	<img src='https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&h=350'*/}
+		{/*		 alt={"prof"}/>*/}
+		{/*</div>*/}
 		<div className={s.descriptionBlock}>
-			<img src={props.profile.photos.large} alt={''}/>
+			<div>
+				<img src={props.profile.photos.large} alt={''}/>
+				<ProfileStatus status={"Hello my friends"}/>
+			</div>
 			<div className={s.profileAbout}>
 				<div>{props.profile.fullName}</div>
 				<div>{props.profile.aboutMe}</div>

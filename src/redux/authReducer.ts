@@ -1,5 +1,5 @@
 import {Dispatch} from "redux";
-import {usersAPI} from "../api/Api";
+import {authAPI} from "../api/Api";
 
 type setAuthUserDataType = ReturnType<typeof setAuthUserData>
 
@@ -9,7 +9,7 @@ export const setAuthUserData = (id: number, email: string, login: string) => ({t
 
 export const getUserAuthDataOnMount = () => {
 	return (dispatch: Dispatch) => {
-		usersAPI.getUserAuthData().then(data => {
+		authAPI.getUserAuthData().then(data => {
 			if (data.resultCode === 0) {
 				let {id, email, login} = data.data
 				dispatch(setAuthUserData(id, email, login))

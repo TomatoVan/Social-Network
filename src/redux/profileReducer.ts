@@ -1,20 +1,40 @@
 import {Dispatch} from "redux";
-import {usersAPI} from "../api/Api";
+import {profileAPI} from "../api/Api";
 
 type addPostType = ReturnType<typeof addPost>
 type changeNewTextType = ReturnType<typeof changeNewText>
 type setUserProfileType = ReturnType<typeof setUserProfile>
+type setUserStatusType = ReturnType<typeof setUserStatus>
 
-export type GeneralTypes = addPostType | changeNewTextType | setUserProfileType
+export type GeneralTypes = addPostType | changeNewTextType | setUserProfileType | setUserStatusType
 
 export const addPost = () => ({type: 'ADD-POST'} as const)
 export const changeNewText = (newText: string) => ({type: 'CHANGE-NEW-TEXT', payload: {newText}} as const)
 export const setUserProfile = (profile: any) => ({type: 'SET-USER-PROFILE', payload: {profile}} as const)
+export const setUserStatus = (status: string) => ({type: 'SET-USER-STATUS', payload: {status}} as const)
 
-export const getProfileUserOnMount = (userId: string) => {
+export const getUserProfileOnMount = (userId: string) => {
 	return (dispatch: Dispatch) => {
-		usersAPI.getProfileUser(userId).then(data => {
+		profileAPI.getUserProfile(userId).then(data => {
 			dispatch(setUserProfile(data))
+		})
+	}
+}
+
+export const getUserStatusOnMount = (userId: string) => {
+	return (dispatch: Dispatch) => {
+		profileAPI.getUserStatus(userId).then(data => {
+			dispatch(setUserStatus(data))
+		})
+	}
+}
+
+export const updateUserStatus = (status: string) => {
+	return (dispatch: Dispatch) => {
+		profileAPI.updateUserStatus(status).then(data => {
+			if (data.resultCode === 0) {
+				dispatch(setUserStatus(status))
+			}
 		})
 	}
 }
@@ -22,7 +42,8 @@ export const getProfileUserOnMount = (userId: string) => {
 export type profileType = {
 	postsData: { id: number, message: string, likes: number }[]
 	newPostText: string,
-	profile: null
+	profile: null,
+	status: string
 }
 
 let initialState = {
@@ -31,7 +52,8 @@ let initialState = {
 		{id: 2, message: "My first post?", likes: 20},
 	],
 	newPostText: '',
-	profile: null
+	profile: null,
+	status: ""
 }
 
 export const profileReducer = (state: profileType = initialState, action: GeneralTypes) => {
@@ -52,6 +74,10 @@ export const profileReducer = (state: profileType = initialState, action: Genera
 			return {
 				...state, profile: action.payload.profile
 
+			}
+		case "SET-USER-STATUS":
+			return {
+				...state, status: action.payload.status
 			}
 		default:
 			return state

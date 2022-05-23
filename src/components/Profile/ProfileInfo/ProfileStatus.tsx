@@ -1,13 +1,16 @@
 import React, {ChangeEvent} from 'react';
+import {updateUserStatus} from "../../../redux/profileReducer";
 
 type ProfileStatusType = {
-	status: string
+	status: string,
+	updateUserStatus: (status: string) => void
 }
 
 export class ProfileStatus extends React.Component<ProfileStatusType> {
 
 	state = {
-		editMode: false
+		editMode: false,
+		status: this.props.status
 	}
 
 	onDoubleClickHandler = () => {
@@ -19,11 +22,14 @@ export class ProfileStatus extends React.Component<ProfileStatusType> {
 		this.setState({
 			editMode: false
 		})
+		this.props.updateUserStatus(this.state.status)
 	}
 
-	/*	onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-
-		}*/
+	onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+		this.setState({
+			status: e.currentTarget.value
+		})
+	}
 
 	render() {
 
@@ -31,10 +37,10 @@ export class ProfileStatus extends React.Component<ProfileStatusType> {
 			<div>
 				{!this.state.editMode
 					? <div>
-						<span onDoubleClick={this.onDoubleClickHandler}>{this.props.status}</span>
+						<span onDoubleClick={this.onDoubleClickHandler}>{this.props.status || "No status"}</span>
 					</div>
 					: <div>
-						<input onBlur={this.onBlurHandler} value={this.props.status} autoFocus/>
+						<input onChange={this.onChangeHandler} onBlur={this.onBlurHandler} value={this.state.status} autoFocus/>
 					</div>}
 			</div>
 		)

@@ -1,6 +1,7 @@
 import React from 'react';
 import s from './ProfileInfo.module.css';
 import {ProfileStatus} from "./ProfileStatus";
+import {updateUserStatus} from "../../../redux/profileReducer";
 
 
 const ProfileInfo = (props: any) => {
@@ -12,7 +13,7 @@ const ProfileInfo = (props: any) => {
 		<div className={s.descriptionBlock}>
 			<div>
 				<img src={props.profile.photos.large} alt={''}/>
-				<ProfileStatus status={"Hello my friends"}/>
+				<ProfileStatus status={props.status} updateUserStatus={props.updateUserStatus}/>
 			</div>
 			<div className={s.profileAbout}>
 				<div>{props.profile.fullName}</div>

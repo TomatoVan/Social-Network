@@ -3,7 +3,7 @@ import s from './../Dialogs.module.css';
 
 
 type MessagePropsType = {
-	id: string;
+	id: number
 	message: string;
 }
 

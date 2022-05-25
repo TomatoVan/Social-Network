@@ -11,8 +11,7 @@ type PostType = {
 type postsDataType = {
 	postsData: Array<PostType>
 	newPostText: string
-	/*dispatch: (action: ActionTypes) => void*/
-	updateNewPostText: (event: string) => void
+	changeNewText: (event: string) => void
 	addPost: () => void
 
 }
@@ -28,7 +27,7 @@ const MyPosts: React.FC<postsDataType> = (props) => {
 	}
 
 	const changeNewTextCallback = (event: ChangeEvent<HTMLTextAreaElement>) => {
-		props.updateNewPostText(event.currentTarget.value)
+		props.changeNewText(event.currentTarget.value)
 		/*props.dispatch(changeNewTextAC(e.currentTarget.value))*/
 	}
 

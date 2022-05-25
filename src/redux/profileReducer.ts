@@ -42,7 +42,7 @@ export const updateUserStatus = (status: string) => {
 export type profileType = {
 	postsData: { id: number, message: string, likes: number }[]
 	newPostText: string,
-	profile: null,
+	profile: null
 	status: string
 }
 
@@ -53,7 +53,7 @@ let initialState = {
 	],
 	newPostText: '',
 	profile: null,
-	status: ""
+	status: ''
 }
 
 export const profileReducer = (state: profileType = initialState, action: GeneralTypes) => {

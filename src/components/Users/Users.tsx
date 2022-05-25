@@ -2,20 +2,22 @@ import React from 'react';
 import s from "./Users.module.css"
 import userPhoto from "../../assets/images/1.png"
 import {NavLink} from "react-router-dom";
+import {userType} from "../../redux/usersReducer";
 
 type PropsType = {
-	users: any,
+	users: Array<userType>,
 	pageSize: number,
 	totalUsersCount: number,
 	currentPage: number,
 	onPageChange: (pageNumber: number) => void,
 	inProgress: Array<number>,
-	follow: (userId: any) => void,
-	unFollow: (userId: any) => void
+	follow: (userId: number) => void,
+	unFollow: (userId: number) => void
 }
 
 
 let Users = (props: PropsType) => {
+	console.log(props)
 
 	let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
 	let pages = []
@@ -37,14 +39,13 @@ let Users = (props: PropsType) => {
 			pages.push(i)
 		}
 	}
-
 	return (
 		<div>
 			<div className={s.pagesList}>
 				<span className={props.currentPage <= 5 ? s.hidePage : s.notSelectedPage}
 					  onClick={() => props.onPageChange(1)}> 1 ...
 				</span>
-				{pages.map(p => {
+				{pages.map((p: number) => {
 					return <span className={props.currentPage === p ? s.selectedPage : s.notSelectedPage}
 								 onClick={() => props.onPageChange(p)}>{p}
 							</span>
@@ -55,7 +56,7 @@ let Users = (props: PropsType) => {
 			</div>
 
 			{
-				props.users.map((u: any) => <div key={u.id} className={s.wrapper}>
+				props.users.map((u: userType) => <div key={u.id} className={s.wrapper}>
 					<span className={s.firstLayer}>
 						<div>
 							<NavLink to={'/profile/' + u.id}>

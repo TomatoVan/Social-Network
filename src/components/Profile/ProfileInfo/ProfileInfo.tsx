@@ -1,10 +1,17 @@
 import React from 'react';
 import s from './ProfileInfo.module.css';
 import {ProfileStatus} from "./ProfileStatus";
-import {updateUserStatus} from "../../../redux/profileReducer";
+import {ProfileType} from "../ProfileContainer";
 
 
-const ProfileInfo = (props: any) => {
+type ProfileInfoType = {
+	profile: ProfileType
+	status: string
+	updateUserStatus: (status: string) => void
+}
+
+const ProfileInfo = (props: ProfileInfoType) => {
+
 	return <div>
 		{/*<div>*/}
 		{/*	<img src='https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&h=350'*/}
@@ -13,6 +20,7 @@ const ProfileInfo = (props: any) => {
 		<div className={s.descriptionBlock}>
 			<div>
 				<img src={props.profile.photos.large} alt={''}/>
+
 				<ProfileStatus status={props.status} updateUserStatus={props.updateUserStatus}/>
 			</div>
 			<div className={s.profileAbout}>

@@ -3,10 +3,10 @@ import s from './Profile.module.css';
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import MyPostsContainer from "./MyPosts/Post/MyPostsContainer";
 import Preloader from "../../common/Preloader/Preloader";
-import {updateUserStatus} from "../../redux/profileReducer";
+import {ConnectPropsType} from "./ProfileContainer";
 
 
-const Profile: React.FC = (props: any) => {
+const Profile: React.FC<ConnectPropsType> = (props) => {
 	if (!props.profile) {
 		return <Preloader/>
 	}

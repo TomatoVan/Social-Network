@@ -1,37 +1,15 @@
 import {connect} from "react-redux";
 import {
 	getUsersOnMount,
-	getUsersOnChange, follow, unFollow
+	getUsersOnChange, follow, unFollow, userType
 } from "../../redux/usersReducer";
 import React from "react";
 import Users from "./Users";
 import Preloader from "../../common/Preloader/Preloader";
-
-type stateType = {
-	id: number,
-	photoUrl: string,
-	followed: boolean,
-	fullName: string,
-	status: string,
-	location: {
-		city: string,
-		country: string
-	}
-}
-
-type userPageType = {
-	usersPage: {
-		users: stateType,
-		pageSize: number,
-		totalUsersCount: number,
-		currentPage: number,
-		isFetching: boolean,
-		inProgress: Array<number>
-	}
-}
+import {AppStateType} from "../../redux/reduxStore";
 
 type userContainerPropsType = {
-	users: any,
+	users: Array<userType>,
 	pageSize: number,
 	totalUsersCount: number,
 	currentPage: number,
@@ -85,7 +63,7 @@ class UsersContainer extends React.Component<userContainerPropsType> {
 	}
 }
 
-const mapStateToProps = (state: userPageType) => {
+const mapStateToProps = (state: AppStateType) => {
 	return {
 		users: state.usersPage.users,
 		pageSize: state.usersPage.pageSize,

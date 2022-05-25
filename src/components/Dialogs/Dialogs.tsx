@@ -2,7 +2,6 @@ import React, {ChangeEvent} from 'react';
 import s from './Dialogs.module.css';
 import DialogItem from "./DiaologItem/DialogItem";
 import Message from "./Message/Message";
-import {Navigate} from "react-router-dom";
 
 type DialogType = {
 	id: number
@@ -27,9 +26,18 @@ type DialogsPageType = {
 	isAuth: boolean
 }
 
+type dialogsElementsMapType = {
+	id: number,
+	name: string
+}
+type messagesElementsMapType = {
+	id: number,
+	message: string
+}
+
 const Dialogs: React.FC<DialogsPageType> = (props) => {
-	let dialogsElements = props.dialogsPage.dialogsData.map((d: any) => <DialogItem id={d.id} name={d.name}/>);
-	let messagesElements = props.dialogsPage.messagesData.map((m: any) => <Message id={m.id} message={m.message}/>);
+	let dialogsElements = props.dialogsPage.dialogsData.map((d: dialogsElementsMapType) => <DialogItem id={d.id} name={d.name}/>);
+	let messagesElements = props.dialogsPage.messagesData.map((m: messagesElementsMapType) => <Message id={m.id} message={m.message}/>);
 	let newMessageBody = props.dialogsPage.newMessageBody;
 
 	let btnHandlerCallback = () => {

@@ -12,13 +12,12 @@ type mapDispatchType = {
 	getUserAuthDataOnMount: () => void
 }
 
-export type MapStatePropsType = mapStateType & mapDispatchType
+export type ConnectPropsType = mapStateType & mapDispatchType
 
-class HeaderContainer extends React.Component<MapStatePropsType> {
+class HeaderContainer extends React.Component<ConnectPropsType> {
 
 	componentDidMount() {
 		this.props.getUserAuthDataOnMount()
-
 	}
 
 	render() {

@@ -63,8 +63,21 @@ export const unFollow = (userId: number) => {
 	}
 }
 
+export type userType = {
+	followed: boolean
+	id: number
+	name: string
+	photos: {
+		small: string
+		large: string
+	}
+	status: string
+	uniqueUrlName: string
+}
+
+
 export type usersType = {
-	users: any
+	users: Array<userType>
 	pageSize: number,
 	totalUsersCount: number,
 	currentPage: number,

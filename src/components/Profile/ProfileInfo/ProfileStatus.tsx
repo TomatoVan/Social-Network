@@ -31,6 +31,14 @@ export class ProfileStatus extends React.Component<ProfileStatusType> {
 		})
 	}
 
+	componentDidUpdate(prevProps: Readonly<ProfileStatusType>, prevState: Readonly<{}>) { // if this.props.getUserProfileOnMount(userId) came first(for local state update, because it updates only when mount)
+		if (prevProps.status !== this.props.status) {
+			this.setState({
+				status: this.props.status
+			})
+		}
+	}
+
 	render() {
 
 		return (

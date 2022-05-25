@@ -36,7 +36,7 @@ class ProfileContainer extends React.Component<MapStatePropsType & MatchParams> 
 			userId = this.props.match.params.userId
 		}
 		if (!userId) {
-			userId = String(2)
+			userId = "22048"
 		}
 
 		this.props.getUserProfileOnMount(userId)

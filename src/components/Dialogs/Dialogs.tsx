@@ -36,8 +36,8 @@ type messagesElementsMapType = {
 }
 
 const Dialogs: React.FC<DialogsPageType> = (props) => {
-	let dialogsElements = props.dialogsPage.dialogsData.map((d: dialogsElementsMapType) => <DialogItem id={d.id} name={d.name}/>);
-	let messagesElements = props.dialogsPage.messagesData.map((m: messagesElementsMapType) => <Message id={m.id} message={m.message}/>);
+	let dialogsElements = props.dialogsPage.dialogsData.map((d: dialogsElementsMapType) => <DialogItem key={d.id} id={d.id} name={d.name}/>);
+	let messagesElements = props.dialogsPage.messagesData.map((m: messagesElementsMapType) => <Message key={m.id} id={m.id} message={m.message}/>);
 	let newMessageBody = props.dialogsPage.newMessageBody;
 
 	let btnHandlerCallback = () => {

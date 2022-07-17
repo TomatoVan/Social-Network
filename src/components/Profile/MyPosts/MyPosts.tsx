@@ -18,7 +18,7 @@ type postsDataType = {
 
 const MyPosts: React.FC<postsDataType> = (props) => {
 
-	let postsElements = props.postsData.map((p) => <Post message={p.message} likes={p.likes}/>)
+	let postsElements = props.postsData.map((p) => <Post key={p.id} message={p.message} likes={p.likes}/>)
 
 
 	const addPostCallback = () => {

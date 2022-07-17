@@ -17,7 +17,6 @@ type PropsType = {
 
 
 let Users = (props: PropsType) => {
-	console.log(props)
 
 	let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
 	let pages = []
@@ -46,7 +45,7 @@ let Users = (props: PropsType) => {
 					  onClick={() => props.onPageChange(1)}> 1 ...
 				</span>
 				{pages.map((p: number) => {
-					return <span className={props.currentPage === p ? s.selectedPage : s.notSelectedPage}
+					return <span key={p} className={props.currentPage === p ? s.selectedPage : s.notSelectedPage}
 								 onClick={() => props.onPageChange(p)}>{p}
 							</span>
 				})}

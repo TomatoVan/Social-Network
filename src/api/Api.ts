@@ -7,11 +7,53 @@ const instance = axios.create({
 		"API-KEY": "e53bd4e2-48e0-477a-b70a-83002085f133"
 	}
 })
+type UserType = {
+	id: number
+	name: string
+	status: string
+	photos: { small: string, large: string }
+	followed: boolean
+}
+type UsersType = {
+	items: Array<UserType>
+	totalCount: number
+	error: string
+}
+
+type GetUserAuthDataType = {
+	data: { id: number, email: string, login: string }
+	resultCode: number
+	messages: Array<string>
+}
+
+type ResponseType = {
+	resultCode: number
+	messages: Array<string>
+	data: {}
+}
+
+type UserProfileType = {
+	userId: number
+	lookingForAJob: boolean
+	lookingForAJobDescription: string
+	fullName: string
+	contacts: {
+		github: string,
+		vk: string,
+		facebook: string,
+		instagram: string,
+		twitter: string,
+		website: string,
+		youtube: string,
+		mainLink: string,
+	}
+	photos: { small: string, large: string }
+}
 
 export const usersAPI = {
 
 	getUsers(currentPage: number = 1, pageSize: number = 10) {
-		return instance.get(`users?page=${currentPage}&count=${pageSize}`)
+		return instance.get<UsersType>(`users?page=${currentPage}&count=${pageSize}`)
 			.then(response => {
 				console.log(response.data)
 				return response.data
@@ -19,12 +61,12 @@ export const usersAPI = {
 	},
 
 	setUnfollow(id: number) {
-		return instance.delete(`follow/${id}`)
+		return instance.delete<ResponseType>(`follow/${id}`)
 			.then(response => response.data)
 	},
 
 	setFollow(id: number) {
-		return instance.post(`follow/${id}`)
+		return instance.post<ResponseType>(`follow/${id}`)
 			.then(response => response.data)
 	},
 
@@ -32,14 +74,14 @@ export const usersAPI = {
 
 export const authAPI = {
 	getUserAuthData() {
-		return instance.get(`auth/me`)
+		return instance.get<GetUserAuthDataType>(`auth/me`)
 			.then(response => response.data)
 	},
 }
 
 export const profileAPI = {
 	getUserProfile(userId: string) {
-		return instance.get(`profile/` + userId)
+		return instance.get<UserProfileType>(`profile/` + userId)
 			.then(response => response.data)
 	},
 	getUserStatus(userId: string) {
@@ -47,7 +89,7 @@ export const profileAPI = {
 			.then(response => response.data)
 	},
 	updateUserStatus(status: any) {
-		return instance.put(`profile/status/`, {status})
+		return instance.put<ResponseType>(`profile/status/`, {status})
 			.then(response => response.data)
 	},
 }

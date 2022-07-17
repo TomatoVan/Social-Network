@@ -1,10 +1,10 @@
 
-form {
+.form {
     max-width: 500px;
     margin: 0 auto;
 }
 
-h1 {
+.login {
     font-weight: 100;
     color: white;
     text-align: center;
@@ -13,17 +13,18 @@ h1 {
 }
 
 
-p {
+.error {
     color: #bf1650;
 }
 
-p::before {
+.error::before {
     display: inline;
     content: "⚠ ";
 }
 
-input[type="text"],
-input[type="submit"] {
+.textInput,
+.textareaInput,
+.submitInput {
     display: block;
     box-sizing: border-box;
     width: 100%;
@@ -32,17 +33,14 @@ input[type="submit"] {
     padding: 10px 15px;
     margin-bottom: 10px;
     font-size: 16px;
-}
-
-label {
 
 }
 
-button[type="submit"],
-input[type="submit"] {
+
+.submitBtn,
+.submitInput {
     background: #ec5990;
     color: white;
-    text-transform: uppercase;
     border: none;
     margin-top: 30px;
     padding: 20px;
@@ -51,43 +49,40 @@ input[type="submit"] {
     letter-spacing: 10px;
 }
 
-button[type="submit"]:hover,
-input[type="submit"]:hover {
+.submitBtn:hover,
+.submitInput:hover {
     background: #bf1650;
 }
 
-button[type="submit"]:active,
-input[type="button"]:active,
-input[type="submit"]:active {
+.submitBtn:active,
+.btnInput:active,
+.submitInput:active {
     transition: 0.3s all;
     transform: translateY(3px);
     border: 1px solid transparent;
     opacity: 0.8;
 }
 
-input:disabled {
-    opacity: 0.4;
+.submitBtn:disabled,
+.submitInput:disabled {
+    opacity: 0.5;
 }
 
-input[type="button"]:hover {
+.btnInput:hover {
     transition: 0.3s all;
 }
 
 input[type="checkbox"] {
 }
 
-button[type="submit"],
-input[type="button"],
-input[type="submit"] {
+.submitBtn,
+.btnInput,
+.submitBtn {
     -webkit-appearance: none;
 }
 
-.App {
-    max-width: 600px;
-    margin: 0 auto;
-}
 
-button[type="button"] {
+.Btn {
     display: block;
     appearance: none;
     background: #333;
@@ -98,11 +93,8 @@ button[type="button"] {
     border-radius: 4px;
 }
 
-hr {
-    margin-top: 30px;
-}
 
-button {
+.button {
     display: block;
     appearance: none;
     margin-top: 40px;

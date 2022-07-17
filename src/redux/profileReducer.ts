@@ -8,7 +8,7 @@ type setUserStatusType = ReturnType<typeof setUserStatus>
 
 export type GeneralTypes = addPostType | changeNewTextType | setUserProfileType | setUserStatusType
 
-export const addPost = () => ({type: 'ADD-POST'} as const)
+export const addPost = (newPost: string) => ({type: 'ADD-POST', payload: {newPost}} as const)
 export const changeNewText = (newText: string) => ({type: 'CHANGE-NEW-TEXT', payload: {newText}} as const)
 export const setUserProfile = (profile: any) => ({type: 'SET-USER-PROFILE', payload: {profile}} as const)
 export const setUserStatus = (status: string) => ({type: 'SET-USER-STATUS', payload: {status}} as const)
@@ -62,7 +62,7 @@ export const profileReducer = (state: profileType = initialState, action: Genera
 		case "ADD-POST":
 			return {
 				...state,
-				postsData: [...state.postsData, {id: new Date().getTime(), message: state.newPostText, likes: 0}],
+				postsData: [...state.postsData, {id: new Date().getTime(), message: action.payload.newPost, likes: 0}],
 				newPostText: ''
 			}
 		case "CHANGE-NEW-TEXT":

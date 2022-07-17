@@ -1,9 +1,9 @@
 import React from 'react';
 import {SubmitHandler, useForm} from "react-hook-form";
 import "./Login.module.css"
-import s from "./Login.module.css"
+import f from "./Login.module.css"
 
-export const LoginFrom = (props: any) => {
+export const LoginForm = (props: any) => {
 
 	type Inputs = {
 		login: string,
@@ -22,13 +22,14 @@ export const LoginFrom = (props: any) => {
 		reset()
 	};
 
-	return (
-		<form onSubmit={handleSubmit(onSubmit)}>
+	return <>
+		<h1 className={f.login}>Login</h1>
+		<form onSubmit={handleSubmit(onSubmit)} className={f.form}>
 			{/*LOGIN INPUT*/}
 			<div>
-				<label className={s.labelTextInput}>
+				<label className={f.labelTextInput}>
 					Login
-					<input {...register("login",
+					<input className={f.textInput} {...register("login",
 						{
 							required: "The field is required",
 							minLength: {
@@ -39,14 +40,14 @@ export const LoginFrom = (props: any) => {
 						})} type="text"/>
 				</label>
 				<div>
-					{errors?.login && <p>{errors?.login?.message || "Error!"}</p>}
+					{errors?.login && <p className={f.error}>{errors?.login?.message || "Error!"}</p>}
 				</div>
 			</div>
 			{/*PASSWORD INPUT*/}
 			<div>
-				<label className={s.labelTextInput}>
+				<label className={f.labelTextInput}>
 					Password
-					<input {...register("password",
+					<input className={f.textInput} {...register("password",
 						{
 							required: "The field is required",
 							minLength: {
@@ -57,29 +58,22 @@ export const LoginFrom = (props: any) => {
 						})} type="text"/>
 				</label>
 				<div>
-					{errors?.password && <p>{errors?.password?.message || "Error!"}</p>}
+					{errors?.password && <p className={f.error}>{errors?.password?.message || "Error!"}</p>}
 				</div>
 			</div>
 			{/*CHECKBOX INPUT*/}
 			<div>
-				<label className={s.labelCheckbox}>
+				<label className={f.labelCheckbox}>
 					Remember me
 					<input {...register("checkbox")} type="checkbox"/>
 				</label>
 			</div>
 			{/*SUBMIT INPUT*/}
 			<div>
-				<input type="submit" value="submit" disabled={!isValid}/>
+				<input className={f.submitInput} type="submit" value="SUBMIT" disabled={!isValid}/>
 			</div>
 		</form>
-	)
+	</>
+
 }
 
-export const Login = (props: any) => {
-	return (
-		<div>
-			<h1>Login</h1>
-			<LoginFrom/>
-		</div>
-	)
-}

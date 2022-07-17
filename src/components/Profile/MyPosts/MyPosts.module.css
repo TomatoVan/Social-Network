@@ -3,5 +3,44 @@
 }
 
 .posts {
-    margin-top: 10px;
+    margin-top: 15px;
 }
+
+.postsForm {
+}
+
+.postTextField {
+    resize: none;
+    height: 80px;
+    width: 300px;
+    word-break: break-word;
+    font-size: 18px;
+}
+
+.submitBtn {
+    background: #ec5990;
+    color: white;
+    border: none;
+    margin-top: 10px;
+    padding: 6px 18px;
+    font-size: 16px;
+    font-weight: 100;
+    border-radius: 5px;
+}
+
+.submitBtn:hover {
+    background: #bf1650;
+}
+
+.submitBtn:active {
+    transition: 0.3s all;
+    transform: translateY(3px);
+    border: 1px solid transparent;
+    opacity: 0.8;
+}
+
+.submitBtn:disabled {
+    opacity: 0.5;
+}
+
+

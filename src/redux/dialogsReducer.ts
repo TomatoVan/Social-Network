@@ -4,7 +4,7 @@ type sendMessageType = ReturnType<typeof sendMessage>
 export type GeneralType = updateNewMessageBodyType | sendMessageType
 
 export const updateNewMessageBody = (body: string) => ({type: 'UPDATE-NEW-MESSAGE-BODY', payload: {body}} as const)
-export const sendMessage = () => ({type: 'SEND-MESSAGE'} as const)
+export const sendMessage = (newPost: string) => ({type: 'SEND-MESSAGE', payload: {newPost}} as const)
 
 export type dialogsType = {
 	dialogsData: { id: number, name: string }[]
@@ -40,7 +40,7 @@ export const dialogsReducer = (state: dialogsType = initialState, action: Genera
 			let body = state.newMessageBody
 			return {
 				...state,
-				messagesData: [...state.messagesData, {id: new Date().getTime(), message: body}],
+				messagesData: [...state.messagesData, {id: new Date().getTime(), message: action.payload.newPost}],
 				newMessageBody: ''
 			}
 		default:

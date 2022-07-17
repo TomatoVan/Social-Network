@@ -15,6 +15,7 @@
 
 .error {
     color: #bf1650;
+    margin: 5px;
 }
 
 .error::before {

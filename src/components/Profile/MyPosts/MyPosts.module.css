@@ -9,6 +9,16 @@
 .postsForm {
 }
 
+.error {
+    color: #bf1650;
+    margin: 5px;
+}
+
+.error::before {
+    display: inline;
+    content: "⚠ ";
+}
+
 .postTextField {
     resize: none;
     height: 80px;

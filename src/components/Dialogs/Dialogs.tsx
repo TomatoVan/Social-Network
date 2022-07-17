@@ -2,6 +2,8 @@ import React, {ChangeEvent} from 'react';
 import s from './Dialogs.module.css';
 import DialogItem from "./DiaologItem/DialogItem";
 import Message from "./Message/Message";
+import {SubmitHandler, useForm} from "react-hook-form";
+import f from "../../Login/Login.module.css";
 
 type DialogType = {
 	id: number
@@ -21,7 +23,7 @@ type DialogPageType = {
 
 type DialogsPageType = {
 	dialogsPage: DialogPageType
-	sendMessage: () => void
+	sendMessage: (newPost: string) => void
 	updateNewMessageBody: (event: string) => void
 	isAuth: boolean
 }
@@ -40,8 +42,8 @@ const Dialogs: React.FC<DialogsPageType> = (props) => {
 	let messagesElements = props.dialogsPage.messagesData.map((m: messagesElementsMapType) => <Message key={m.id} id={m.id} message={m.message}/>);
 	let newMessageBody = props.dialogsPage.newMessageBody;
 
-	let btnHandlerCallback = () => {
-		props.sendMessage()
+	let btnHandlerCallback = (newPost: string) => {
+		props.sendMessage(newPost)
 		/*props.dispatch(sendMessage())*/
 	}
 
@@ -50,6 +52,22 @@ const Dialogs: React.FC<DialogsPageType> = (props) => {
 		/*props.dispatch(updateNewMessageBody(e.currentTarget.value))*/
 	}
 
+	type Inputs = {
+		message: string,
+	};
+
+	const {
+		register,
+		handleSubmit,
+		formState: {errors},
+		reset
+	} = useForm<Inputs>({mode: "onSubmit"});
+	const onSubmit: SubmitHandler<Inputs> = (data) => {
+		console.log(data)
+		reset();
+		btnHandlerCallback(data.message)
+
+	};
 
 	return (
 		<div className={s.dialogs}>
@@ -60,13 +78,30 @@ const Dialogs: React.FC<DialogsPageType> = (props) => {
 				<div>{messagesElements}</div>
 				<div>
 					<div>
-						<textarea value={newMessageBody}
+						<form onSubmit={handleSubmit(onSubmit)} className={s.postsForm}>
+							{/*Message INPUT*/}
+							<div>
+								<textarea className={s.postTextField} {...register("message", {required: "The field is required"})} placeholder="Message"/>
+								<div>
+									{errors?.message && <p className={s.error}>{errors?.message?.message || "Error!"}</p>}
+								</div>
+							</div>
+							{/*SUBMIT INPUT*/}
+							<div>
+								<input className={s.submitBtn} type="submit" value="Add post"/>
+							</div>
+
+						</form>
+
+
+						{/*<textarea value={newMessageBody}
 								  placeholder={'Enter your message'}
 								  onChange={onNewMessageChangeCallback}
 						>1</textarea>
 					</div>
 					<div>
 						<button onClick={btnHandlerCallback}>Send</button>
+					</div>*/}
 					</div>
 				</div>
 			</div>

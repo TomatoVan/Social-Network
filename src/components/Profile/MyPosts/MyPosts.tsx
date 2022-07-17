@@ -1,6 +1,5 @@
 import React, {ChangeEvent} from 'react';
 import s from './MyPosts.module.css';
-import f from "../../../Login/Login.module.css"
 import Post from "./Post/Post";
 import {SubmitHandler, useForm} from "react-hook-form";
 
@@ -59,7 +58,7 @@ const MyPosts: React.FC<postsDataType> = (props) => {
 				<div>
 					<textarea className={s.postTextField} {...register("message", {required: "The field is required"})} placeholder="Message"/>
 					<div>
-						{errors?.message && <p className={f.error}>{errors?.message?.message || "Error!"}</p>}
+						{errors?.message && <p className={s.error}>{errors?.message?.message || "Error!"}</p>}
 					</div>
 				</div>
 				{/*SUBMIT INPUT*/}

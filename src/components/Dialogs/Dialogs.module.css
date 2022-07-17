@@ -18,3 +18,46 @@
 .message {
 
 }
+
+.postTextField {
+    resize: none;
+    height: 25px;
+    width: 250px;
+    word-break: break-word;
+    font-size: 17px;
+}
+
+.error {
+    color: #bf1650;
+    margin: 2px;
+}
+
+.error::before {
+    display: inline;
+    content: "⚠ ";
+}
+
+.submitBtn {
+    background: #ec5990;
+    color: white;
+    border: none;
+    margin-top: 4px;
+    padding: 6px 18px;
+    font-weight: 100;
+    border-radius: 5px;
+}
+
+.submitBtn:hover {
+    background: #bf1650;
+}
+
+.submitBtn:active {
+    transition: 0.3s all;
+    transform: translateY(3px);
+    border: 1px solid transparent;
+    opacity: 0.8;
+}
+
+.submitBtn:disabled {
+    opacity: 0.5;
+}

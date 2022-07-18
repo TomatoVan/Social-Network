@@ -49,7 +49,6 @@ export const logout = () => {
 		authAPI.logout()
 			.then(data => {
 				if (data.resultCode === 0) {
-					console.log(data.data)
 					dispatch(setAuthUserData(null, null, null, false))
 				}
 			})

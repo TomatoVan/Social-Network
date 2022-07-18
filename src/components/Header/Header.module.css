@@ -16,3 +16,27 @@
     color: black;
 }
 
+.logoutBtn {
+    background: #ec5990;
+    border: none;
+    margin-top: 4px;
+    padding: 6px 18px;
+    font-weight: 100;
+    border-radius: 5px;
+}
+
+.logoutBtn:hover {
+    color: white;
+    background: #bf1650;
+}
+
+.logoutBtn:active {
+    transition: 0.3s all;
+    transform: translateY(3px);
+    border: 1px solid transparent;
+    opacity: 0.8;
+}
+
+.logoutBtn:disabled {
+    opacity: 0.5;
+}

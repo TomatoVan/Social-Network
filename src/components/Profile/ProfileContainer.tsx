@@ -6,6 +6,7 @@ import {getUserProfileOnMount, getUserStatusOnMount, updateUserStatus} from "../
 import {useMatch} from "react-router-dom";
 import {AppStateType} from "../../redux/reduxStore";
 import {compose} from "redux";
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 
 
 export type ProfileType = {
@@ -92,5 +93,5 @@ let mapStateToProps = (state: AppStateType) => {
 export default compose<React.ComponentType>(
 	connect(mapStateToProps, {getUserProfileOnMount, getUserStatusOnMount, updateUserStatus}),
 	withRouter,
-	// withAuthRedirect
+	withAuthRedirect
 )(ProfileContainer)

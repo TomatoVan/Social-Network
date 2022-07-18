@@ -8,8 +8,9 @@ import {AppStateType} from "../redux/reduxStore";
 import {Navigate} from "react-router-dom";
 
 type LoginFormType = {
-	login: (loginData: loginDataType) => void,
-	isAuth: boolean
+	login: (loginData: loginDataType, setError: any) => void,
+	isAuth: boolean,
+
 }
 
 type mapStateType = {
@@ -28,12 +29,13 @@ const LoginForm = (props: LoginFormType) => {
 	const {
 		register, // Регистрация полей для формы
 		handleSubmit, // для валидации, обертка над кастомным хэндлером(отправляет дату с формы, защищает отправку при ошибках)
-		formState: {errors, isValid}, // объект с состояниями нашего стейта
-		reset //очищает форму после отправки
-	} = useForm<Inputs>({mode: "onBlur"});
+		formState: {errors}, // объект с состояниями нашего стейта
+		reset, //очищает форму после отправки
+		setError // Функция позволяет вручную установить одну или несколько ошибок
+	} = useForm<Inputs>({mode: "onSubmit"});
 	const onSubmit: SubmitHandler<Inputs> = (loginData) => {
 		console.log(loginData)
-		props.login(loginData)
+		props.login(loginData, setError)
 		reset()
 	};
 
@@ -41,8 +43,7 @@ const LoginForm = (props: LoginFormType) => {
 		{props.isAuth ? <Navigate to='/profile'/> :
 			<>
 				<h1 className={f.login}>Login</h1>
-				<form onSubmit={
-					handleSubmit(onSubmit)} className={f.form}>
+				<form onSubmit={handleSubmit(onSubmit)} className={f.form}>
 					{/*LOGIN INPUT*/}
 					<div>
 						<label className={f.labelTextInput}>
@@ -88,7 +89,7 @@ const LoginForm = (props: LoginFormType) => {
 					</div>
 					{/*SUBMIT INPUT*/}
 					<div>
-						<input className={f.submitInput} type="submit" value="SUBMIT" disabled={!isValid}/>
+						<input className={f.submitInput} type="submit" value="SUBMIT"/>
 					</div>
 				</form>
 			</>

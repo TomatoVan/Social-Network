@@ -16,7 +16,7 @@ export const setAuthUserData = (id: number | null, email: string | null, login: 
 	payload: {id, email, login, isAuth}
 } as const)
 
-export const getUserAuthDataOnMount = () => {
+export const getAuthUserData = () => {
 	return (dispatch: Dispatch) => {
 		authAPI.getUserAuthData()
 			.then(data => {
@@ -30,15 +30,35 @@ export const getUserAuthDataOnMount = () => {
 	}
 }
 
-export const login = (loginData: loginDataType) => {
+export const login = (loginData: loginDataType, setError: any) => {
 	return (dispatch: Dispatch) => {
 		const {email, password, rememberMe} = loginData
 		authAPI.login(email, password, rememberMe)
 			.then(data => {
-				if (data.resultCode === 0) {
-					console.log(data.data)
-					// @ts-ignore
-					dispatch(getUserAuthDataOnMount())
+				const {fieldsErrors, resultCode, messages} = data
+				const setFieldsError = () => {
+					if (fieldsErrors.length > 0) {
+						for (let key in fieldsErrors) {
+							let message = fieldsErrors[key].error
+							setError(fieldsErrors[key].field, {type: 'server', message})
+						}
+					} else for (let key in messages) {
+						let message = messages[key]
+						setError('password', {type: 'server', message})
+					}
+				}
+				switch (resultCode) {
+					case 0:
+						// @ts-ignore
+						dispatch(getAuthUserData())
+						break
+					case 1:
+						setFieldsError()
+						break
+					// case 10: !need add  CAPTCHA
+					// 	authAPI.getCaptcha()
+					default:
+						throw Error("Error Auth")
 				}
 			})
 	}

@@ -6,7 +6,7 @@ import {AppStateType} from "../../redux/reduxStore";
 
 type mapStateType = {
 	isAuth: boolean,
-	login: string
+	login: string | null
 }
 type mapDispatchType = {
 	getUserAuthDataOnMount: () => void

@@ -2,14 +2,18 @@ import React from 'react';
 import {SubmitHandler, useForm} from "react-hook-form";
 import "./Login.module.css"
 import f from "./Login.module.css"
+import {login} from "../redux/authReducer";
+import {useDispatch} from "react-redux";
 
-export const LoginForm = (props: any) => {
+export const LoginForm = () => {
 
 	type Inputs = {
-		login: string,
+		email: string,
 		password: string,
-		checkbox: boolean,
+		rememberMe: boolean,
 	};
+
+	const dispatch = useDispatch()
 
 	const {
 		register, // Регистрация полей для формы
@@ -17,8 +21,9 @@ export const LoginForm = (props: any) => {
 		formState: {errors, isValid}, // объект с состояниями нашего стейта
 		reset //очищает форму после отправки
 	} = useForm<Inputs>({mode: "onBlur"});
-	const onSubmit: SubmitHandler<Inputs> = (data) => {
-		console.log(data)
+	const onSubmit: SubmitHandler<Inputs> = (loginData) => {
+		console.log(loginData)
+		dispatch(login(loginData))
 		reset()
 	};
 
@@ -29,7 +34,7 @@ export const LoginForm = (props: any) => {
 			<div>
 				<label className={f.labelTextInput}>
 					Login
-					<input className={f.textInput} {...register("login",
+					<input className={` ${errors.email ? f.errorBorder : f.textInput} `} {...register("email",
 						{
 							required: "The field is required",
 							minLength: {
@@ -40,14 +45,14 @@ export const LoginForm = (props: any) => {
 						})} type="text"/>
 				</label>
 				<div>
-					{errors?.login && <p className={f.error}>{errors?.login?.message || "Error!"}</p>}
+					{errors?.email && <p className={f.error}>{errors?.email?.message || "Error!"}</p>}
 				</div>
 			</div>
 			{/*PASSWORD INPUT*/}
 			<div>
 				<label className={f.labelTextInput}>
 					Password
-					<input className={f.textInput} {...register("password",
+					<input className={` ${errors.password ? f.errorBorder : f.textInput} `} {...register("password",
 						{
 							required: "The field is required",
 							minLength: {
@@ -65,7 +70,7 @@ export const LoginForm = (props: any) => {
 			<div>
 				<label className={f.labelCheckbox}>
 					Remember me
-					<input {...register("checkbox")} type="checkbox"/>
+					<input {...register("rememberMe")} type="checkbox"/>
 				</label>
 			</div>
 			{/*SUBMIT INPUT*/}
@@ -74,6 +79,4 @@ export const LoginForm = (props: any) => {
 			</div>
 		</form>
 	</>
-
 }
-

@@ -24,7 +24,6 @@ type DialogPageType = {
 type DialogsPageType = {
 	dialogsPage: DialogPageType
 	sendMessage: (newPost: string) => void
-	updateNewMessageBody: (event: string) => void
 	isAuth: boolean
 }
 
@@ -47,10 +46,10 @@ const Dialogs: React.FC<DialogsPageType> = (props) => {
 		/*props.dispatch(sendMessage())*/
 	}
 
-	let onNewMessageChangeCallback = (event: ChangeEvent<HTMLTextAreaElement>) => {
+	/*let onNewMessageChangeCallback = (event: ChangeEvent<HTMLTextAreaElement>) => {
 		props.updateNewMessageBody(event.currentTarget.value)
-		/*props.dispatch(updateNewMessageBody(e.currentTarget.value))*/
-	}
+		/!*props.dispatch(updateNewMessageBody(e.currentTarget.value))*!/
+	}*/
 
 	type Inputs = {
 		message: string,

@@ -18,7 +18,7 @@ export const setAuthUserData = (id: number | null, email: string | null, login: 
 
 export const getAuthUserData = () => {
 	return (dispatch: Dispatch) => {
-		authAPI.getUserAuthData()
+		return authAPI.getUserAuthData()
 			.then(data => {
 				if (data.resultCode === 0) {
 					let {id, email, login} = data.data
@@ -55,8 +55,10 @@ export const login = (loginData: loginDataType, setError: any) => {
 					case 1:
 						setFieldsError()
 						break
-					// case 10: !need add  CAPTCHA
-					// 	authAPI.getCaptcha()
+					case 10: /*!need add  CAPTCHA*/
+						/*authAPI.getCaptcha()*/
+						setError('password', {type: 'server', message: 'Incorrect anti-bot symbols'})
+						break
 					default:
 						throw Error("Error Auth")
 				}

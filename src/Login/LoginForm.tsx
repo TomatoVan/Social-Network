@@ -4,7 +4,7 @@ import "./Login.module.css"
 import f from "./Login.module.css"
 import {login, loginDataType} from "../redux/authReducer";
 import {connect} from "react-redux";
-import {AppStateType} from "../redux/reduxStore";
+import {AppRootStateType} from "../redux/reduxStore";
 import {Navigate} from "react-router-dom";
 
 type LoginFormType = {
@@ -97,7 +97,7 @@ const LoginForm = (props: LoginFormType) => {
 	</>
 }
 
-const mapStateToProps = (state: AppStateType): mapStateType => ({
+const mapStateToProps = (state: AppRootStateType): mapStateType => ({
 	isAuth: state.auth['isAuth']
 })
 

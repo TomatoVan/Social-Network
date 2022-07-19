@@ -1,9 +1,11 @@
 import {Dispatch} from "redux";
 import {authAPI} from "../api/Api";
+import {AppThunk} from "./reduxStore";
 
+//types
 type setAuthUserDataType = ReturnType<typeof setAuthUserData>
 
-export type GeneralType = setAuthUserDataType
+export type AuthUserActionsType = setAuthUserDataType
 
 export type loginDataType = {
 	email: string,
@@ -11,13 +13,42 @@ export type loginDataType = {
 	rememberMe: boolean,
 };
 
+type stateType = {
+	id: number | null,
+	email: string | null,
+	login: string | null,
+	isAuth: boolean
+}
+// initial state
+let initialState = {
+	id: null,
+	email: null,
+	login: null,
+	isAuth: false,
+}
+//reducer
+export const authReducer = (state: stateType = initialState, action: AuthUserActionsType) => {
+	switch (action.type) {
+		case "SET-USER-DATA":
+			return {
+				...state,
+				...action.payload
+			}
+		default:
+			return state
+	}
+}
+
+
+//AC
 export const setAuthUserData = (id: number | null, email: string | null, login: string | null, isAuth: boolean) => ({
 	type: 'SET-USER-DATA',
 	payload: {id, email, login, isAuth}
 } as const)
 
-export const getAuthUserData = () => {
-	return (dispatch: Dispatch) => {
+//TC
+export const getAuthUserData = (): AppThunk => {
+	return (dispatch) => {
 		return authAPI.getUserAuthData()
 			.then(data => {
 				if (data.resultCode === 0) {
@@ -30,8 +61,8 @@ export const getAuthUserData = () => {
 	}
 }
 
-export const login = (loginData: loginDataType, setError: any) => {
-	return (dispatch: Dispatch) => {
+export const login = (loginData: loginDataType, setError: any): AppThunk => {
+	return (dispatch) => {
 		const {email, password, rememberMe} = loginData
 		authAPI.login(email, password, rememberMe)
 			.then(data => {
@@ -66,7 +97,7 @@ export const login = (loginData: loginDataType, setError: any) => {
 	}
 }
 
-export const logout = () => {
+export const logout = (): AppThunk => {
 	return (dispatch: Dispatch) => {
 		authAPI.logout()
 			.then(data => {
@@ -78,28 +109,6 @@ export const logout = () => {
 }
 
 
-let initialState = {
-	id: null,
-	email: null,
-	login: null,
-	isAuth: false,
-}
 
-type stateType = {
-	id: number | null,
-	email: string | null,
-	login: string | null,
-	isAuth: boolean
-}
 
-export const authReducer = (state: stateType = initialState, action: GeneralType) => {
-	switch (action.type) {
-		case "SET-USER-DATA":
-			return {
-				...state,
-				...action.payload
-			}
-		default:
-			return state
-	}
-}
+

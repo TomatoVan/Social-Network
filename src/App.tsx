@@ -14,7 +14,7 @@ import {connect} from "react-redux";
 import {compose} from "redux";
 import {initializeApp, initializedSuccess} from "./redux/appReducer";
 import {stat} from "fs";
-import {AppStateType} from "./redux/reduxStore";
+import {AppRootStateType} from "./redux/reduxStore";
 import Preloader from "./common/Preloader/Preloader";
 
 type AppPropsType = {
@@ -55,7 +55,7 @@ class App extends React.Component<AppPropsType> {
 	}
 }
 
-const mapStateToProps = (state: AppStateType) => {
+const mapStateToProps = (state: AppRootStateType) => {
 	return {
 		initialized: state.app.initialized
 	}

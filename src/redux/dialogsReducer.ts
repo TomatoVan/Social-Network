@@ -1,14 +1,14 @@
+//types
 type sendMessageType = ReturnType<typeof sendMessage>
 
-export type GeneralType = sendMessageType
-
-export const sendMessage = (newPost: string) => ({type: 'SEND-MESSAGE', payload: {newPost}} as const)
+export type dialogActionsType = sendMessageType
 
 export type dialogsType = {
 	dialogsData: { id: number, name: string }[]
 	messagesData: { id: number, message: string }[]
 }
 
+// initial state
 let initialState = {
 	dialogsData: [
 		{id: 1, name: "Michael"},
@@ -25,7 +25,8 @@ let initialState = {
 	],
 }
 
-export const dialogsReducer = (state: dialogsType = initialState, action: GeneralType) => {
+//reducer
+export const dialogsReducer = (state: dialogsType = initialState, action: dialogActionsType) => {
 	switch (action.type) {
 		case "SEND-MESSAGE":
 			return {
@@ -37,3 +38,6 @@ export const dialogsReducer = (state: dialogsType = initialState, action: Genera
 			return state
 	}
 }
+
+//AC
+export const sendMessage = (newPost: string) => ({type: 'SEND-MESSAGE', payload: {newPost}} as const)

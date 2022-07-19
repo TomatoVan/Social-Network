@@ -3,11 +3,11 @@ import {sendMessage} from "../../redux/dialogsReducer";
 import Dialogs from "../Dialogs/Dialogs";
 import {connect} from "react-redux";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
-import {AppStateType} from "../../redux/reduxStore";
+import {AppRootStateType} from "../../redux/reduxStore";
 import {compose} from "redux";
 
 
-let mapStateToProps = (state: AppStateType): any => {
+let mapStateToProps = (state: AppRootStateType): any => {
 	return {
 		dialogsPage: state.dialogsPage,
 	}

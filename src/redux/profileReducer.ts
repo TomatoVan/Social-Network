@@ -1,41 +1,12 @@
-import {Dispatch} from "redux";
 import {profileAPI} from "../api/Api";
+import {AppThunk} from "./reduxStore";
 
+//types
 type addPostType = ReturnType<typeof addPost>
 type setUserProfileType = ReturnType<typeof setUserProfile>
 type setUserStatusType = ReturnType<typeof setUserStatus>
 
-export type GeneralTypes = addPostType | setUserProfileType | setUserStatusType
-
-export const addPost = (newPost: string) => ({type: 'ADD-POST', payload: {newPost}} as const)
-export const setUserProfile = (profile: any) => ({type: 'SET-USER-PROFILE', payload: {profile}} as const)
-export const setUserStatus = (status: string) => ({type: 'SET-USER-STATUS', payload: {status}} as const)
-
-export const getUserProfileOnMount = (userId: string) => {
-	return (dispatch: Dispatch) => {
-		profileAPI.getUserProfile(userId).then(data => {
-			dispatch(setUserProfile(data))
-		})
-	}
-}
-
-export const getUserStatusOnMount = (userId: string) => {
-	return (dispatch: Dispatch) => {
-		profileAPI.getUserStatus(userId).then(data => {
-			dispatch(setUserStatus(data))
-		})
-	}
-}
-
-export const updateUserStatus = (status: string) => {
-	return (dispatch: Dispatch) => {
-		profileAPI.updateUserStatus(status).then(data => {
-			if (data.resultCode === 0) {
-				dispatch(setUserStatus(status))
-			}
-		})
-	}
-}
+export type ProfileActionsType = addPostType | setUserProfileType | setUserStatusType
 
 export type profileType = {
 	postsData: { id: number, message: string, likes: number }[]
@@ -43,6 +14,7 @@ export type profileType = {
 	status: string
 }
 
+// initial state
 let initialState = {
 	postsData: [
 		{id: 1, message: "Hi, how are you", likes: 15},
@@ -52,7 +24,8 @@ let initialState = {
 	status: ''
 }
 
-export const profileReducer = (state: profileType = initialState, action: GeneralTypes) => {
+//reducer
+export const profileReducer = (state: profileType = initialState, action: ProfileActionsType) => {
 
 	switch (action.type) {
 		case "ADD-POST":
@@ -71,5 +44,37 @@ export const profileReducer = (state: profileType = initialState, action: Genera
 			}
 		default:
 			return state
+	}
+}
+
+//AC
+export const addPost = (newPost: string) => ({type: 'ADD-POST', payload: {newPost}} as const)
+export const setUserProfile = (profile: any) => ({type: 'SET-USER-PROFILE', payload: {profile}} as const)
+export const setUserStatus = (status: string) => ({type: 'SET-USER-STATUS', payload: {status}} as const)
+
+//TC
+export const getUserProfileOnMount = (userId: string): AppThunk => {
+	return (dispatch) => {
+		profileAPI.getUserProfile(userId).then(data => {
+			dispatch(setUserProfile(data))
+		})
+	}
+}
+
+export const getUserStatusOnMount = (userId: string): AppThunk => {
+	return (dispatch) => {
+		profileAPI.getUserStatus(userId).then(data => {
+			dispatch(setUserStatus(data))
+		})
+	}
+}
+
+export const updateUserStatus = (status: string): AppThunk => {
+	return (dispatch) => {
+		profileAPI.updateUserStatus(status).then(data => {
+			if (data.resultCode === 0) {
+				dispatch(setUserStatus(status))
+			}
+		})
 	}
 }

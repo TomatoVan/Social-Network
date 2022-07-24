@@ -53,28 +53,24 @@ export const setUserProfile = (profile: any) => ({type: 'SET-USER-PROFILE', payl
 export const setUserStatus = (status: string) => ({type: 'SET-USER-STATUS', payload: {status}} as const)
 
 //TC
-export const getUserProfileOnMount = (userId: string): AppThunk => {
-	return (dispatch) => {
-		profileAPI.getUserProfile(userId).then(data => {
-			dispatch(setUserProfile(data))
-		})
-	}
+export const getUserProfileOnMount = (userId: string): AppThunk => (dispatch) => {
+	profileAPI.getUserProfile(userId).then(data => {
+		dispatch(setUserProfile(data))
+	})
 }
 
-export const getUserStatusOnMount = (userId: string): AppThunk => {
-	return (dispatch) => {
-		profileAPI.getUserStatus(userId).then(data => {
-			dispatch(setUserStatus(data))
-		})
-	}
+
+export const getUserStatusOnMount = (userId: string): AppThunk => (dispatch) => {
+	profileAPI.getUserStatus(userId).then(data => {
+		dispatch(setUserStatus(data))
+	})
 }
 
-export const updateUserStatus = (status: string): AppThunk => {
-	return (dispatch) => {
-		profileAPI.updateUserStatus(status).then(data => {
-			if (data.resultCode === 0) {
-				dispatch(setUserStatus(status))
-			}
-		})
-	}
+
+export const updateUserStatus = (status: string): AppThunk => (dispatch) => {
+	profileAPI.updateUserStatus(status).then(data => {
+		if (data.resultCode === 0) {
+			dispatch(setUserStatus(status))
+		}
+	})
 }

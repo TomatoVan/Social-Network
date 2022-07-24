@@ -15,13 +15,11 @@ const Header = (props: HeaderPropsType) => {
 		<img src='https://www.freelogodesign.org/Content/img/logo-ex-7.png' alt='1'/>
 
 		<div className={s.loginBlock}>
-			{props.isAuth
-				?
-				<div>
-					{props.login} - <button className={s.logoutBtn} onClick={props.logout}>Logout</button>
-				</div>
-				:
-				<NavLink className={s.loginText} to={'/login'}>Login</NavLink>}
+			{!props.isAuth && <NavLink className={s.loginText} to={'/login'}>Login</NavLink>}
+
+			<div>
+				{props.login} - <button className={s.logoutBtn} onClick={props.logout}>Logout</button>
+			</div>
 		</div>
 	</header>
 }

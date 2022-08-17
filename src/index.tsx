@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
-import {store} from './redux/reduxStore';
+import App from './app/App';
+import {store} from './app/store';
 import {BrowserRouter} from 'react-router-dom';
 import {Provider} from 'react-redux';
 
@@ -14,5 +14,3 @@ ReactDOM.render(
 	</BrowserRouter>, document.getElementById('root'));
 
 
-/*
-state={store.getState()} dispatch={store.dispatch.bind(store)}*/

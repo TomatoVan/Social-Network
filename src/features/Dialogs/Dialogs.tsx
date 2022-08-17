@@ -54,7 +54,6 @@ const Dialogs: React.FC<DialogsPageType> = (props) => {
 		reset
 	} = useForm<Inputs>({mode: 'onSubmit'});
 	const onSubmit: SubmitHandler<Inputs> = (data) => {
-		console.log(data)
 		reset();
 		btnHandlerCallback(data.message)
 

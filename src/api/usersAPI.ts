@@ -5,7 +5,6 @@ export const usersAPI = {
 	getUsers(currentPage: number = 1, pageSize: number = 10) {
 		return instance.get<UsersType>(`users?page=${currentPage}&count=${pageSize}`)
 			.then(response => {
-				console.log(response.data)
 				return response.data
 			})
 	},

@@ -36,7 +36,6 @@ const MyPosts: React.FC<postsDataType> = (props) => {
 		reset
 	} = useForm<FormTypes>({mode: 'onSubmit'});
 	const onSubmit: SubmitHandler<FormTypes> = (data) => {
-		console.log(data)
 		reset();
 
 		addPostCallback(data.message)

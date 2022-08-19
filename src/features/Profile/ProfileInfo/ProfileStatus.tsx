@@ -1,59 +1,40 @@
-import React, {ChangeEvent} from 'react';
-import {updateUserStatus} from '../profileReducer';
+import React, {ChangeEvent, useEffect, useState} from 'react';
 
 type ProfileStatusType = {
 	status: string,
 	updateUserStatus: (status: string) => void
 }
 
-export class ProfileStatus extends React.Component<ProfileStatusType> {
+export const ProfileStatus = (props: ProfileStatusType) => {
 
-	state = {
-		editMode: false,
-		status: this.props.status
+
+	const [editMode, setEditMode] = useState(false)
+	const [status, setStatus] = useState(props.status)
+
+	useEffect(() => {
+		setStatus(props.status)
+	}, [props.status])
+
+	const onDoubleClickHandler = () => setEditMode(true)
+	const onBlurHandler = () => {
+		setEditMode(false)
+		props.updateUserStatus(status)
 	}
 
-	onDoubleClickHandler = () => {
-		this.setState({
-			editMode: true
-		})
-	}
-	onBlurHandler = () => {
-		this.setState({
-			editMode: false
-		})
-		this.props.updateUserStatus(this.state.status)
-	}
+	const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => setStatus(e.currentTarget.value)
 
-	onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-		this.setState({
-			status: e.currentTarget.value
-		})
-	}
-
-	componentDidUpdate(prevProps: Readonly<ProfileStatusType>, prevState: Readonly<{}>) { // if this.props.getUserProfileOnMount(userId) came first(for local state update, because it updates only when mount)
-		if (prevProps.status !== this.props.status) {
-			this.setState({
-				status: this.props.status
-			})
-		}
-	}
-
-	render() {
-
-		return (
-			<div>
-				{!this.state.editMode
-					? <div>
-						<span onDoubleClick={this.onDoubleClickHandler}>{this.props.status || 'No status'}</span>
-					</div>
-					: <div>
-						<input onChange={this.onChangeHandler} onBlur={this.onBlurHandler} value={this.state.status} autoFocus/>
-					</div>}
-			</div>
-		)
-	}
+	return (
+		<div>
+			{!editMode
+				? <div>
+					<span onDoubleClick={onDoubleClickHandler}>{props.status || 'No status'}</span>
+				</div>
+				: <div>
+					<input onChange={onChangeHandler} onBlur={onBlurHandler} value={status} autoFocus/>
+				</div>}
+		</div>
+	)
 
 
-}
+};
 

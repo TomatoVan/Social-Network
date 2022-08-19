@@ -1,0 +1,45 @@
+.pageNumberButton {
+    cursor: pointer;
+    padding: 0.5rem 0.8rem;
+    margin: 0 0.5em 1rem 0;
+    border-radius: 12px;
+    border: 2px solid #63a4dc;
+    color: #fff;
+    font-weight: 800;
+    transition: 0.2s;
+}
+
+.pageNumberButton:hover {
+    color: #fff;
+    background-color: #63a4dc;
+}
+
+.pageNumberButton_active {
+    cursor: pointer;
+    padding: 0.5rem 0.8rem;
+    margin: 0 0.5em 1rem 0;
+
+    border-radius: 12px;
+    border: 2px solid #63a4dc;
+    color: #fff;
+    background-color: #63a4dc;
+    font-weight: 800;
+    transition: 0.2s;
+}
+
+.btnControl {
+    background: none;
+    cursor: pointer;
+    padding: 0.5rem 1.4rem;
+    margin: 0 0.5em 1rem 0;
+    border-radius: 12px;
+    border: 2px solid #63a4dc;
+    color: #fff;
+    font-weight: 800;
+    transition: 0.2s;
+}
+
+.btnControl:hover {
+    color: white;
+    background-color: #63a4dc;
+}

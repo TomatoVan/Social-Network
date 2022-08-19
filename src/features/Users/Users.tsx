@@ -1,8 +1,9 @@
-import React from 'react';
+import React, {FC} from 'react';
 import s from './Users.module.css'
 import userPhoto from '../../assets/images/1.png'
 import {NavLink} from 'react-router-dom';
 import {UserType} from '../../api/usersAPI';
+import {Pagination} from '../../common/components/Pagination/Pagination';
 
 type PropsType = {
 	users: Array<UserType>,
@@ -16,46 +17,13 @@ type PropsType = {
 }
 
 
-let Users = (props: PropsType) => {
+let Users: FC<PropsType> = ({users, pageSize, totalUsersCount, currentPage, onPageChange, inProgress, follow, unFollow}) => {
 
-	let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
-	let pages = []
-	if (pagesCount > 10) {
-		if (props.currentPage > 5) {
-			for (let i = props.currentPage - 2; i <= props.currentPage + 2; i++) {
-				pages.push(i)
-				if (i === pagesCount) break
-			}
-
-		} else {
-			for (let i = 1; i <= 6; i++) {
-				pages.push(i)
-				if (i === pagesCount) break
-			}
-		}
-	} else {
-		for (let i = 1; i <= pagesCount; i++) {
-			pages.push(i)
-		}
-	}
 	return (
 		<div>
-			<div className={s.pagesList}>
-				<span className={props.currentPage <= 5 ? s.hidePage : s.notSelectedPage}
-							onClick={() => props.onPageChange(1)}> 1 ...
-				</span>
-				{pages.map((p: number) => {
-					return <span key={p} className={props.currentPage === p ? s.selectedPage : s.notSelectedPage}
-											 onClick={() => props.onPageChange(p)}>{p}
-							</span>
-				})}
-				<span className={props.currentPage + 2 >= pagesCount ? s.hidePage : s.notSelectedPage}
-							onClick={() => props.onPageChange(pagesCount)}> ... {pagesCount}
-				</span>
-			</div>
-
+			<Pagination currentPage={currentPage} pageSize={pageSize} totalUsersCount={totalUsersCount} setCurrentPageHandler={onPageChange}/>
 			{
-				props.users.map((u: UserType) => <div key={u.id} className={s.wrapper}>
+				users.map((u: UserType) => <div key={u.id} className={s.wrapper}>
 					<span className={s.firstLayer}>
 						<div>
 							<NavLink to={'/profile/' + u.id}>
@@ -64,11 +32,11 @@ let Users = (props: PropsType) => {
 						</div>
 						<div>
 							{u.followed
-								? <button disabled={props.inProgress.some(id => id === u.id)} onClick={() => {
-									props.follow(u.id)
+								? <button disabled={inProgress.some(id => id === u.id)} onClick={() => {
+									follow(u.id)
 								}}>Unfollow</button>
-								: <button disabled={props.inProgress.some(id => id === u.id)} onClick={() => {
-									props.unFollow(u.id)
+								: <button disabled={inProgress.some(id => id === u.id)} onClick={() => {
+									unFollow(u.id)
 								}}>Follow</button>}
 						</div>
 					</span>

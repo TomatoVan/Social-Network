@@ -28,11 +28,15 @@ type ResponseType = {
 }
 
 export type UserType = {
+	followed: boolean
 	id: number
 	name: string
-	status: string
-	photos: { small: string, large: string }
-	followed: boolean
+	photos: {
+		small: string | null
+		large: string | null
+	}
+	status: string | null
+	uniqueUrlName: string | null
 }
 
 export type UsersType = {

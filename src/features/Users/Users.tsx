@@ -2,10 +2,10 @@ import React from 'react';
 import s from './Users.module.css'
 import userPhoto from '../../assets/images/1.png'
 import {NavLink} from 'react-router-dom';
-import {userType} from './usersReducer';
+import {UserType} from '../../api/usersAPI';
 
 type PropsType = {
-	users: Array<userType>,
+	users: Array<UserType>,
 	pageSize: number,
 	totalUsersCount: number,
 	currentPage: number,
@@ -55,7 +55,7 @@ let Users = (props: PropsType) => {
 			</div>
 
 			{
-				props.users.map((u: userType) => <div key={u.id} className={s.wrapper}>
+				props.users.map((u: UserType) => <div key={u.id} className={s.wrapper}>
 					<span className={s.firstLayer}>
 						<div>
 							<NavLink to={'/profile/' + u.id}>

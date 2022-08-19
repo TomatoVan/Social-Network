@@ -2,18 +2,18 @@ import React from 'react';
 import {SubmitHandler, useForm} from 'react-hook-form';
 import './Login.module.css'
 import f from './Login.module.css'
-import {login, loginDataType} from './authReducer';
+import {login, LoginDataType} from './authReducer';
 import {connect} from 'react-redux';
 import {AppRootStateType} from '../../app/store';
 import {Navigate} from 'react-router-dom';
 
 type LoginFormType = {
-	login: (loginData: loginDataType, setError: any) => void,
+	login: (loginData: LoginDataType, setError: any) => void,
 	isAuth: boolean,
 
 }
 
-type mapStateType = {
+type MapStateType = {
 	isAuth: boolean
 }
 
@@ -89,7 +89,7 @@ const LoginForm = (props: LoginFormType) => {
 	</>
 }
 
-const mapStateToProps = (state: AppRootStateType): mapStateType => ({
+const mapStateToProps = (state: AppRootStateType): MapStateType => ({
 	isAuth: state.auth['isAuth']
 })
 

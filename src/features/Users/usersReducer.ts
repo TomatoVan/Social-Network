@@ -3,29 +3,18 @@ import {usersAPI, UserType} from '../../api/usersAPI';
 
 //types
 
-type followType = ReturnType<typeof setFollowing>
-type setUsersType = ReturnType<typeof setUsers>
-type setCurrentPageType = ReturnType<typeof setCurrentPage>
-type setTotalUsersCountType = ReturnType<typeof setTotalUsersCount>
-type setFetchingType = ReturnType<typeof setFetching>
-type setInProgressType = ReturnType<typeof setInProgress>
+type FollowType = ReturnType<typeof setFollowing>
+type SetUsersType = ReturnType<typeof setUsers>
+type SetCurrentPageType = ReturnType<typeof setCurrentPage>
+type SetTotalUsersCountType = ReturnType<typeof setTotalUsersCount>
+type SetFetchingType = ReturnType<typeof setFetching>
+type SetInProgressType = ReturnType<typeof setInProgress>
 
-export type UsersActionsType = followType | setUsersType | setCurrentPageType | setTotalUsersCountType | setFetchingType | setInProgressType
+export type UsersActionsType = FollowType | SetUsersType | SetCurrentPageType | SetTotalUsersCountType | SetFetchingType | SetInProgressType
 
-export type userType = {
-	followed: boolean
-	id: number
-	name: string
-	photos: {
-		small: string
-		large: string
-	}
-	status: string
-	uniqueUrlName: string
-}
 
-export type usersType = {
-	users: Array<userType>
+export type usersStateType = {
+	users: Array<UserType>
 	pageSize: number,
 	totalUsersCount: number,
 	currentPage: number,
@@ -44,7 +33,7 @@ let initialState = {
 }
 
 //reducer
-export const usersReducer = (state: usersType = initialState, action: UsersActionsType) => {
+export const usersReducer = (state: usersStateType = initialState, action: UsersActionsType) => {
 
 	switch (action.type) {
 		case 'CHANGE-FOLLOWING': {

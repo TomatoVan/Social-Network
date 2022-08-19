@@ -1,15 +1,13 @@
 import {connect} from 'react-redux';
-import {
-	getUsersOnMount,
-	getUsersOnChange, follow, unFollow, userType
-} from './usersReducer';
+import {follow, getUsersOnChange, getUsersOnMount, unFollow,} from './usersReducer';
 import React from 'react';
 import Users from './Users';
 import Preloader from '../../common/components/Preloader/Preloader';
 import {AppRootStateType} from '../../app/store';
+import {UserType} from '../../api/usersAPI';
 
 type userContainerPropsType = {
-	users: Array<userType>,
+	users: Array<UserType>,
 	pageSize: number,
 	totalUsersCount: number,
 	currentPage: number,

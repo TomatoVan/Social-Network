@@ -1,9 +1,9 @@
 //types
-type sendMessageType = ReturnType<typeof sendMessage>
+type SendMessageType = ReturnType<typeof sendMessage>
 
-export type dialogActionsType = sendMessageType
+export type DialogActionsType = SendMessageType
 
-export type dialogsType = {
+export type DialogsStateType = {
 	dialogsData: { id: number, name: string }[]
 	messagesData: { id: number, message: string }[]
 }
@@ -11,24 +11,24 @@ export type dialogsType = {
 // initial state
 let initialState = {
 	dialogsData: [
-		{id: 1, name: "Michael"},
-		{id: 2, name: "Andrey"},
-		{id: 3, name: "Leon"},
-		{id: 4, name: "Valera"},
-		{id: 5, name: "Sasha"}
+		{id: 1, name: 'Michael'},
+		{id: 2, name: 'Andrey'},
+		{id: 3, name: 'Leon'},
+		{id: 4, name: 'Valera'},
+		{id: 5, name: 'Sasha'}
 	],
 
 	messagesData: [
-		{id: 1, message: "Hi"},
-		{id: 2, message: "How are you?"},
-		{id: 3, message: "Hello"}
+		{id: 1, message: 'Hi'},
+		{id: 2, message: 'How are you?'},
+		{id: 3, message: 'Hello'}
 	],
 }
 
 //reducer
-export const dialogsReducer = (state: dialogsType = initialState, action: dialogActionsType) => {
+export const dialogsReducer = (state: DialogsStateType = initialState, action: DialogActionsType) => {
 	switch (action.type) {
-		case "SEND-MESSAGE":
+		case 'SEND-MESSAGE':
 			return {
 				...state,
 				messagesData: [...state.messagesData, {id: new Date().getTime(), message: action.payload.newPost}],

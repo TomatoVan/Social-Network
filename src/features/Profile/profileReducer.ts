@@ -2,13 +2,13 @@ import {AppThunk} from '../../app/store';
 import {profileAPI} from '../../api/profileAPI';
 
 //types
-type addPostType = ReturnType<typeof addPost>
-type setUserProfileType = ReturnType<typeof setUserProfile>
-type setUserStatusType = ReturnType<typeof setUserStatus>
+type AddPostType = ReturnType<typeof addPost>
+type SetUserProfileType = ReturnType<typeof setUserProfile>
+type SetUserStatusType = ReturnType<typeof setUserStatus>
 
-export type ProfileActionsType = addPostType | setUserProfileType | setUserStatusType
+export type ProfileActionsType = AddPostType | SetUserProfileType | SetUserStatusType
 
-export type profileType = {
+export type profileStateType = {
 	postsData: { id: number, message: string, likes: number }[]
 	profile: null
 	status: string
@@ -25,7 +25,7 @@ let initialState = {
 }
 
 //reducer
-export const profileReducer = (state: profileType = initialState, action: ProfileActionsType) => {
+export const profileReducer = (state: profileStateType = initialState, action: ProfileActionsType) => {
 
 	switch (action.type) {
 		case 'ADD-POST':

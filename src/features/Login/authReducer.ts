@@ -3,17 +3,17 @@ import {AppThunk} from '../../app/store';
 import {authAPI} from '../../api/authAPI';
 
 //types
-type setAuthUserDataType = ReturnType<typeof setAuthUserData>
+type SetAuthUserDataType = ReturnType<typeof setAuthUserData>
 
-export type AuthUserActionsType = setAuthUserDataType
+export type AuthUserActionsType = SetAuthUserDataType
 
-export type loginDataType = {
+export type LoginDataType = {
 	email: string,
 	password: string,
 	rememberMe: boolean,
 };
 
-type stateType = {
+type LoginStateType = {
 	id: number | null,
 	email: string | null,
 	login: string | null,
@@ -27,7 +27,7 @@ let initialState = {
 	isAuth: false,
 }
 //reducer
-export const authReducer = (state: stateType = initialState, action: AuthUserActionsType) => {
+export const authReducer = (state: LoginStateType = initialState, action: AuthUserActionsType) => {
 	switch (action.type) {
 		case 'SET-USER-DATA':
 			return {
@@ -60,7 +60,7 @@ export const getAuthUserData = (): AppThunk => (dispatch) => {
 }
 
 
-export const login = (loginData: loginDataType, setError: any): AppThunk => (dispatch) => {
+export const login = (loginData: LoginDataType, setError: any): AppThunk => (dispatch) => {
 	const {email, password, rememberMe} = loginData
 	authAPI.login(email, password, rememberMe)
 		.then(data => {

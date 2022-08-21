@@ -1,36 +1,39 @@
-import React, {ChangeEvent, useEffect, useState} from 'react';
+import React, {ChangeEvent, FC, useEffect, useState} from 'react';
+import {useAppDispatch} from '../../../common/hooks/useAppDispatch';
+import {useAppSelector} from '../../../common/hooks/useAppSelector';
+import {updateUserStatus} from '../profileReducer';
 
-type ProfileStatusType = {
-	status: string,
-	updateUserStatus: (status: string) => void
-}
 
-export const ProfileStatus = (props: ProfileStatusType) => {
+export const ProfileStatus: FC<{ isOwner: boolean }> = ({isOwner}) => {
+
+	const dispatch = useAppDispatch()
+	const initStatus = useAppSelector(state => state.profilePage.status)
 
 
 	const [editMode, setEditMode] = useState(false)
-	const [status, setStatus] = useState(props.status)
+	const [status, setStatus] = useState(initStatus)
 
 	useEffect(() => {
-		setStatus(props.status)
-	}, [props.status])
+		setStatus(initStatus)
+	}, [initStatus])
 
 	const onDoubleClickHandler = () => setEditMode(true)
 	const onBlurHandler = () => {
 		setEditMode(false)
-		props.updateUserStatus(status)
+		dispatch(updateUserStatus(status))
 	}
 
 	const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => setStatus(e.currentTarget.value)
 
 	return (
 		<div>
+			{!isOwner && <div>you cant change status</div>}
 			{!editMode
 				? <div>
-					<span onDoubleClick={onDoubleClickHandler}>{props.status || 'No status'}</span>
+					<span onDoubleClick={onDoubleClickHandler}>{status || 'No status'}</span>
 				</div>
 				: <div>
-					<input onChange={onChangeHandler} onBlur={onBlurHandler} value={status} autoFocus/>
+					<input onChange={onChangeHandler} onBlur={onBlurHandler} value={status} autoFocus disabled={!isOwner}/>
 				</div>}
 		</div>
 	)

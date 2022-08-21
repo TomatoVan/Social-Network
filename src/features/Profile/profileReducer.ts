@@ -61,14 +61,14 @@ export const setUserStatus = (status: string) => ({type: 'SET-USER-STATUS', payl
 export const savePhotoSuccess = (photos: any) => ({type: 'SAVE-PHOTOS-SUCCESS', payload: {photos}} as const)
 
 //TC
-export const getUserProfileOnMount = (userId: string): AppThunk => (dispatch) => {
+export const getUserProfile = (userId: string): AppThunk => (dispatch) => {
 	profileAPI.getUserProfile(userId).then(data => {
 		dispatch(setUserProfile(data))
 	})
 }
 
 
-export const getUserStatusOnMount = (userId: string): AppThunk => (dispatch) => {
+export const getUserStatus = (userId: string): AppThunk => (dispatch) => {
 	profileAPI.getUserStatus(userId).then(data => {
 		dispatch(setUserStatus(data))
 	})
@@ -83,7 +83,7 @@ export const updateUserStatus = (status: string): AppThunk => (dispatch) => {
 	})
 }
 
-export const savePhoto = (file: any): AppThunk => (dispatch) => {
+export const savePhoto = (file: File): AppThunk => (dispatch) => {
 	profileAPI.getPhotos(file)
 		.then(data => {
 			if (data.resultCode === 0) {

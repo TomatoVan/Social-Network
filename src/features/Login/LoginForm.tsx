@@ -38,7 +38,7 @@ const LoginForm = (props: LoginFormType) => {
 	};
 
 	return <>
-		{props.isAuth && <Navigate to="/profile"/>}
+		{props.isAuth && <Navigate to="/me"/>}
 
 		<h1 className={f.login}>Login</h1>
 		<form onSubmit={handleSubmit(onSubmit)} className={f.form}>

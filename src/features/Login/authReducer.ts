@@ -78,7 +78,6 @@ export const login = (loginData: LoginDataType, setError: any): AppThunk => (dis
 			}
 			switch (resultCode) {
 				case 0:
-					// @ts-ignore
 					dispatch(getAuthUserData())
 					break
 				case 1:

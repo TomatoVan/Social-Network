@@ -2,32 +2,21 @@ import React from 'react';
 import s from './MyPosts.module.css';
 import Post from './Post/Post';
 import {SubmitHandler, useForm} from 'react-hook-form';
-
-type PostType = {
-	id: number
-	message: string
-	likes: number
-}
-
-type postsDataType = {
-	postsData: Array<PostType>
-	newPostText: string
-	addPost: (newPost: string) => void
-}
+import {useAppDispatch} from '../../../common/hooks/useAppDispatch';
+import {useAppSelector} from '../../../common/hooks/useAppSelector';
+import {addPost} from '../profileReducer';
 
 type FormTypes = {
 	message: string,
 };
 
-const MyPosts: React.FC<postsDataType> = (props) => {
+export const MyPosts = () => {
 
-	let postsElements = props.postsData.map((p) => <Post key={p.id} message={p.message} likes={p.likes}/>)
+	const dispatch = useAppDispatch()
+	const postsData = useAppSelector(state => state.profilePage.postsData)
 
 
-	const addPostCallback = (newPost: string) => {
-		props.addPost(newPost)
-	}
-
+	let postsElements = postsData.map((p) => <Post key={p.id} message={p.message} likes={p.likes}/>)
 
 	const {
 		register,
@@ -38,7 +27,7 @@ const MyPosts: React.FC<postsDataType> = (props) => {
 	const onSubmit: SubmitHandler<FormTypes> = (data) => {
 		reset();
 
-		addPostCallback(data.message)
+		dispatch(addPost(data.message))
 	};
 
 	return (<div className={s.postsBlock}>
@@ -62,4 +51,3 @@ const MyPosts: React.FC<postsDataType> = (props) => {
 	</div>);
 }
 
-export default MyPosts;

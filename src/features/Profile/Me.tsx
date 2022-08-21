@@ -1,15 +1,17 @@
 import React, {useEffect} from 'react';
 import Preloader from '../../common/components/Preloader/Preloader';
+import {MyPosts} from './MyPosts/MyPosts';
 import {ProfileInfo} from './ProfileInfo/ProfileInfo';
 import {useAppSelector} from '../../common/hooks/useAppSelector';
 import {useParams} from 'react-router-dom';
 import {useAppDispatch} from '../../common/hooks/useAppDispatch';
 import {getUserProfile, getUserStatus} from './profileReducer';
 
-export const Profile = () => {
+export const Me = () => {
 	const dispatch = useAppDispatch()
 
 	const profile = useAppSelector(state => state.profilePage.profile)
+	const id = useAppSelector(state => state.auth.id)
 
 	const {userId} = useParams()
 
@@ -17,9 +19,12 @@ export const Profile = () => {
 		if (userId) {
 			dispatch(getUserProfile(userId))
 			dispatch(getUserStatus(userId))
+		} else if (id) {
+			dispatch(getUserProfile(id.toString()))
+			dispatch(getUserStatus(id.toString()))
 		}
 
-	}, [dispatch, userId])
+	}, [dispatch, id, userId])
 
 	if (!profile) {
 		return <Preloader/>
@@ -28,6 +33,7 @@ export const Profile = () => {
 	return (
 		<div>
 			<ProfileInfo isOwner={!userId}/>
+			<MyPosts/>
 		</div>
 	);
 }

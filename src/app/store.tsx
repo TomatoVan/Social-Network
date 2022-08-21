@@ -16,14 +16,13 @@ let rootReducer = combineReducers({
 })
 
 export type AppRootStateType = ReturnType<typeof rootReducer>
-export type AppActionsType = AuthUserActionsType | AppActionsTypes | DialogActionsType | ProfileActionsType | UsersActionsType
-export type AppThunk<ReturnType = void> = ThunkAction<void, AppRootStateType, unknown, AppActionsType>
+export type AllAppActionsType = AuthUserActionsType | AppActionsTypes | DialogActionsType | ProfileActionsType | UsersActionsType
+export type AppThunk<ReturnType = void> = ThunkAction<void, AppRootStateType, unknown, AllAppActionsType>
+
 
 //for dev
 // @ts-ignore
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-export const store = createStore(rootReducer, /* preloadedState, */ composeEnhancers(applyMiddleware(thunk)));
+export const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)));
 // export let store = createStore(rootReducer, applyMiddleware(thunk))
 
-// @ts-ignore
-window.store = store

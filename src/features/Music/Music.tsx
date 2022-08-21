@@ -1,7 +1,6 @@
 import React from 'react';
-import s from './Music.module.css';
 
-const Music = () => {
+export const Music = () => {
 	return (
 		<div>
 			Music
@@ -10,4 +9,3 @@ const Music = () => {
 	)
 }
 
-export default Music;

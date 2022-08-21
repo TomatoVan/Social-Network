@@ -1,12 +1,12 @@
 import React from 'react';
 import s from './Dialogs.module.css';
-import DialogItem from './DiaologItem/DialogItem';
-import Message from './Message/Message';
 import {SubmitHandler, useForm} from 'react-hook-form';
 import {useAppDispatch} from '../../common/hooks/useAppDispatch';
 import {useAppSelector} from '../../common/hooks/useAppSelector';
 import {sendMessage} from './dialogsReducer';
 import {Navigate} from 'react-router-dom';
+import {DialogItem} from './DiaologItem/DialogItem';
+import {Message} from './Message/Message';
 
 type dialogsElementsMapType = {
 	id: number,
@@ -21,7 +21,7 @@ type InputsFormType = {
 	message: string,
 };
 
-const Dialogs = () => {
+export const Dialogs = () => {
 
 	const dispatch = useAppDispatch()
 	const isAuth = useAppSelector(state => state.auth.isAuth)
@@ -73,4 +73,4 @@ const Dialogs = () => {
 	)
 }
 
-export default Dialogs;
+

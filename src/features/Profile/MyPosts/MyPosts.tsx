@@ -1,10 +1,10 @@
 import React from 'react';
 import s from './MyPosts.module.css';
-import Post from './Post/Post';
 import {SubmitHandler, useForm} from 'react-hook-form';
 import {useAppDispatch} from '../../../common/hooks/useAppDispatch';
 import {useAppSelector} from '../../../common/hooks/useAppSelector';
 import {addPost} from '../profileReducer';
+import {Post} from './Post/Post';
 
 type FormTypes = {
 	message: string,

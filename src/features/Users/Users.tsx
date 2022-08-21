@@ -7,7 +7,7 @@ import {Pagination} from '../../common/components/Pagination/Pagination';
 import {useAppSelector} from '../../common/hooks/useAppSelector';
 import {useAppDispatch} from '../../common/hooks/useAppDispatch';
 import {getUsers, setFollow, setUnFollow} from './usersReducer';
-import Preloader from '../../common/components/Preloader/Preloader';
+import {Preloader} from '../../common/components/Preloader/Preloader';
 
 export const Users = () => {
 

@@ -1,7 +1,6 @@
 import React from 'react';
-import s from './Settings.module.css';
 
-const Settings = () => {
+export const Settings = () => {
 	return (
 		<div>
 			Settings
@@ -10,4 +9,3 @@ const Settings = () => {
 	)
 }
 
-export default Settings;

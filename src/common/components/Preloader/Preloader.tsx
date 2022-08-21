@@ -3,7 +3,7 @@ import s from '../../../features/Users/Users.module.css';
 import preloader from '../../../assets/icons/Spin.svg';
 
 
-const Preloader = () => {
+export const Preloader = () => {
 	return (
 		<div>
 			<img className={s.preloader} src={preloader} alt={''}/>
@@ -11,4 +11,4 @@ const Preloader = () => {
 	);
 };
 
-export default Preloader;
+

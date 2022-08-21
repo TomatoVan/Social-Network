@@ -1,27 +1,31 @@
 import React from 'react';
 import s from './Header.module.css';
-import {NavLink} from "react-router-dom";
+import {NavLink} from 'react-router-dom';
+import {useAppDispatch} from '../../common/hooks/useAppDispatch';
+import {useAppSelector} from '../../common/hooks/useAppSelector';
+import {logout} from '../Login/authReducer';
 
-type HeaderPropsType = {
-	isAuth: boolean,
-	login: string | null,
-	logout: () => void
-}
+export const Header = () => {
 
-const Header = (props: HeaderPropsType) => {
+	const dispatch = useAppDispatch()
+	const isAuth = useAppSelector(state => state.auth.isAuth)
+	const login = useAppSelector(state => state.auth.login)
+
+	const logOutHandler = () => {
+		dispatch(logout())
+	}
 
 
 	return <header className={s.header}>
-		<img src='https://www.freelogodesign.org/Content/img/logo-ex-7.png' alt='1'/>
+		<img src="https://www.freelogodesign.org/Content/img/logo-ex-7.png" alt="1"/>
 
 		<div className={s.loginBlock}>
-			{!props.isAuth && <NavLink className={s.loginText} to={'/login'}>Login</NavLink>}
+			{!isAuth && <NavLink className={s.loginText} to={'/login'}>Login</NavLink>}
 
 			<div>
-				{props.login} - <button className={s.logoutBtn} onClick={props.logout}>Logout</button>
+				{login} - <button className={s.logoutBtn} onClick={logOutHandler}>Logout</button>
 			</div>
 		</div>
 	</header>
 }
 
-export default Header;

@@ -7,9 +7,9 @@ type MessagePropsType = {
 	message: string;
 }
 
-const Message: FC<MessagePropsType> = ({id, message}) => {
+export const Message: FC<MessagePropsType> = ({message}) => {
 	return <div className={s.message}>{message}</div>
 }
 
 
-export default Message;
+

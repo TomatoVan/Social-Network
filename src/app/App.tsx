@@ -1,23 +1,21 @@
 import React, {Suspense, useEffect} from 'react';
 import './App.css';
-import Navbar from '../features/Navbar/Navbar';
 import {Route, Routes} from 'react-router-dom';
-import HeaderContainer from '../features/Header/HeaderContainer';
 import {initializeApp} from './appReducer';
-import Preloader from '../common/components/Preloader/Preloader';
 import {useAppDispatch} from '../common/hooks/useAppDispatch';
 import {useAppSelector} from '../common/hooks/useAppSelector';
 import {Profile} from '../features/Profile/Profile';
 import {Me} from '../features/Profile/Me';
 import {NotFound} from '../features/404/NotFound';
-import Dialogs from '../features/Dialogs/Dialogs';
 import {Users} from '../features/Users/Users';
-
-const News = React.lazy(() => import ('../features/News/News'))
-const Music = React.lazy(() => import ('../features/Music/Music'))
-const Settings = React.lazy(() => import ('../features/Settings/Settings'))
-const LoginForm = React.lazy(() => import ('../features/Login/LoginForm'))
-
+import {Music} from '../features/Music/Music';
+import {News} from '../features/News/News';
+import {Settings} from '../features/Settings/Settings';
+import {LoginForm} from '../features/Login/LoginForm';
+import {Preloader} from '../common/components/Preloader/Preloader';
+import {Navbar} from '../features/Navbar/Navbar';
+import {Dialogs} from '../features/Dialogs/Dialogs';
+import {Header} from '../features/Header/Header';
 
 export const App = () => {
 
@@ -31,7 +29,7 @@ export const App = () => {
 	return (
 		<div className="appWrapper">
 			{!initialized && <Preloader/>}
-			<HeaderContainer/>
+			<Header/>
 			<Navbar/>
 
 			<div className="appWrapperContent">

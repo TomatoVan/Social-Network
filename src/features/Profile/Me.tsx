@@ -1,11 +1,11 @@
 import React, {useEffect} from 'react';
-import Preloader from '../../common/components/Preloader/Preloader';
 import {MyPosts} from './MyPosts/MyPosts';
 import {ProfileInfo} from './ProfileInfo/ProfileInfo';
 import {useAppSelector} from '../../common/hooks/useAppSelector';
 import {Navigate, useParams} from 'react-router-dom';
 import {useAppDispatch} from '../../common/hooks/useAppDispatch';
 import {getUserProfile, getUserStatus} from './profileReducer';
+import {Preloader} from '../../common/components/Preloader/Preloader';
 
 export const Me = () => {
 	const dispatch = useAppDispatch()

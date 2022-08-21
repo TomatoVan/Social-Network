@@ -3,28 +3,10 @@ import s from './Dialogs.module.css';
 import DialogItem from './DiaologItem/DialogItem';
 import Message from './Message/Message';
 import {SubmitHandler, useForm} from 'react-hook-form';
-
-type DialogType = {
-	id: number
-	name: string
-}
-
-type MessageType = {
-	id: number
-	message: string
-}
-
-type DialogPageType = {
-	dialogsData: Array<DialogType>
-	messagesData: Array<MessageType>
-	newMessageBody: string
-}
-
-type DialogsPageType = {
-	dialogsPage: DialogPageType
-	sendMessage: (newPost: string) => void
-	isAuth: boolean
-}
+import {useAppDispatch} from '../../common/hooks/useAppDispatch';
+import {useAppSelector} from '../../common/hooks/useAppSelector';
+import {sendMessage} from './dialogsReducer';
+import {Navigate} from 'react-router-dom';
 
 type dialogsElementsMapType = {
 	id: number,
@@ -35,29 +17,33 @@ type messagesElementsMapType = {
 	message: string
 }
 
-const Dialogs: React.FC<DialogsPageType> = (props) => {
-	let dialogsElements = props.dialogsPage.dialogsData.map((d: dialogsElementsMapType) => <DialogItem key={d.id} id={d.id} name={d.name}/>);
-	let messagesElements = props.dialogsPage.messagesData.map((m: messagesElementsMapType) => <Message key={m.id} id={m.id} message={m.message}/>);
+type InputsFormType = {
+	message: string,
+};
 
-	let btnHandlerCallback = (newPost: string) => {
-		props.sendMessage(newPost)
-	}
+const Dialogs = () => {
 
-	type Inputs = {
-		message: string,
-	};
+	const dispatch = useAppDispatch()
+	const isAuth = useAppSelector(state => state.auth.isAuth)
+	const dialogsData = useAppSelector(state => state.dialogsPage.dialogsData)
+	const messagesData = useAppSelector(state => state.dialogsPage.messagesData)
+
+	let dialogsElements = dialogsData.map((d: dialogsElementsMapType) => <DialogItem key={d.id} id={d.id} name={d.name}/>);
+	let messagesElements = messagesData.map((m: messagesElementsMapType) => <Message key={m.id} id={m.id} message={m.message}/>);
 
 	const {
 		register,
 		handleSubmit,
 		formState: {errors},
 		reset
-	} = useForm<Inputs>({mode: 'onSubmit'});
-	const onSubmit: SubmitHandler<Inputs> = (data) => {
+	} = useForm<InputsFormType>({mode: 'onSubmit'});
+	const onSubmit: SubmitHandler<InputsFormType> = (data) => {
 		reset();
-		btnHandlerCallback(data.message)
+		dispatch(sendMessage(data.message))
 
 	};
+
+	if (!isAuth) return <Navigate to={'/login'}/>
 
 	return (
 		<div className={s.dialogs}>

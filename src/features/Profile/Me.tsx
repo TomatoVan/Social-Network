@@ -3,7 +3,7 @@ import Preloader from '../../common/components/Preloader/Preloader';
 import {MyPosts} from './MyPosts/MyPosts';
 import {ProfileInfo} from './ProfileInfo/ProfileInfo';
 import {useAppSelector} from '../../common/hooks/useAppSelector';
-import {useParams} from 'react-router-dom';
+import {Navigate, useParams} from 'react-router-dom';
 import {useAppDispatch} from '../../common/hooks/useAppDispatch';
 import {getUserProfile, getUserStatus} from './profileReducer';
 
@@ -12,23 +12,20 @@ export const Me = () => {
 
 	const profile = useAppSelector(state => state.profilePage.profile)
 	const id = useAppSelector(state => state.auth.id)
+	const isAuth = useAppSelector(state => state.auth.isAuth)
 
 	const {userId} = useParams()
 
 	useEffect(() => {
-		if (userId) {
-			dispatch(getUserProfile(userId))
-			dispatch(getUserStatus(userId))
-		} else if (id) {
+		if (id) {
 			dispatch(getUserProfile(id.toString()))
 			dispatch(getUserStatus(id.toString()))
 		}
+	}, [dispatch, id])
 
-	}, [dispatch, id, userId])
 
-	if (!profile) {
-		return <Preloader/>
-	}
+	if (!isAuth) return <Navigate to={'/login'}/>
+	if (!profile) return <Preloader/>
 
 	return (
 		<div>

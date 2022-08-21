@@ -7,9 +7,10 @@ type DialogItemPropsType = {
 	name: string
 }
 
-const DialogItem: React.FC<DialogItemPropsType> = (props) => {
+const DialogItem: React.FC<DialogItemPropsType> = ({id, name}) => {
+
 	return (<div className={s.dialog}>
-		<NavLink to={'/dialogs/' + props.id} className={({isActive}) => isActive ? `${s.active}` : ''}>{props.name}</NavLink>
+		<NavLink to={'/dialogs/' + id} className={({isActive}) => isActive ? `${s.active}` : ''}>{name}</NavLink>
 	</div>);
 }
 

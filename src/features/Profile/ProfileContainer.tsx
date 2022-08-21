@@ -2,7 +2,7 @@ import React, {ComponentType} from 'react';
 import s from './Profile.module.css';
 import Profile from './Profile';
 import {connect} from 'react-redux';
-import {getUserProfileOnMount, getUserStatusOnMount, updateUserStatus} from './profileReducer';
+import {getUserProfileOnMount, getUserStatusOnMount, savePhoto, updateUserStatus} from './profileReducer';
 import {useMatch} from 'react-router-dom';
 import {AppRootStateType} from '../../app/store';
 import {compose} from 'redux';
@@ -40,6 +40,7 @@ type mapDispatchType = {
 	getUserProfileOnMount: (userId: string) => void,
 	getUserStatusOnMount: (status: string) => void,
 	updateUserStatus: (status: string) => void
+	savePhoto: any
 }
 
 export type ConnectPropsType = mapStateType & mapDispatchType
@@ -47,7 +48,7 @@ export type ProfilePropsType = ConnectPropsType & MatchParams
 
 class ProfileContainer extends React.Component<ProfilePropsType> {
 
-	componentDidMount() {
+	refreshProfile() {
 		let userId
 		if (this.props.match !== null) {
 			userId = this.props.match.params.userId
@@ -61,9 +62,23 @@ class ProfileContainer extends React.Component<ProfilePropsType> {
 		this.props.getUserStatusOnMount(userId)
 	}
 
+	componentDidMount() {
+		this.refreshProfile()
+	}
+
+	// componentDidUpdate(prevProps: Readonly<ProfilePropsType>, prevState: Readonly<{}>, snapshot?: any) {
+	// 	if (prevProps.match.params.userId) {
+	//
+	// 		if (this.props.match.params.userId !== prevProps.match.params.userId)
+	// 			this.refreshProfile()
+	// 	}
+	//
+	// }
+
+
 	render() {
 		return (
-			<Profile {...this.props} />
+			<Profile {...this.props} isOwner={!this.props.match}/>
 		)
 	}
 }
@@ -91,7 +106,7 @@ let mapStateToProps = (state: AppRootStateType) => {
 // })(withRouter(AuthRedirectComponent));
 
 export default compose<React.ComponentType>(
-	connect(mapStateToProps, {getUserProfileOnMount, getUserStatusOnMount, updateUserStatus}),
+	connect(mapStateToProps, {getUserProfileOnMount, getUserStatusOnMount, updateUserStatus, savePhoto}),
 	withRouter,
 	withAuthRedirect
 )(ProfileContainer)

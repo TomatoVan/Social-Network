@@ -1,16 +1,18 @@
 import {AppThunk} from '../../app/store';
 import {profileAPI} from '../../api/profileAPI';
 
+
 //types
 type AddPostType = ReturnType<typeof addPost>
 type SetUserProfileType = ReturnType<typeof setUserProfile>
 type SetUserStatusType = ReturnType<typeof setUserStatus>
+type savePhotoSuccessType = ReturnType<typeof savePhotoSuccess>
 
-export type ProfileActionsType = AddPostType | SetUserProfileType | SetUserStatusType
+export type ProfileActionsType = AddPostType | SetUserProfileType | SetUserStatusType | savePhotoSuccessType
 
 export type profileStateType = {
 	postsData: { id: number, message: string, likes: number }[]
-	profile: null
+	profile: any
 	status: string
 }
 
@@ -42,6 +44,11 @@ export const profileReducer = (state: profileStateType = initialState, action: P
 			return {
 				...state, status: action.payload.status
 			}
+		case 'SAVE-PHOTOS-SUCCESS': {
+			return {
+				...state, profile: {...state.profile, photos: action.payload.photos}
+			}
+		}
 		default:
 			return state
 	}
@@ -51,6 +58,7 @@ export const profileReducer = (state: profileStateType = initialState, action: P
 export const addPost = (newPost: string) => ({type: 'ADD-POST', payload: {newPost}} as const)
 export const setUserProfile = (profile: any) => ({type: 'SET-USER-PROFILE', payload: {profile}} as const)
 export const setUserStatus = (status: string) => ({type: 'SET-USER-STATUS', payload: {status}} as const)
+export const savePhotoSuccess = (photos: any) => ({type: 'SAVE-PHOTOS-SUCCESS', payload: {photos}} as const)
 
 //TC
 export const getUserProfileOnMount = (userId: string): AppThunk => (dispatch) => {
@@ -73,4 +81,13 @@ export const updateUserStatus = (status: string): AppThunk => (dispatch) => {
 			dispatch(setUserStatus(status))
 		}
 	})
+}
+
+export const savePhoto = (file: any): AppThunk => (dispatch) => {
+	profileAPI.getPhotos(file)
+		.then(data => {
+			if (data.resultCode === 0) {
+				dispatch(savePhotoSuccess(data.data.photos))
+			}
+		})
 }

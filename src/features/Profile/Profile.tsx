@@ -6,14 +6,14 @@ import Preloader from '../../common/components/Preloader/Preloader';
 import {ConnectPropsType} from './ProfileContainer';
 
 
-const Profile: React.FC<ConnectPropsType> = (props) => {
+const Profile: React.FC<ConnectPropsType & { isOwner: boolean | null }> = (props) => {
 	if (!props.profile) {
 		return <Preloader/>
 	}
 
 	return (
 		<div>
-			<ProfileInfo profile={props.profile} status={props.status} updateUserStatus={props.updateUserStatus}/>
+			<ProfileInfo savePhoto={props.savePhoto} isOwner={props.isOwner} profile={props.profile} status={props.status} updateUserStatus={props.updateUserStatus}/>
 			<MyPostsContainer/>
 		</div>
 	);

@@ -37,15 +37,15 @@ export const Pagination = memo((props: PropsType) => {
 		return (
 			<>
 				<button className={s.btnControl} onClick={back}> {'<<'} </button>
-				{pages.filter(p => p >= leftPortionPageNumber && p <= rightPortionPageNumber).map(p => {
+				{pages.filter(page => page >= leftPortionPageNumber && page <= rightPortionPageNumber).map(filteredPage => {
 					return (
 						<span
-							key={p}
+							key={filteredPage}
 							onClick={() => {
-								props.setCurrentPageHandler(p)
+								props.setCurrentPageHandler(filteredPage)
 							}}
-							className={props.currentPage === p ? s.pageNumberButton_active : s.pageNumberButton}>
-                            {p}
+							className={props.currentPage === filteredPage ? s.pageNumberButton_active : s.pageNumberButton}>
+                            {filteredPage}
                         </span>
 					)
 				})}

@@ -2,20 +2,31 @@ import React from 'react';
 import s from './ProfileInfo.module.css';
 import {ProfileStatus} from './ProfileStatus';
 import {ProfileType} from '../ProfileContainer';
+import userPhoto from '../../../assets/images/1.png'
 
 
 type ProfileInfoType = {
 	profile: ProfileType
 	status: string
 	updateUserStatus: (status: string) => void
+	isOwner: boolean | null
+	savePhoto: any
 }
 
 const ProfileInfo = (props: ProfileInfoType) => {
 
+
+	const inputFileHandler = (e: any) => {
+		if (e.target.files.length) {
+			props.savePhoto(e.target.files[0])
+		}
+	}
+
 	return <div>
 		<div className={s.descriptionBlock}>
 			<div>
-				<img src={props.profile.photos.large} alt={''}/>
+				<img src={props.profile.photos.small || userPhoto} alt={''}/>
+				{props.isOwner && <input type="file" onChange={inputFileHandler}/>}
 
 				<ProfileStatus status={props.status} updateUserStatus={props.updateUserStatus}/>
 			</div>

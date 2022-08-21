@@ -12,7 +12,6 @@ export const Profile = () => {
 	const profile = useAppSelector(state => state.profilePage.profile)
 	const isAuth = useAppSelector(state => state.auth.isAuth)
 
-
 	const {userId} = useParams()
 
 	useEffect(() => {

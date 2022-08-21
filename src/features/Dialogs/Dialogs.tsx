@@ -40,7 +40,6 @@ export const Dialogs = () => {
 	const onSubmit: SubmitHandler<InputsFormType> = (data) => {
 		reset();
 		dispatch(sendMessage(data.message))
-
 	};
 
 	if (!isAuth) return <Navigate to={'/login'}/>

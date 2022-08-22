@@ -1,5 +1,6 @@
 import {AppThunkType} from '../../app/store';
 import {profileAPI} from '../../api/profileAPI';
+import {changeAppStatus} from '../../app/appReducer';
 
 
 //types
@@ -61,33 +62,56 @@ export const setUserStatus = (status: string) => ({type: 'SET-USER-STATUS', payl
 export const savePhotoSuccess = (photos: any) => ({type: 'SAVE-PHOTOS-SUCCESS', payload: {photos}} as const)
 
 //TC
-export const getUserProfile = (userId: string): AppThunkType => (dispatch) => {
-	profileAPI.getUserProfile(userId).then(data => {
-		dispatch(setUserProfile(data))
-	})
+export const getUserProfile = (userId: string): AppThunkType => async (dispatch) => {
+	dispatch(changeAppStatus('loading'));
+	try {
+		const response = await profileAPI.getUserProfile(userId)
+		dispatch(setUserProfile(response.data))
+	} catch (err: any) {
+
+	} finally {
+		dispatch(changeAppStatus('idle'));
+	}
 }
 
 
-export const getUserStatus = (userId: string): AppThunkType => (dispatch) => {
-	profileAPI.getUserStatus(userId).then(data => {
-		dispatch(setUserStatus(data))
-	})
+export const getUserStatus = (userId: string): AppThunkType => async (dispatch) => {
+	dispatch(changeAppStatus('loading'));
+	try {
+		const response = await profileAPI.getUserStatus(userId)
+		dispatch(setUserStatus(response.data))
+	} catch (err: any) {
+
+	} finally {
+		dispatch(changeAppStatus('idle'));
+	}
 }
 
 
-export const updateUserStatus = (status: string): AppThunkType => (dispatch) => {
-	profileAPI.updateUserStatus(status).then(data => {
-		if (data.resultCode === 0) {
+export const updateUserStatus = (status: string): AppThunkType => async (dispatch) => {
+	dispatch(changeAppStatus('loading'));
+	try {
+		const response = await profileAPI.updateUserStatus(status)
+		if (response.data.resultCode === 0) {
 			dispatch(setUserStatus(status))
 		}
-	})
+	} catch (err: any) {
+
+	} finally {
+		dispatch(changeAppStatus('idle'));
+	}
 }
 
-export const savePhoto = (file: File): AppThunkType => (dispatch) => {
-	profileAPI.getPhotos(file)
-		.then(data => {
-			if (data.resultCode === 0) {
-				dispatch(savePhotoSuccess(data.data.photos))
-			}
-		})
+export const savePhoto = (file: File): AppThunkType => async (dispatch) => {
+	dispatch(changeAppStatus('loading'));
+	try {
+		const response = await profileAPI.getPhotos(file)
+		if (response.data.resultCode === 0) {
+			dispatch(savePhotoSuccess(response.data.data.photos))
+		}
+	} catch (err: any) {
+
+	} finally {
+		dispatch(changeAppStatus('idle'));
+	}
 }

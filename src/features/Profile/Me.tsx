@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import {MyPosts} from './MyPosts/MyPosts';
 import {ProfileInfo} from './ProfileInfo/ProfileInfo';
 import {useAppSelector} from '../../common/hooks/useAppSelector';
-import {Navigate, useParams} from 'react-router-dom';
+import {useNavigate, useParams} from 'react-router-dom';
 import {useAppDispatch} from '../../common/hooks/useAppDispatch';
 import {getUserProfile, getUserStatus} from './profileReducer';
 import {Preloader} from '../../common/components/Preloader/Preloader';
@@ -13,6 +13,8 @@ export const Me = () => {
 	const profile = useAppSelector(state => state.profilePage.profile)
 	const id = useAppSelector(state => state.auth.id)
 	const isAuth = useAppSelector(state => state.auth.isAuth)
+	const status = useAppSelector(state => state.app.status)
+	const navigate = useNavigate()
 
 	const {userId} = useParams()
 
@@ -23,8 +25,11 @@ export const Me = () => {
 		}
 	}, [dispatch, id])
 
+	useEffect(() => {
+		if (!isAuth && status === 'idle') navigate('/login')
+	}, [isAuth, status])
 
-	if (!isAuth) return <Navigate to={'/login'}/>
+
 	if (!profile) return <Preloader/>
 
 	return (

@@ -1,4 +1,4 @@
-import {AppThunk} from '../../app/store';
+import {AppThunkType} from '../../app/store';
 import {usersAPI, UserType} from '../../api/usersAPI';
 
 //types
@@ -28,7 +28,7 @@ let initialState = {
 	pageSize: 5,
 	totalUsersCount: 0,
 	currentPage: 1,
-	isFetching: true,
+	isFetching: false,
 	inProgress: []
 }
 
@@ -76,7 +76,7 @@ export const setFetching = (isFetching: boolean) => ({type: 'TOGGLE-IS-FETCHING'
 export const setInProgress = (isFetching: boolean, userId: number) => ({type: 'TOGGLE-IN-PROGRESS', payload: {isFetching, userId}} as const)
 
 //TC
-export const getUsers = (currentPage: number, pageSize: number): AppThunk => (dispatch) => {
+export const getUsers = (currentPage: number, pageSize: number): AppThunkType => (dispatch) => {
 	dispatch(setFetching(true))
 	usersAPI.getUsers(currentPage, pageSize).then(data => {
 		dispatch(setUsers(data.items))
@@ -88,7 +88,7 @@ export const getUsers = (currentPage: number, pageSize: number): AppThunk => (di
 
 }
 
-export const setFollow = (userId: number): AppThunk => (dispatch) => {
+export const setFollow = (userId: number): AppThunkType => (dispatch) => {
 	dispatch(setInProgress(true, userId))
 	usersAPI.setUnfollow(userId).then(data => {
 		if (data.resultCode === 0) {
@@ -99,7 +99,7 @@ export const setFollow = (userId: number): AppThunk => (dispatch) => {
 
 }
 
-export const setUnFollow = (userId: number): AppThunk => (dispatch) => {
+export const setUnFollow = (userId: number): AppThunkType => (dispatch) => {
 	dispatch(setInProgress(true, userId))
 	usersAPI.setFollow(userId).then(data => {
 		if (data.resultCode === 0) {

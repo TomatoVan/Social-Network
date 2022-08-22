@@ -17,7 +17,7 @@ let rootReducer = combineReducers({
 
 export type AppRootStateType = ReturnType<typeof rootReducer>
 export type AllAppActionsType = AuthUserActionsType | AppActionsTypes | DialogActionsType | ProfileActionsType | UsersActionsType
-export type AppThunk = ThunkAction<void, AppRootStateType, unknown, AllAppActionsType>
+export type AppThunkType = ThunkAction<void, AppRootStateType, unknown, AllAppActionsType>
 
 
 //for dev

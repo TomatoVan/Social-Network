@@ -2,7 +2,7 @@ import {instance} from './instance/instance';
 
 export const profileAPI = {
 	getUserProfile(userId: string) {
-		return instance.get<UserProfileType>(`profile/` + userId)
+		return instance.get<UserProfileResponseType>(`profile/` + userId)
 			.then(response => response.data)
 	},
 	getUserStatus(userId: string) {
@@ -30,7 +30,7 @@ type ResponseType = {
 	data: {}
 }
 
-type UserProfileType = {
+type UserProfileResponseType = {
 	userId: number
 	lookingForAJob: boolean
 	lookingForAJobDescription: string

@@ -1,6 +1,6 @@
-import {Dispatch} from 'redux';
-import {AppThunk} from '../../app/store';
+import {AppThunkType} from '../../app/store';
 import {authAPI} from '../../api/authAPI';
+import {changeAppStatus, initializedSuccess} from '../../app/appReducer';
 
 //types
 type SetAuthUserDataType = ReturnType<typeof setAuthUserData>
@@ -47,60 +47,78 @@ export const setAuthUserData = (id: number | null, email: string | null, login: 
 } as const)
 
 //TC
-export const getAuthUserData = (): AppThunk => (dispatch) => {
-	return authAPI.getUserAuthData()
-		.then(data => {
-			if (data.resultCode === 0) {
-				let {id, email, login} = data.data
-				let isAuth = true
-				dispatch(setAuthUserData(id, email, login, isAuth))
+export const getAuthUserData = (): AppThunkType => async (dispatch) => {
+	dispatch(changeAppStatus('loading'));
+	try {
+		const response = await authAPI.getUserAuthData()
+		if (response.data.resultCode === 0) {
+			let {id, email, login} = response.data.data
+			let isAuth = true
+			dispatch(initializedSuccess())
+			dispatch(setAuthUserData(id, email, login, isAuth))
+		}
+	} catch (err: any) {
 
-			}
-		})
+	} finally {
+		dispatch(changeAppStatus('idle'));
+	}
+
 }
 
 
-export const login = (loginData: LoginDataType, setError: any): AppThunk => (dispatch) => {
+export const login = (loginData: LoginDataType, setError: any): AppThunkType => async (dispatch) => {
 	const {email, password, rememberMe} = loginData
-	authAPI.login(email, password, rememberMe)
-		.then(data => {
-			const {fieldsErrors, resultCode, messages} = data
-			const setFieldsError = () => {
-				if (fieldsErrors.length > 0) {
-					for (let key in fieldsErrors) {
-						let message = fieldsErrors[key].error
-						setError(fieldsErrors[key].field, {type: 'server', message})
-					}
-				} else for (let key in messages) {
-					let message = messages[key]
-					setError('password', {type: 'server', message})
+	dispatch(changeAppStatus('loading'));
+	try {
+		const response = await authAPI.login(email, password, rememberMe)
+
+		const {fieldsErrors, resultCode, messages} = response.data
+		const setFieldsError = () => {
+			if (fieldsErrors.length > 0) {
+				for (let key in fieldsErrors) {
+					let message = fieldsErrors[key].error
+					setError(fieldsErrors[key].field, {type: 'server', message})
 				}
+			} else for (let key in messages) {
+				let message = messages[key]
+				setError('password', {type: 'server', message})
 			}
-			switch (resultCode) {
-				case 0:
-					dispatch(getAuthUserData())
-					break
-				case 1:
-					setFieldsError()
-					break
-				case 10: /*!need add  CAPTCHA*/
-					/*authAPI.getCaptcha()*/
-					setError('password', {type: 'server', message: 'Incorrect anti-bot symbols'})
-					break
-				default:
-					throw Error('Error Auth')
-			}
-		})
+		}
+		switch (resultCode) {
+			case 0:
+				dispatch(getAuthUserData())
+				break
+			case 1:
+				setFieldsError()
+				break
+			case 10: /*!need add  CAPTCHA*/
+				/*authAPI.getCaptcha()*/
+				setError('password', {type: 'server', message: 'Incorrect anti-bot symbols'})
+				break
+			default:
+				throw new Error('Error Auth')
+		}
+
+	} catch (err: any) {
+
+	} finally {
+		dispatch(changeAppStatus('idle'));
+	}
 }
 
 
-export const logout = (): AppThunk => (dispatch: Dispatch) => {
-	authAPI.logout()
-		.then(data => {
-			if (data.resultCode === 0) {
-				dispatch(setAuthUserData(null, null, null, false))
-			}
-		})
+export const logout = (): AppThunkType => async (dispatch) => {
+	dispatch(changeAppStatus('loading'));
+	try {
+		const response = await authAPI.logout()
+		if (response.data.resultCode === 0) {
+			dispatch(setAuthUserData(null, null, null, false))
+		}
+	} catch (err: any) {
+
+	} finally {
+		dispatch(changeAppStatus('idle'));
+	}
 }
 
 

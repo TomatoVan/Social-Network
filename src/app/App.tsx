@@ -1,7 +1,6 @@
 import React, {Suspense, useEffect} from 'react';
 import './App.css';
 import {Route, Routes} from 'react-router-dom';
-import {initializeApp} from './appReducer';
 import {useAppDispatch} from '../common/hooks/useAppDispatch';
 import {useAppSelector} from '../common/hooks/useAppSelector';
 import {Profile} from '../features/Profile/Profile';
@@ -16,6 +15,7 @@ import {Preloader} from '../common/components/Preloader/Preloader';
 import {Navbar} from '../features/Navbar/Navbar';
 import {Dialogs} from '../features/Dialogs/Dialogs';
 import {Header} from '../features/Header/Header';
+import {getAuthUserData} from '../features/Login/authReducer';
 
 export const App = () => {
 
@@ -23,7 +23,7 @@ export const App = () => {
 	const initialized = useAppSelector(state => state.app.initialized)
 
 	useEffect(() => {
-		dispatch(initializeApp())
+		dispatch(getAuthUserData())
 	}, [dispatch])
 
 	return (

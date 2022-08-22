@@ -1,28 +1,28 @@
-import {getAuthUserData} from '../features/Login/authReducer';
-import {AppThunk} from './store';
-
 //types
 type initializedSuccessType = ReturnType<typeof initializedSuccess>
+type changeAppStatusType = ReturnType<typeof changeAppStatus>
 
-export type AppActionsTypes = initializedSuccessType
+export type AppActionsTypes = initializedSuccessType | changeAppStatusType
+export type RequestStatusType = 'idle' | 'loading' | 'succeeded' | 'failed';
 
 type stateType = {
 	initialized: boolean
+	status: RequestStatusType
 }
 
 // initial state
 let initialState = {
 	initialized: false,
+	status: '' as RequestStatusType,
 }
 
 //reducer
-export const appReducer = (state: stateType = initialState, action: AppActionsTypes) => {
+export const appReducer = (state: stateType = initialState, action: AppActionsTypes): stateType => {
 	switch (action.type) {
 		case 'INITIALIZED-SUCCESS':
-			return {
-				...state,
-				initialized: true
-			}
+			return {...state, initialized: true}
+		case 'CHANGE-APP-STATUS':
+			return {...state, status: action.status};
 		default:
 			return state
 	}
@@ -30,12 +30,6 @@ export const appReducer = (state: stateType = initialState, action: AppActionsTy
 
 //AC
 export const initializedSuccess = () => ({type: 'INITIALIZED-SUCCESS'} as const)
+export const changeAppStatus = (status: RequestStatusType) => ({type: 'CHANGE-APP-STATUS', status} as const)
 
-//TC
-export const initializeApp = (): AppThunk => (dispatch) => {
-	let promise = dispatch(getAuthUserData())
-	Promise.all([promise])
-		.then(() => {
-			dispatch(initializedSuccess())
-		})
-}
+

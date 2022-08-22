@@ -2,25 +2,30 @@ import {instance} from './instance/instance';
 
 export const authAPI = {
 	getUserAuthData() {
-		return instance.get<GetUserAuthDataType>(`auth/me`)
-			.then(response => response.data)
+		return instance.get<GetUserAuthDataResponseType>(`auth/me`)
 	},
 	login(email: string, password: string, rememberMe: boolean) {
-		return instance.post<any>(`auth/login`, {email, password, rememberMe})
-			.then(response => response.data)
+		return instance.post<LoginResponseType>(`auth/login`, {email, password, rememberMe})
 	},
 	logout() {
 		return instance.delete<ResponseType>(`auth/login`)
-			.then(response => response.data)
 	},
 }
+
+type LoginResponseType = {
+	resultCode: number
+	messages: Array<string>
+	data: {}
+	fieldsErrors: Array<{ error: string, field: string }>
+}
+
 type ResponseType = {
 	resultCode: number
 	messages: Array<string>
 	data: {}
 }
 
-type GetUserAuthDataType = {
+type GetUserAuthDataResponseType = {
 	data: { id: number, email: string, login: string }
 	resultCode: number
 	messages: Array<string>

@@ -1,4 +1,4 @@
-import {AppThunk} from '../../app/store';
+import {AppThunkType} from '../../app/store';
 import {profileAPI} from '../../api/profileAPI';
 
 
@@ -61,21 +61,21 @@ export const setUserStatus = (status: string) => ({type: 'SET-USER-STATUS', payl
 export const savePhotoSuccess = (photos: any) => ({type: 'SAVE-PHOTOS-SUCCESS', payload: {photos}} as const)
 
 //TC
-export const getUserProfile = (userId: string): AppThunk => (dispatch) => {
+export const getUserProfile = (userId: string): AppThunkType => (dispatch) => {
 	profileAPI.getUserProfile(userId).then(data => {
 		dispatch(setUserProfile(data))
 	})
 }
 
 
-export const getUserStatus = (userId: string): AppThunk => (dispatch) => {
+export const getUserStatus = (userId: string): AppThunkType => (dispatch) => {
 	profileAPI.getUserStatus(userId).then(data => {
 		dispatch(setUserStatus(data))
 	})
 }
 
 
-export const updateUserStatus = (status: string): AppThunk => (dispatch) => {
+export const updateUserStatus = (status: string): AppThunkType => (dispatch) => {
 	profileAPI.updateUserStatus(status).then(data => {
 		if (data.resultCode === 0) {
 			dispatch(setUserStatus(status))
@@ -83,7 +83,7 @@ export const updateUserStatus = (status: string): AppThunk => (dispatch) => {
 	})
 }
 
-export const savePhoto = (file: File): AppThunk => (dispatch) => {
+export const savePhoto = (file: File): AppThunkType => (dispatch) => {
 	profileAPI.getPhotos(file)
 		.then(data => {
 			if (data.resultCode === 0) {

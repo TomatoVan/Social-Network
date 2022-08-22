@@ -1,10 +1,10 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import s from './Dialogs.module.css';
 import {SubmitHandler, useForm} from 'react-hook-form';
 import {useAppDispatch} from '../../common/hooks/useAppDispatch';
 import {useAppSelector} from '../../common/hooks/useAppSelector';
 import {sendMessage} from './dialogsReducer';
-import {Navigate} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import {DialogItem} from './DiaologItem/DialogItem';
 import {Message} from './Message/Message';
 
@@ -24,6 +24,9 @@ type InputsFormType = {
 export const Dialogs = () => {
 
 	const dispatch = useAppDispatch()
+	const navigate = useNavigate()
+
+	const status = useAppSelector(state => state.app.status)
 	const isAuth = useAppSelector(state => state.auth.isAuth)
 	const dialogsData = useAppSelector(state => state.dialogsPage.dialogsData)
 	const messagesData = useAppSelector(state => state.dialogsPage.messagesData)
@@ -42,7 +45,9 @@ export const Dialogs = () => {
 		dispatch(sendMessage(data.message))
 	};
 
-	if (!isAuth) return <Navigate to={'/login'}/>
+	useEffect(() => {
+		if (!isAuth && status === 'idle') navigate('/login')
+	}, [isAuth])
 
 	return (
 		<div className={s.dialogs}>

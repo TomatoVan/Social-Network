@@ -1,13 +1,19 @@
-import {appReducer, initializedSuccess} from '../../app/appReducer';
+import {appReducer, initializedSuccess, RequestStatusType} from '../../app/appReducer';
 
 type stateType = {
 	initialized: boolean
+	status: RequestStatusType
+	error: string | null
+
 }
 let startState: stateType
 
 beforeEach(() => {
 	startState = {
 		initialized: false,
+		status: '' as RequestStatusType,
+		error: null
+
 	}
 })
 

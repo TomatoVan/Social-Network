@@ -1,6 +1,6 @@
 import {AppThunkType} from '../../app/store';
 import {authAPI} from '../../api/authAPI';
-import {changeAppStatus, initializedSuccess} from '../../app/appReducer';
+import {changeAppStatus, initializedSuccess, setError} from '../../app/appReducer';
 
 //types
 type SetAuthUserDataType = ReturnType<typeof setAuthUserData>
@@ -58,7 +58,7 @@ export const getAuthUserData = (): AppThunkType => async (dispatch) => {
 			dispatch(setAuthUserData(id, email, login, isAuth))
 		}
 	} catch (err: any) {
-
+		dispatch(setError(err));
 	} finally {
 		dispatch(changeAppStatus('idle'));
 	}
@@ -100,7 +100,7 @@ export const login = (loginData: LoginDataType, setError: any): AppThunkType => 
 		}
 
 	} catch (err: any) {
-
+		dispatch(setError(err));
 	} finally {
 		dispatch(changeAppStatus('idle'));
 	}
@@ -115,7 +115,7 @@ export const logout = (): AppThunkType => async (dispatch) => {
 			dispatch(setAuthUserData(null, null, null, false))
 		}
 	} catch (err: any) {
-
+		dispatch(setError(err));
 	} finally {
 		dispatch(changeAppStatus('idle'));
 	}

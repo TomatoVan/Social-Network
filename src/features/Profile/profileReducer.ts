@@ -1,6 +1,6 @@
 import {AppThunkType} from '../../app/store';
 import {profileAPI} from '../../api/profileAPI';
-import {changeAppStatus} from '../../app/appReducer';
+import {changeAppStatus, setError} from '../../app/appReducer';
 
 
 //types
@@ -68,7 +68,7 @@ export const getUserProfile = (userId: string): AppThunkType => async (dispatch)
 		const response = await profileAPI.getUserProfile(userId)
 		dispatch(setUserProfile(response.data))
 	} catch (err: any) {
-
+		dispatch(setError(err));
 	} finally {
 		dispatch(changeAppStatus('idle'));
 	}
@@ -81,7 +81,7 @@ export const getUserStatus = (userId: string): AppThunkType => async (dispatch) 
 		const response = await profileAPI.getUserStatus(userId)
 		dispatch(setUserStatus(response.data))
 	} catch (err: any) {
-
+		dispatch(setError(err));
 	} finally {
 		dispatch(changeAppStatus('idle'));
 	}
@@ -96,7 +96,7 @@ export const updateUserStatus = (status: string): AppThunkType => async (dispatc
 			dispatch(setUserStatus(status))
 		}
 	} catch (err: any) {
-
+		dispatch(setError(err));
 	} finally {
 		dispatch(changeAppStatus('idle'));
 	}
@@ -110,7 +110,7 @@ export const savePhoto = (file: File): AppThunkType => async (dispatch) => {
 			dispatch(savePhotoSuccess(response.data.data.photos))
 		}
 	} catch (err: any) {
-
+		dispatch(setError(err));
 	} finally {
 		dispatch(changeAppStatus('idle'));
 	}

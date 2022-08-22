@@ -1,4 +1,4 @@
-import React, {Suspense, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import './App.css';
 import {Route, Routes} from 'react-router-dom';
 import {useAppDispatch} from '../common/hooks/useAppDispatch';
@@ -16,6 +16,7 @@ import {Navbar} from '../features/Navbar/Navbar';
 import {Dialogs} from '../features/Dialogs/Dialogs';
 import {Header} from '../features/Header/Header';
 import {getAuthUserData} from '../features/Login/authReducer';
+import {ErrorSnackBar} from '../common/components/snackbars/ErrorSnackbar';
 
 export const App = () => {
 
@@ -33,19 +34,18 @@ export const App = () => {
 			<Navbar/>
 
 			<div className="appWrapperContent">
-				<Suspense fallback={<div><Preloader/></div>}>
-					<Routes>
-						<Route path="/me" element={<Me/>}/>
-						<Route path="/profile/:userId" element={<Profile/>}/>
-						<Route path="/dialogs/*" element={<Dialogs/>}/>
-						<Route path="/users" element={<Users/>}/>
-						<Route path="/news" element={<News/>}/>
-						<Route path="/music" element={<Music/>}/>
-						<Route path="/settings" element={<Settings/>}/>
-						<Route path="/login" element={<LoginForm/>}/>
-						<Route path={'*'} element={<NotFound/>}/>
-					</Routes>
-				</Suspense>
+				<Routes>
+					<Route path="/me" element={<Me/>}/>
+					<Route path="/profile/:userId" element={<Profile/>}/>
+					<Route path="/dialogs/*" element={<Dialogs/>}/>
+					<Route path="/users" element={<Users/>}/>
+					<Route path="/news" element={<News/>}/>
+					<Route path="/music" element={<Music/>}/>
+					<Route path="/settings" element={<Settings/>}/>
+					<Route path="/login" element={<LoginForm/>}/>
+					<Route path={'/*'} element={<NotFound/>}/>
+				</Routes>
+				<ErrorSnackBar/>
 			</div>
 		</div>
 	);

@@ -3,20 +3,20 @@ import './App.module.css';
 import {Navigate, Route, Routes} from 'react-router-dom';
 import {useAppDispatch} from '../common/hooks/useAppDispatch';
 import {useAppSelector} from '../common/hooks/useAppSelector';
-import {Profile} from '../features/Profile/Profile';
-import {Me} from '../features/Profile/Me';
 import {NotFound} from '../features/404/NotFound';
-import {Users} from '../features/Users/Users';
-import {Music} from '../features/Music/Music';
-import {News} from '../features/News/News';
-import {Settings} from '../features/Settings/Settings';
-import {LoginForm} from '../features/Login/LoginForm';
-import {Dialogs} from '../features/Dialogs/Dialogs';
-import {Header} from '../features/Header/Header';
-import {getAuthUserData} from '../features/Login/authReducer';
+import {Users} from '../features/users/Users';
+import {Music} from '../features/music/Music';
+import {News} from '../features/news/News';
+import {Settings} from '../features/settings/Settings';
+import {LoginForm} from '../features/login/LoginForm';
+import {Header} from '../features/header/Header';
+import {getAuthUserData} from '../features/login/authReducer';
 import {ErrorSnackBar} from '../common/components/snackbars/ErrorSnackbar';
 import s from './App.module.css'
 import {Navbar} from '../common/components/navbar/Navbar';
+import {MyProfile} from '../features/profile/MyProfile';
+import {Profile} from '../features/profile/Profile';
+import {Dialogs} from '../features/dialogs/Dialogs';
 
 export const App = () => {
 
@@ -38,7 +38,7 @@ export const App = () => {
 				<Navbar/>
 				<div className={s.main}>
 					<Routes>
-						<Route path="/me" element={<Me/>}/>
+						<Route path="/me" element={<MyProfile/>}/>
 						<Route path="/profile/:userId" element={<Profile/>}/>
 						<Route path="/messages/*" element={<Dialogs/>}/>
 						<Route path="/friends" element={<Users/>}/>

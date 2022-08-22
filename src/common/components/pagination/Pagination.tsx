@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import s from './Pagination.module.css'
 import {useAppSelector} from '../../hooks/useAppSelector';
 import {useAppDispatch} from '../../hooks/useAppDispatch';
-import {getUsers} from '../../../features/Users/usersReducer';
+import {getUsers} from '../../../features/users/usersReducer';
 
 export const Pagination = () => {
 

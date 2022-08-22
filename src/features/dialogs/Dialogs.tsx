@@ -3,10 +3,10 @@ import s from './Dialogs.module.css';
 import {SubmitHandler, useForm} from 'react-hook-form';
 import {useAppDispatch} from '../../common/hooks/useAppDispatch';
 import {useAppSelector} from '../../common/hooks/useAppSelector';
-import {sendMessage} from './dialogsReducer';
 import {useNavigate} from 'react-router-dom';
-import {DialogItem} from './DiaologItem/DialogItem';
-import {Message} from './Message/Message';
+import {DialogItem} from './dialogItem/DialogItem';
+import {Message} from './message/Message';
+import {sendMessage} from './dialogsReducer';
 
 type dialogsElementsMapType = {
 	id: number,

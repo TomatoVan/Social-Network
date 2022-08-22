@@ -1,4 +1,4 @@
-import {profileReducer, profileStateType, setUserProfile, setUserStatus} from '../../features/Profile/profileReducer';
+import {profileReducer, profileStateType, setUserProfile, setUserStatus} from '../../features/profile/profileReducer';
 
 
 let startState: profileStateType

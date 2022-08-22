@@ -4,7 +4,7 @@ import {SubmitHandler, useForm} from 'react-hook-form';
 import {useAppDispatch} from '../../../common/hooks/useAppDispatch';
 import {useAppSelector} from '../../../common/hooks/useAppSelector';
 import {addPost} from '../profileReducer';
-import {Post} from './Post/Post';
+import {Post} from './post/Post';
 
 type FormTypes = {
 	message: string,

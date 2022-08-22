@@ -3,11 +3,11 @@ import s from './Users.module.css'
 import userPhoto from '../../assets/images/1.png'
 import {NavLink} from 'react-router-dom';
 import {UserType} from '../../api/usersAPI';
-import {Pagination} from '../../common/components/Pagination/Pagination';
+import {Pagination} from '../../common/components/pagination/Pagination';
 import {useAppSelector} from '../../common/hooks/useAppSelector';
 import {useAppDispatch} from '../../common/hooks/useAppDispatch';
 import {getUsers, setFollow} from './usersReducer';
-import {Preloader} from '../../common/components/Preloader/Preloader';
+import {Preloader} from '../../common/components/preloader/Preloader';
 
 export const Users = () => {
 

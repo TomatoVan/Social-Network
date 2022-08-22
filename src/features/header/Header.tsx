@@ -3,7 +3,7 @@ import s from './Header.module.css';
 import {NavLink} from 'react-router-dom';
 import {useAppDispatch} from '../../common/hooks/useAppDispatch';
 import {useAppSelector} from '../../common/hooks/useAppSelector';
-import {logout} from '../Login/authReducer';
+import {logout} from '../login/authReducer';
 import moon from '../../assets/moon.png'
 import userPhoto from '../../assets/images/1.png';
 import {Greetings} from '../../common/components/greetings/Greetings';

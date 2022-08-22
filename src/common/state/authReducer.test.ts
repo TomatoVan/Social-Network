@@ -1,4 +1,4 @@
-import {authReducer, setAuthUserData} from '../../features/Login/authReducer';
+import {authReducer, setAuthUserData} from '../../features/login/authReducer';
 
 type stateType = {
 	id: number | null,

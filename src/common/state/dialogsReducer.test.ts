@@ -1,4 +1,4 @@
-import {dialogsReducer, DialogsStateType, sendMessage} from '../../features/Dialogs/dialogsReducer';
+import {dialogsReducer, DialogsStateType, sendMessage} from '../../features/dialogs/dialogsReducer';
 
 
 let startState: DialogsStateType

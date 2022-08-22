@@ -6,7 +6,7 @@ import {UserType} from '../../api/usersAPI';
 import {Pagination} from '../../common/components/Pagination/Pagination';
 import {useAppSelector} from '../../common/hooks/useAppSelector';
 import {useAppDispatch} from '../../common/hooks/useAppDispatch';
-import {getUsers, setFollow, setUnFollow} from './usersReducer';
+import {getUsers, setFollow} from './usersReducer';
 import {Preloader} from '../../common/components/Preloader/Preloader';
 
 export const Users = () => {
@@ -15,7 +15,7 @@ export const Users = () => {
 
 	const users = useAppSelector(state => state.usersPage.users)
 	const inProgress = useAppSelector(state => state.usersPage.inProgress)
-	const isFetching = useAppSelector(state => state.usersPage.isFetching)
+	const status = useAppSelector(state => state.app.status)
 	const pageSize = useAppSelector(state => state.usersPage.pageSize)
 	const currentPage = useAppSelector(state => state.usersPage.currentPage)
 
@@ -23,13 +23,18 @@ export const Users = () => {
 		dispatch(getUsers(currentPage, pageSize))
 	}, [])
 
+	const followingHandler = (id: number, followed: boolean) => {
+		dispatch(setFollow(id, followed))
+	}
+
+	if (status === 'loading') return <Preloader/>
+
 	return (
 		<>
-			{isFetching ? <Preloader/> :
-				<div>
-					<Pagination/>
-					{
-						users.map((u: UserType) => <div key={u.id} className={s.wrapper}>
+			<div>
+				<Pagination/>
+				{
+					users.map((u: UserType) => <div key={u.id} className={s.wrapper}>
 					<span className={s.firstLayer}>
 						<div>
 							<NavLink to={'/profile/' + u.id}>
@@ -37,16 +42,12 @@ export const Users = () => {
 							</NavLink>
 						</div>
 						<div>
-							{u.followed
-								? <button disabled={inProgress.some(id => id === u.id)} onClick={() => {
-									dispatch(setFollow(u.id))
-								}}>Unfollow</button>
-								: <button disabled={inProgress.some(id => id === u.id)} onClick={() => {
-									dispatch(setUnFollow(u.id))
-								}}>Follow</button>}
+								 <button disabled={inProgress.some(id => id === u.id)} onClick={() => followingHandler(u.id, u.followed)}>
+									 {u.followed ? 'Unfollow' : 'Follow'}
+								 </button>
 						</div>
 					</span>
-								<span>
+							<span>
 						<span>
 							<div>Name: {u.name}</div>
 							<div>Status: {u.status}</div>
@@ -54,11 +55,10 @@ export const Users = () => {
 						<span>
 						</span>
 					</span>
-							</div>
-						)
-					}
-				</div>
-			}
+						</div>
+					)
+				}
+			</div>
 		</>
 	)
 }

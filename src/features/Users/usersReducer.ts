@@ -1,5 +1,6 @@
 import {AppThunkType} from '../../app/store';
 import {usersAPI, UserType} from '../../api/usersAPI';
+import {changeAppStatus, setError} from '../../app/appReducer';
 
 //types
 
@@ -76,36 +77,34 @@ export const setFetching = (isFetching: boolean) => ({type: 'TOGGLE-IS-FETCHING'
 export const setInProgress = (isFetching: boolean, userId: number) => ({type: 'TOGGLE-IN-PROGRESS', payload: {isFetching, userId}} as const)
 
 //TC
-export const getUsers = (currentPage: number, pageSize: number): AppThunkType => (dispatch) => {
-	dispatch(setFetching(true))
-	usersAPI.getUsers(currentPage, pageSize).then(data => {
-		dispatch(setUsers(data.items))
+export const getUsers = (currentPage: number, pageSize: number): AppThunkType => async (dispatch) => {
+	dispatch(changeAppStatus('loading'));
+	try {
+		const response = await usersAPI.getUsers(currentPage, pageSize)
+		dispatch(setUsers(response.data.items))
 		dispatch(setCurrentPage(currentPage))
-		dispatch(setTotalUsersCount(data.totalCount))
-		dispatch(setFetching(false))
-
-	})
-
+		dispatch(setTotalUsersCount(response.data.totalCount))
+	} catch (err: any) {
+		dispatch(setError(err));
+	} finally {
+		dispatch(changeAppStatus('idle'));
+	}
 }
 
-export const setFollow = (userId: number): AppThunkType => (dispatch) => {
-	dispatch(setInProgress(true, userId))
-	usersAPI.setUnfollow(userId).then(data => {
-		if (data.resultCode === 0) {
+export const setFollow = (userId: number, isFollow: boolean): AppThunkType => async (dispatch) => {
+	try {
+		let response
+		if (isFollow) response = await usersAPI.setUnfollow(userId)
+		else response = await usersAPI.setFollow(userId)
+
+		if (response.data.resultCode === 0) {
 			dispatch(setFollowing(userId))
 		}
 		dispatch(setInProgress(false, userId))
-	})
-
-}
-
-export const setUnFollow = (userId: number): AppThunkType => (dispatch) => {
-	dispatch(setInProgress(true, userId))
-	usersAPI.setFollow(userId).then(data => {
-		if (data.resultCode === 0) {
-			dispatch(setFollowing(userId))
-		}
-		dispatch(setInProgress(false, userId))
-	})
+	} catch (err: any) {
+		dispatch(setError(err));
+	} finally {
+		dispatch(changeAppStatus('idle'));
+	}
 }
 

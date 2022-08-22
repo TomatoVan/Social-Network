@@ -4,19 +4,14 @@ export const usersAPI = {
 
 	getUsers(currentPage: number = 1, pageSize: number = 10) {
 		return instance.get<UsersType>(`users?page=${currentPage}&count=${pageSize}`)
-			.then(response => {
-				return response.data
-			})
 	},
 
 	setUnfollow(id: number) {
 		return instance.delete<ResponseType>(`follow/${id}`)
-			.then(response => response.data)
 	},
 
 	setFollow(id: number) {
 		return instance.post<ResponseType>(`follow/${id}`)
-			.then(response => response.data)
 	},
 
 }

@@ -47,7 +47,7 @@ export const Dialogs = () => {
 
 	useEffect(() => {
 		if (!isAuth && status === 'idle') navigate('/login')
-	}, [isAuth])
+	}, [isAuth, status])
 
 	return (
 		<div className={s.dialogs}>

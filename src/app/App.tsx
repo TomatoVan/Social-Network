@@ -1,6 +1,5 @@
 import React, {useEffect} from 'react';
 import './App.module.css';
-import {Navigate} from 'react-router-dom';
 import {useAppDispatch} from '../common/hooks/useAppDispatch';
 import {useAppSelector} from '../common/hooks/useAppSelector';
 import {Header} from '../features/header/Header';
@@ -21,7 +20,7 @@ export const App = () => {
 	}, [dispatch])
 
 
-	if (!initialized && status === 'idle') return <Navigate to={'/login'}/>
+	// if (!initialized && status === 'idle') return <Navigate to={'/login'}/>
 
 	return (
 		<div className={s.app}>

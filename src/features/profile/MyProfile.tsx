@@ -18,12 +18,12 @@ export const MyProfile = () => {
 
 	const {userId} = useParams()
 
-	useEffect(() => {
-		if (id) {
-			dispatch(getUserProfile(id.toString()))
-			dispatch(getUserStatus(id.toString()))
-		}
-	}, [dispatch, id])
+	// useEffect(() => {
+	// 	if (id) {
+	// 		dispatch(getUserProfile(id.toString()))
+	// 		dispatch(getUserStatus(id.toString()))
+	// 	}
+	// }, [dispatch, id])
 
 	useEffect(() => {
 		if (!isAuth && status === 'idle') navigate('/login')

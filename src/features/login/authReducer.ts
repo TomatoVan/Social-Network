@@ -86,7 +86,8 @@ export const login = (loginData: LoginDataType, setError: any): AppThunkType => 
 		}
 		switch (resultCode) {
 			case 0:
-				dispatch(getAuthUserData())
+				dispatch(initializedSuccess())
+				dispatch(setAuthUserData(response.data.data.userId, email, password, true))
 				break
 			case 1:
 				setFieldsError()

@@ -1,9 +1,9 @@
 import React, {FC} from 'react';
 import s from './CardUsers.module.css';
 import {Link} from 'react-router-dom';
-import userPhoto from '../../../assets/images/1.png';
 import {setFollow} from '../../../features/users/usersReducer';
 import {useAppDispatch} from '../../hooks/useAppDispatch';
+import {Anonymous} from '../../utils/BigHeads';
 
 // types
 type CardUserPropsType = {
@@ -47,7 +47,10 @@ export const CardUsers: FC<CardUserPropsType> = (
 		<div className={s.cardUser} key={id}>
 			<div className={s.userLogo}>
 				<Link to={'/profile/' + id}>
-					<img src={photos.small !== null ? photos.small : userPhoto} alt={''} className={s.userLogoAvatar}/>
+					{photos.small !== null
+						? <img src={photos.small} alt={''} className={s.userLogoAvatar}/>
+						: Anonymous()
+					}
 				</Link>
 			</div>
 			<div className={s.userInformText}>

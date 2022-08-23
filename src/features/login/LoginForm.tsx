@@ -3,7 +3,7 @@ import {SubmitHandler, useForm} from 'react-hook-form';
 import './Login.module.css'
 import f from './Login.module.css'
 import {login} from './authReducer';
-import {useNavigate} from 'react-router-dom';
+import {Navigate, useNavigate} from 'react-router-dom';
 import {useAppSelector} from '../../common/hooks/useAppSelector';
 import {useAppDispatch} from '../../common/hooks/useAppDispatch';
 
@@ -17,8 +17,6 @@ export const LoginForm = () => {
 
 	const dispatch = useAppDispatch()
 	const isAuth = useAppSelector(state => state.auth.isAuth)
-	const navigate = useNavigate()
-
 	const status = useAppSelector(state => state.app.status)
 
 	const {
@@ -33,13 +31,10 @@ export const LoginForm = () => {
 		reset()
 	};
 
-	useEffect(() => {
-		if (isAuth && status === 'idle') navigate('/me')
-	}, [isAuth])
+	if (isAuth) return <Navigate to="/"/>
 
 	return (
 		<>
-
 			<h1 className={f.login}>Login</h1>
 			<form onSubmit={handleSubmit(onSubmit)} className={f.form}>
 				<div>

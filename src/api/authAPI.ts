@@ -15,7 +15,9 @@ export const authAPI = {
 type LoginResponseType = {
 	resultCode: number
 	messages: Array<string>
-	data: {}
+	data: {
+		userId: number
+	}
 	fieldsErrors: Array<{ error: string, field: string }>
 }
 

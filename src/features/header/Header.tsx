@@ -1,12 +1,13 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import s from './Header.module.css';
 import {NavLink} from 'react-router-dom';
 import {useAppDispatch} from '../../common/hooks/useAppDispatch';
 import {useAppSelector} from '../../common/hooks/useAppSelector';
 import {logout} from '../login/authReducer';
 import moon from '../../assets/moon.png'
-import userPhoto from '../../assets/images/1.png';
 import {Greetings} from '../../common/components/greetings/Greetings';
+import {Anonymous} from '../../common/utils/BigHeads';
+import {getUserProfile, getUserStatus} from '../profile/profileReducer';
 
 export const Header = () => {
 
@@ -14,6 +15,15 @@ export const Header = () => {
 	const isAuth = useAppSelector(state => state.auth.isAuth)
 	const avatar = useAppSelector(state => state.profilePage.profile?.photos.small)
 	const login = useAppSelector(state => state.auth.login)
+	const id = useAppSelector(state => state.auth.id)
+
+
+	useEffect(() => {
+		if (id) {
+			dispatch(getUserProfile(id.toString()))
+			dispatch(getUserStatus(id.toString()))
+		}
+	}, [dispatch, id])
 
 
 	const logOutHandler = () => {
@@ -42,10 +52,10 @@ export const Header = () => {
 						<button className={s.buttonExit} onClick={logOutHandler}>Logout</button>
 						{avatar !== null
 							? <NavLink to={'/me'}><img className={s.logoUser} src={avatar} alt={'avatar'}/></NavLink>
-							: <NavLink to={'/me'}><img className={s.logoUser} src={userPhoto} alt={'avatar'}/></NavLink>
+							: Anonymous()
 						}
 					</div> :
-					<NavLink className={s.loginText} to={'/login'}>Login</NavLink>
+					<NavLink className={s.login_btn} to={'/'}>Login</NavLink>
 				}
 			</div>
 		</div>

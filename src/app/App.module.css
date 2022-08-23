@@ -1,4 +1,4 @@
-
+/* CUSTOM COLORS */
 :root {
     --generalColor: #63A4DC;
     --secondColor: #1C4F7B;
@@ -15,6 +15,18 @@
     --grayColor: #aaaaaa;
 }
 
+html {
+    background-color: white;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--backgroundColor);
+}
 
 .app {
     margin: auto;
@@ -25,11 +37,6 @@
     flex-direction: row;
 }
 
-.main {
-    padding: 0 2rem 2rem 0;
-    width: 80%;
-    background-color: #1C4F7B;
-}
 
 
 

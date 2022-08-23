@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "https://TomatoVan.github.io/Social-Network/",
   "dependencies": {
+    "@bigheads/core": "^0.3.3",
     "@emotion/react": "^11.10.0",
     "@emotion/styled": "^11.10.0",
     "@mui/material": "^5.10.1",

@@ -8,56 +8,55 @@ import musicIcon from '../../../assets/musicIcon.png'
 import messagesIcon from '../../../assets/msg.png'
 import FriendsIcon from '../../../assets/people.png'
 import SettingsIcon from '../../../assets/keypng.png'
+import {useAppSelector} from '../../hooks/useAppSelector';
 
 export type statusPageActiveType = 'PROFILE' | 'MESSAGES' | 'MUSIC' | 'FRIENDS' | 'SETTINGS' | 'HOME' | 'ME'
 
 
 export const Navbar = () => {
 
+	const isAuth = useAppSelector(state => state.auth.isAuth)
+
 	const [activeItemMenu, setActiveItemMenu] = useState<string>('HOME')
 
 	const changeStatusItemMenu = (pageActive: statusPageActiveType) => {
-		switch (pageActive) {
-			case 'PROFILE': {
-				setActiveItemMenu('PROFILE')
-				break;
+		if (isAuth) {
+			switch (pageActive) {
+				case 'PROFILE': {
+					setActiveItemMenu('PROFILE')
+					break;
+				}
+				case 'MESSAGES': {
+					setActiveItemMenu('MESSAGES')
+					break;
+				}
+				case 'FRIENDS': {
+					setActiveItemMenu('FRIENDS')
+					break;
+				}
+				case 'MUSIC': {
+					setActiveItemMenu('MUSIC')
+					break;
+				}
+				case 'SETTINGS': {
+					setActiveItemMenu('SETTINGS')
+					break;
+				}
+				case 'HOME': {
+					setActiveItemMenu('HOME')
+					break;
+				}
+				case 'ME': {
+					setActiveItemMenu('ME')
+					break;
+				}
+				default : {
+					setActiveItemMenu('HOME')
+					break;
+				}
 			}
-			case 'MESSAGES': {
-				setActiveItemMenu('MESSAGES')
-				break;
-			}
-			case 'MUSIC': {
-				setActiveItemMenu('MUSIC')
-				break;
-			}
-			case 'FRIENDS': {
-				setActiveItemMenu('FRIENDS')
-				break;
-			}
-			case 'SETTINGS': {
-				setActiveItemMenu('SETTINGS')
-				break;
-			}
-			case 'HOME': {
-				setActiveItemMenu('HOME')
-				break;
-			}
-			case 'ME': {
-				setActiveItemMenu('ME')
-				break;
-			}
-			default : {
-				setActiveItemMenu('HOME')
-				break;
-			}
+
 		}
-		if (pageActive === 'PROFILE') setActiveItemMenu('PROFILE')
-		else if (pageActive === 'MESSAGES') setActiveItemMenu('MESSAGES')
-		else if (pageActive === 'MUSIC') setActiveItemMenu('MUSIC')
-		else if (pageActive === 'FRIENDS') setActiveItemMenu('FRIENDS')
-		else if (pageActive === 'SETTINGS') setActiveItemMenu('SETTINGS')
-		else if (pageActive === 'HOME') setActiveItemMenu('HOME')
-		else if (pageActive === 'ME') setActiveItemMenu('ME')
 	}
 
 	return (

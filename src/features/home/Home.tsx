@@ -6,7 +6,6 @@ import {Navigate} from 'react-router-dom';
 import {getUsers} from '../users/usersReducer';
 import {useAppDispatch} from '../../common/hooks/useAppDispatch';
 import {CardUsers} from '../../common/components/cardUsers/CardUsers';
-import {Preloader} from '../../common/components/preloader/Preloader';
 
 export const Home = () => {
 
@@ -21,11 +20,10 @@ export const Home = () => {
 
 
 	useEffect(() => {
-		dispatch(getUsers(1, 10))
-	}, [dispatch])
+		if (isAuth) dispatch(getUsers(1, 10))
+	}, [dispatch, isAuth])
 
 	if (!isAuth && status === 'idle') return <Navigate to="/login"/>
-	if (status === 'loading') return <Preloader/>
 
 	return (
 		<>

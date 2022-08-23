@@ -21,10 +21,8 @@ export const Users = () => {
 	const isAuth = useAppSelector(state => state.auth.isAuth)
 
 	useEffect(() => {
-		if (isAuth && status === 'idle') {
-			dispatch(getUsers(currentPage, pageSize))
-		}
-	}, [dispatch, isAuth, status])
+		if (isAuth) dispatch(getUsers(currentPage, pageSize))
+	}, [dispatch, isAuth])
 
 	const followingHandler = (id: number, followed: boolean) => {
 		dispatch(setFollow(id, followed))

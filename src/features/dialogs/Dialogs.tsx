@@ -7,7 +7,6 @@ import {Navigate} from 'react-router-dom';
 import {DialogItem} from './dialogItem/DialogItem';
 import {Message} from './message/Message';
 import {sendMessage} from './dialogsReducer';
-import {Preloader} from '../../common/components/preloader/Preloader';
 
 type dialogsElementsMapType = {
 	id: number,
@@ -46,7 +45,6 @@ export const Dialogs = () => {
 	};
 
 	if (!isAuth && status === 'idle') return <Navigate to="/login"/>
-	if (status === 'loading') return <Preloader/>
 
 	return (
 		<div className={s.dialogs}>

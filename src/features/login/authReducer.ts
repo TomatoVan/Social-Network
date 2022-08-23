@@ -71,7 +71,6 @@ export const login = (loginData: LoginDataType, setError: any): AppThunkType => 
 	dispatch(changeAppStatus('loading'));
 	try {
 		const response = await authAPI.login(email, password, rememberMe)
-
 		const {fieldsErrors, resultCode, messages} = response.data
 		const setFieldsError = () => {
 			if (fieldsErrors.length > 0) {
@@ -86,8 +85,7 @@ export const login = (loginData: LoginDataType, setError: any): AppThunkType => 
 		}
 		switch (resultCode) {
 			case 0:
-				dispatch(initializedSuccess())
-				dispatch(setAuthUserData(response.data.data.userId, email, password, true))
+				dispatch(getAuthUserData())
 				break
 			case 1:
 				setFieldsError()

@@ -1,0 +1,30 @@
+.pageName {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 36px;
+    display: flex;
+    align-items: center;
+    padding: 1rem 0;
+    color: var(--secondColor);
+}
+
+.homeMain {
+    color: var(--generalColor);
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+    border-radius: var(--borderRadiusCustom);
+    background-size: cover;
+    padding: 1rem 0 0 0;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    padding: 20px 0 0 0;
+}
+
+.totalUsers {
+    color: var(--secondColor);
+}

@@ -14,7 +14,7 @@ export type statusPageActiveType = 'PROFILE' | 'MESSAGES' | 'MUSIC' | 'FRIENDS' 
 
 export const Navbar = () => {
 
-	const [activeItemMenu, setActiveItemMenu] = useState<string>('ME')
+	const [activeItemMenu, setActiveItemMenu] = useState<string>('HOME')
 
 	const changeStatusItemMenu = (pageActive: statusPageActiveType) => {
 		switch (pageActive) {

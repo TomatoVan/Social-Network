@@ -38,6 +38,17 @@
     width: 35%;
 }
 
+.flexBoxHeaderCenter svg {
+    cursor: pointer;
+    transition: ease-in-out 0.5s;
+    margin: 0 0.8rem 0 0;
+}
+
+.flexBoxHeaderCenter svg:hover {
+
+    transform: scale(1.3) rotate(-360deg);
+}
+
 .flexBoxHeaderRight {
     display: flex;
     justify-content: flex-start;

@@ -1,11 +1,12 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {SubmitHandler, useForm} from 'react-hook-form';
 import './Login.module.css'
 import f from './Login.module.css'
 import {login} from './authReducer';
-import {Navigate, useNavigate} from 'react-router-dom';
+import {Navigate} from 'react-router-dom';
 import {useAppSelector} from '../../common/hooks/useAppSelector';
 import {useAppDispatch} from '../../common/hooks/useAppDispatch';
+import {Preloader} from '../../common/components/preloader/Preloader';
 
 type LoginFormType = {
 	email: string,
@@ -31,7 +32,8 @@ export const LoginForm = () => {
 		reset()
 	};
 
-	if (isAuth) return <Navigate to="/"/>
+	if (isAuth && status === 'idle') return <Navigate to="/"/>
+	if (status === 'loading') return <Preloader/>
 
 	return (
 		<>

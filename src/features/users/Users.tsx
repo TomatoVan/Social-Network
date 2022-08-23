@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import s from './Users.module.css'
 import userPhoto from '../../assets/images/1.png'
-import {NavLink, useNavigate} from 'react-router-dom';
+import {Navigate, NavLink} from 'react-router-dom';
 import {UserType} from '../../api/usersAPI';
 import {Pagination} from '../../common/components/pagination/Pagination';
 import {useAppSelector} from '../../common/hooks/useAppSelector';
@@ -12,7 +12,6 @@ import {Preloader} from '../../common/components/preloader/Preloader';
 export const Users = () => {
 
 	const dispatch = useAppDispatch()
-	const navigate = useNavigate()
 
 	const users = useAppSelector(state => state.usersPage.users)
 	const inProgress = useAppSelector(state => state.usersPage.inProgress)
@@ -22,16 +21,16 @@ export const Users = () => {
 	const isAuth = useAppSelector(state => state.auth.isAuth)
 
 	useEffect(() => {
-		dispatch(getUsers(currentPage, pageSize))
-	}, [])
+		if (isAuth && status === 'idle') {
+			dispatch(getUsers(currentPage, pageSize))
+		}
+	}, [dispatch, isAuth, status])
 
 	const followingHandler = (id: number, followed: boolean) => {
 		dispatch(setFollow(id, followed))
 	}
-	useEffect(() => {
-		if (!isAuth && status === 'idle') navigate('/login')
-	}, [isAuth, status])
 
+	if (!isAuth && status === 'idle') return <Navigate to="/login"/>
 	if (status === 'loading') return <Preloader/>
 
 	return (

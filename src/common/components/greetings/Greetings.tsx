@@ -22,7 +22,7 @@ export const Greetings: FC<PropsType> = ({isAuth, login}) => {
 				<div className={s.container}>
 					{dateHours >= 6 && dateHours < 11 && <><img className={s.iconStyle} src={morningIcon} alt={'nightIcon'}/> Good morning, {login}!</>}
 					{dateHours >= 11 && dateHours < 17 && <> <img className={s.sunIcon} src={sunIcon} alt={'sunIcon'}/> Good day, {login}!</>}
-					{dateHours > 17 && dateHours < 24 && <> <img className={s.iconStyle} src={sunsetIcon} alt={'sunsetIcon'}/> Good evening, {login}!</>}
+					{dateHours >= 17 && dateHours < 24 && <> <img className={s.iconStyle} src={sunsetIcon} alt={'sunsetIcon'}/> Good evening, {login}!</>}
 					{dateHours >= 0 && dateHours < 6 && <><img className={s.iconStyle} src={nightIcon} alt={'nightIcon'}/> Good night, {login}!</>}
 				</div>
 				:

@@ -8,19 +8,23 @@ import {ErrorSnackBar} from '../common/components/snackbars/ErrorSnackbar';
 import s from './App.module.css'
 import {Navbar} from '../common/components/navbar/Navbar';
 import {Main} from '../features/main/Main';
+import {getUserProfile, getUserStatus} from '../features/profile/profileReducer';
 
 export const App = () => {
 
 	const dispatch = useAppDispatch()
-	const initialized = useAppSelector(state => state.app.initialized)
-	const status = useAppSelector(state => state.app.status)
+	const id = useAppSelector(state => state.auth.id)
+
+	useEffect(() => {
+		if (id) {
+			dispatch(getUserProfile(id.toString()))
+			dispatch(getUserStatus(id.toString()))
+		}
+	}, [dispatch, id])
 
 	useEffect(() => {
 		dispatch(getAuthUserData())
 	}, [dispatch])
-
-
-	// if (!initialized && status === 'idle') return <Navigate to={'/login'}/>
 
 	return (
 		<div className={s.app}>

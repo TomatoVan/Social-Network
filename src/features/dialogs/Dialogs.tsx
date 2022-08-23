@@ -1,12 +1,13 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import s from './Dialogs.module.css';
 import {SubmitHandler, useForm} from 'react-hook-form';
 import {useAppDispatch} from '../../common/hooks/useAppDispatch';
 import {useAppSelector} from '../../common/hooks/useAppSelector';
-import {useNavigate} from 'react-router-dom';
+import {Navigate} from 'react-router-dom';
 import {DialogItem} from './dialogItem/DialogItem';
 import {Message} from './message/Message';
 import {sendMessage} from './dialogsReducer';
+import {Preloader} from '../../common/components/preloader/Preloader';
 
 type dialogsElementsMapType = {
 	id: number,
@@ -24,7 +25,6 @@ type InputsFormType = {
 export const Dialogs = () => {
 
 	const dispatch = useAppDispatch()
-	const navigate = useNavigate()
 
 	const status = useAppSelector(state => state.app.status)
 	const isAuth = useAppSelector(state => state.auth.isAuth)
@@ -45,9 +45,8 @@ export const Dialogs = () => {
 		dispatch(sendMessage(data.message))
 	};
 
-	useEffect(() => {
-		if (!isAuth && status === 'idle') navigate('/login')
-	}, [isAuth, status])
+	if (!isAuth && status === 'idle') return <Navigate to="/login"/>
+	if (status === 'loading') return <Preloader/>
 
 	return (
 		<div className={s.dialogs}>

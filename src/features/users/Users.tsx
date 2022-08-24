@@ -1,13 +1,13 @@
 import React, {useEffect} from 'react';
-import s from './Users.module.css'
-import userPhoto from '../../assets/images/1.png'
-import {Navigate, NavLink} from 'react-router-dom';
+import {Navigate} from 'react-router-dom';
 import {UserType} from '../../api/usersAPI';
 import {Pagination} from '../../common/components/pagination/Pagination';
 import {useAppSelector} from '../../common/hooks/useAppSelector';
 import {useAppDispatch} from '../../common/hooks/useAppDispatch';
-import {getUsers, setFollow} from './usersReducer';
+import {getUsers} from './usersReducer';
 import {Preloader} from '../../common/components/preloader/Preloader';
+import {CardUsers} from '../../common/components/cardUsers/CardUsers';
+import s from './Users.module.css'
 
 export const Users = () => {
 
@@ -24,44 +24,30 @@ export const Users = () => {
 		if (isAuth) dispatch(getUsers(currentPage, pageSize))
 	}, [dispatch, isAuth])
 
-	const followingHandler = (id: number, followed: boolean) => {
-		dispatch(setFollow(id, followed))
-	}
-
 	if (!isAuth && status === 'idle') return <Navigate to="/login"/>
 	if (status === 'loading') return <Preloader/>
 
 	return (
-		<>
-			<div>
-				<Pagination/>
+		<div>
+			<Pagination/>
+			<div className={s.container}>
 				{
-					users.map((u: UserType) => <div key={u.id} className={s.wrapper}>
-					<span className={s.firstLayer}>
-						<div>
-							<NavLink to={'/profile/' + u.id}>
-								<img src={u.photos.small !== null ? u.photos.small : userPhoto} alt={''} className={s.userPhoto}/>
-							</NavLink>
-						</div>
-						<div>
-								 <button disabled={inProgress.some(id => id === u.id)} onClick={() => followingHandler(u.id, u.followed)}>
-									 {u.followed ? 'Unfollow' : 'Follow'}
-								 </button>
-						</div>
-					</span>
-							<span>
-						<span>
-							<div>Name: {u.name}</div>
-							<div>Status: {u.status}</div>
-						</span>
-						<span>
-						</span>
-					</span>
-						</div>
+					users.map((user: UserType) => {
+							return (
+								<CardUsers name={user.name}
+													 key={user.id}
+													 id={user.id}
+													 uniqueUrlName={user.uniqueUrlName}
+													 photos={user.photos}
+													 status={user.status}
+													 followed={user.followed}
+													 followingInProgress={inProgress}/>
+							)
+						}
 					)
 				}
 			</div>
-		</>
+		</div>
 	)
 }
 

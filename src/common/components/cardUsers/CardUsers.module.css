@@ -37,6 +37,8 @@
 
 .userName {
     color: var(--secondColor);
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .userCountry {
@@ -46,6 +48,8 @@
 .userPhrase {
     font-weight: 800;
     color: var(--secondColor);
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .userInformText2 {

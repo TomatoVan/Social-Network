@@ -37,6 +37,7 @@
     color: var(--generalColor);
     font-weight: 800;
     transition: 0.2s;
+    font-size: 17px;
 }
 
 .btnControl:hover {

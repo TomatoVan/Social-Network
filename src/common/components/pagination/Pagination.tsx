@@ -13,7 +13,8 @@ export const Pagination = () => {
 
 	let pagesCount = Math.ceil(totalUsersCount / pageSize)
 	let pages = []
-	let numberOfPaginationElements = 20
+	let numberOfPaginationElements = 15
+	
 	for (let i = 1; i <= pagesCount; i++) {
 		pages.push(i)
 	}
@@ -22,13 +23,16 @@ export const Pagination = () => {
 	let leftPortionPageNumber = (portionNumber - 1) * numberOfPaginationElements + 1
 	let rightPortionPageNumber = portionNumber * numberOfPaginationElements
 
-	const forward = () => {
+	const goForwardHandler = () => {
 		if (portionNumber === Math.ceil(pagesCount / numberOfPaginationElements)) setPortionNumber(1)
 		else setPortionNumber(portionNumber + 1)
 	}
-	const back = () => {
+	const goBackHandler = () => {
 		if (portionNumber === 1) setPortionNumber(Math.ceil(pagesCount / numberOfPaginationElements))
 		else setPortionNumber(portionNumber - 1)
+	}
+	const refreshHandler = () => {
+		setPortionNumber(1)
 	}
 
 	const setPageHandler = (filteredPage: number) => {
@@ -41,7 +45,9 @@ export const Pagination = () => {
 
 	return (
 		<>
-			<button className={s.btnControl} onClick={back}> {'<<'} </button>
+			<button className={s.btnControl} onClick={goBackHandler}> {'<<'} </button>
+			<button className={s.btnControl} onClick={refreshHandler}> {'↺'} </button>
+			<button className={s.btnControl} onClick={goForwardHandler}> {'>>'} </button>
 			{pages.filter(page => page >= leftPortionPageNumber && page <= rightPortionPageNumber).map(filteredPage => {
 				return (
 					<span
@@ -52,7 +58,6 @@ export const Pagination = () => {
                         </span>
 				)
 			})}
-			<button className={s.btnControl} onClick={forward}> {'>>'} </button>
 		</>
 	)
 }

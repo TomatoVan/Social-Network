@@ -62,7 +62,7 @@ export const CardUsers: FC<CardUserPropsType> = (
 			</div>
 			<button className={followed ? s.followButton_FALSE : s.followButton_TRUE} disabled={followingInProgress.some(elem => elem === id)}
 							onClick={() => followingHandler(id, followed)}>
-				{followed ? '-' : '+'}
+				{followed ? '✔' : '+'}
 			</button>
 		</div>
 	);

@@ -10,6 +10,11 @@
     height: 50px;
     width: 50px;
     margin: 0 0.5rem 0 0;
+    transition: ease-in-out 0.2s;
+}
+
+.msgAvatarFriend:hover {
+    transform: scale(1.2);
 }
 
 .textMsg {

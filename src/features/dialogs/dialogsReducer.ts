@@ -30,10 +30,10 @@ export type DialogsStateType = {
 let initialState = {
 	dialogsData: [
 		{id: 1, name: 'Elina Malina', message: 'What? What you doing?!'},
-		{id: 2, name: 'Andrey', message: 'What? What you doing?!'},
-		{id: 3, name: 'Leon', message: 'What? What you doing?!'},
-		{id: 4, name: 'Valera', message: 'What? What you doing?!'},
-		{id: 5, name: 'Sasha', message: 'What? What you doing?!'}
+		{id: 2, name: 'Andrey', message: 'Hello there'},
+		{id: 3, name: 'Leon', message: 'Do you want to play some DnD?'},
+		{id: 4, name: 'Ricardo', message: 'Its dance time'},
+		{id: 5, name: 'Billy', message: 'Yugamineena'}
 	],
 
 	messagesData: {

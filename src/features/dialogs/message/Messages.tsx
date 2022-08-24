@@ -3,8 +3,9 @@ import s from './Messages.module.css';
 import {MessageDataType, sendMessage} from '../dialogsReducer';
 import {useAppDispatch} from '../../../common/hooks/useAppDispatch';
 import {useAppSelector} from '../../../common/hooks/useAppSelector';
-import {MsgRight} from './MsgRight/MsgRight';
-import {MsgLeft} from './MsgLeft/MsgLeft';
+import {MsgLeft} from './msgLeft/MsgLeft';
+import {MsgRight} from './msgRight/MsgRight';
+import {setError} from '../../../app/appReducer';
 
 
 export const Messages: FC<any> = () => {
@@ -19,17 +20,23 @@ export const Messages: FC<any> = () => {
 		setTextAreaValue(e)
 	}
 	const onclickSendMessageHandler = () => {
-		if (textAreaValue !== '') {
+		if (textAreaValue.trim() !== '') {
 			dispatch(sendMessage(textAreaValue))
 			setTextAreaValue('')
+		} else if (textAreaValue.trim() === '') {
+			dispatch(setError('Message field is empty'))
 		}
+
 
 	}
 	const enterHandler = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
-		if (event.charCode === 13 && textAreaValue !== '') {
+		if (event.key === 'Enter' && textAreaValue.trim() !== '') {
 			dispatch(sendMessage(textAreaValue))
 			setTextAreaValue('')
+		} else if (event.key === 'Enter' && textAreaValue.trim() === '') {
+			dispatch(setError('Message field is empty'))
 		}
+
 	}
 
 	return (

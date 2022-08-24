@@ -27,7 +27,7 @@ export const Dialogs = () => {
 				<div className={s.msgBoxLeft}>
 					<div className={s.titleMsgBoxPage}>Friends:</div>
 					{dialogsData.map((d: dialogsElementsMapType) =>
-						<DialogItem key={d.id} id={d.id} name={d.name} message={d.message}/>
+						<DialogItem key={d.id} id={d.id} name={d.name} message={d.message} active={d.name === 'Elina Malina'}/>
 					)}
 				</div>
 				<div className={s.msgBoxRight}>

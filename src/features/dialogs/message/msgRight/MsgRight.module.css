@@ -7,9 +7,26 @@
 }
 
 .msgAvatarFriend {
+    cursor: pointer;
+    border-radius: 100px;
+    transition: ease-in-out 0.2s;
+    height: 45px;
+    width: 45px;
+    margin: 0 0.5rem 0 0.5rem;
+}
+
+.msgAvatarFriend:hover {
+    transform: scale(1.2);
+}
+
+.msgAvatarFriendAnonymous {
     height: 50px;
     width: 50px;
     margin: 0 0.5rem 0 0;
+}
+
+.msgAvatarFriendAnonymous:hover {
+    transform: scale(1.2);
 }
 
 .textMsg {

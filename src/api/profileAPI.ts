@@ -26,7 +26,7 @@ type ResponseType = {
 	data: {}
 }
 
-type UserProfileResponseType = {
+export type UserProfileResponseType = {
 	userId: number
 	lookingForAJob: boolean
 	lookingForAJobDescription: string

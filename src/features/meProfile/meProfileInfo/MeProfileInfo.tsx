@@ -1,34 +1,35 @@
 import React, {ChangeEvent, FC} from 'react';
-import s from './ProfileInfo.module.css';
-import {ProfileStatus} from './ProfileStatus';
+import s from './MeProfileInfo.module.css';
+import {MeProfileStatus} from './MeProfileStatus';
 import {useAppDispatch} from '../../../common/hooks/useAppDispatch';
 import {useAppSelector} from '../../../common/hooks/useAppSelector';
-import {savePhoto} from '../profileReducer';
 import {Anonymous} from '../../../common/utils/BigHeads';
+import {saveMyPhoto} from '../meProfileReducer';
 
 
 type ProfileInfoType = {
 	isOwner: boolean
 }
 
-export const ProfileInfo: FC<ProfileInfoType> = ({isOwner}) => {
+export const MeProfileInfo: FC<ProfileInfoType> = ({isOwner}) => {
 
 	const dispatch = useAppDispatch()
-	const profile = useAppSelector(state => state.profilePage.profile)
+	const profile = useAppSelector(state => state.meProfilePage.profile)
 
 	const inputFileHandler = (e: ChangeEvent<HTMLInputElement>) => {
 		if (e.target.files) {
-			dispatch(savePhoto(e.target.files[0]))
+			dispatch(saveMyPhoto(e.target.files[0]))
 		}
 	}
 
 	return <div>
 		<div className={s.descriptionBlock}>
 			<div>
-				<img src={profile.photos.small || Anonymous()} alt={''}/>
+				{profile.photos.small ? <img src={profile.photos.small} alt={''}/>
+					: <div>{Anonymous()}</div>}
 				{isOwner && <input type="file" onChange={inputFileHandler}/>}
 
-				<ProfileStatus isOwner={isOwner}/>
+				<MeProfileStatus isOwner={isOwner}/>
 			</div>
 			<div className={s.profileAbout}>
 				<div>{profile.fullName}</div>

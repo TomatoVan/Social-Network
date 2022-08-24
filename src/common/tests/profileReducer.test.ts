@@ -1,14 +1,10 @@
-import {profileReducer, profileStateType, setUserProfile, setUserStatus} from '../../features/profile/profileReducer';
+import {userProfileReducer, profileStateType, setUserProfile, setUserStatus} from '../../features/userProfile/userProfileReducer';
 
 
 let startState: profileStateType
 
 beforeEach(() =>
 	startState = {
-		postsData: [
-			{id: 1, message: 'Hi, how are you', likes: 15},
-			{id: 2, message: 'My first post?', likes: 20},
-		],
 		profile: null,
 		status: ''
 	}
@@ -37,11 +33,11 @@ test('SET USER PROFILE', () => {
 		}
 	}
 
-	const endState = profileReducer(startState, setUserProfile(newUser))
+	const endState = userProfileReducer(startState, setUserProfile(newUser))
 	expect(endState.profile).toBe(newUser)
 })
 test('UPDATE STATUS', () => {
 	const newStatus = 'NEW STATUS!'
-	const endState = profileReducer(startState, setUserStatus(newStatus))
+	const endState = userProfileReducer(startState, setUserStatus(newStatus))
 	expect(endState.status).toBe(newStatus)
 })

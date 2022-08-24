@@ -1,13 +1,13 @@
 import React, {ChangeEvent, FC, useEffect, useState} from 'react';
 import {useAppDispatch} from '../../../common/hooks/useAppDispatch';
 import {useAppSelector} from '../../../common/hooks/useAppSelector';
-import {updateUserStatus} from '../profileReducer';
+import {updateMyStatus} from '../../meProfile/meProfileReducer';
 
 
-export const ProfileStatus: FC<{ isOwner: boolean }> = ({isOwner}) => {
+export const UserProfileStatus: FC<{ isOwner: boolean }> = ({isOwner}) => {
 
 	const dispatch = useAppDispatch()
-	const initStatus = useAppSelector(state => state.profilePage.status)
+	const initStatus = useAppSelector(state => state.meProfilePage.status)
 
 
 	const [editMode, setEditMode] = useState(false)
@@ -20,7 +20,7 @@ export const ProfileStatus: FC<{ isOwner: boolean }> = ({isOwner}) => {
 	const onDoubleClickHandler = () => setEditMode(true)
 	const onBlurHandler = () => {
 		setEditMode(false)
-		dispatch(updateUserStatus(status))
+		dispatch(updateMyStatus(status))
 	}
 
 	const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => setStatus(e.currentTarget.value)

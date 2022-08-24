@@ -4,11 +4,13 @@ import {UsersActionsType, usersReducer} from '../features/users/usersReducer';
 import {authReducer, AuthUserActionsType} from '../features/login/authReducer';
 import thunk, {ThunkAction} from 'redux-thunk';
 import {AppActionsTypes, appReducer} from './appReducer';
-import {ProfileActionsType, profileReducer} from '../features/profile/profileReducer';
+import {ProfileActionsType, userProfileReducer} from '../features/userProfile/userProfileReducer';
 import {DialogActionsType, dialogsReducer} from '../features/dialogs/dialogsReducer';
+import {MeProfileActionsType, meProfileReducer} from '../features/meProfile/meProfileReducer';
 
 let rootReducer = combineReducers({
-	profilePage: profileReducer,
+	userProfilePage: userProfileReducer,
+	meProfilePage: meProfileReducer,
 	dialogsPage: dialogsReducer,
 	usersPage: usersReducer,
 	auth: authReducer,
@@ -16,7 +18,7 @@ let rootReducer = combineReducers({
 })
 
 export type AppRootStateType = ReturnType<typeof rootReducer>
-export type AllAppActionsType = AuthUserActionsType | AppActionsTypes | DialogActionsType | ProfileActionsType | UsersActionsType
+export type AllAppActionsType = AuthUserActionsType | AppActionsTypes | DialogActionsType | ProfileActionsType | UsersActionsType | MeProfileActionsType
 export type AppThunkType = ThunkAction<void, AppRootStateType, unknown, AllAppActionsType>
 
 

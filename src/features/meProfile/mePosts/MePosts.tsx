@@ -1,22 +1,22 @@
 import React from 'react';
-import s from './MyPosts.module.css';
+import s from './MePosts.module.css';
 import {SubmitHandler, useForm} from 'react-hook-form';
-import {useAppDispatch} from '../../../../common/hooks/useAppDispatch';
-import {useAppSelector} from '../../../../common/hooks/useAppSelector';
-import {addPost} from '../../profileReducer';
-import {Post} from './post/Post';
+import {useAppDispatch} from '../../../common/hooks/useAppDispatch';
+import {useAppSelector} from '../../../common/hooks/useAppSelector';
+import {addMyPost} from '../meProfileReducer';
+import {MePost} from './mePost/MePost';
 
 type FormTypes = {
 	message: string,
 };
 
-export const MyPosts = () => {
+export const MePosts = () => {
 
 	const dispatch = useAppDispatch()
-	const postsData = useAppSelector(state => state.profilePage.postsData)
+	const postsData = useAppSelector(state => state.meProfilePage.postsData)
 
 
-	let postsElements = postsData.map((p) => <Post key={p.id} message={p.message} likes={p.likes}/>)
+	let postsElements = postsData.map((p) => <MePost key={p.id} message={p.message} likes={p.likes}/>)
 
 	const {
 		register,
@@ -27,7 +27,7 @@ export const MyPosts = () => {
 	const onSubmit: SubmitHandler<FormTypes> = (data) => {
 		reset();
 
-		dispatch(addPost(data.message))
+		dispatch(addMyPost(data.message))
 	};
 
 	return (<div className={s.postsBlock}>

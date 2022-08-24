@@ -12,7 +12,7 @@ export const Header = () => {
 
 	const dispatch = useAppDispatch()
 	const isAuth = useAppSelector(state => state.auth.isAuth)
-	const avatar = useAppSelector(state => state.profilePage.profile?.photos.small)
+	const avatar = useAppSelector(state => state.meProfilePage.profile?.photos.small)
 	const login = useAppSelector(state => state.auth.login)
 
 

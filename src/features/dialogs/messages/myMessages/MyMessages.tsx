@@ -9,7 +9,7 @@ type ChatRightPropsType = {
 }
 export const MyMessages = (props: ChatRightPropsType) => {
 
-	const profile = useAppSelector(state => state.profilePage.profile)
+	const profile = useAppSelector(state => state.meProfilePage.profile)
 	const time = `${new Date().getHours()}:${new Date().getMinutes()}`
 
 	if (!profile) return <Preloader/>
@@ -23,7 +23,6 @@ export const MyMessages = (props: ChatRightPropsType) => {
 							{m.message}
 							<div className={s.timeMsg}>{time}</div>
 						</div>
-						{/*<div className={s.msgAvatarFriend}>{profile.photos.small}</div>*/}
 						{profile.photos.small ?
 							<img className={s.msgAvatarFriend} src={profile.photos.small} alt={''}/>
 							: <div className={s.msgAvatarFriendAnonymous}>{Anonymous()}</div>}

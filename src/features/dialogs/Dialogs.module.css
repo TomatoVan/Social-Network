@@ -1,63 +1,44 @@
-.dialogs {
-    display: grid;
-    grid-template-columns: 2fr 10fr;
+.pageName {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 36px;
+    display: flex;
+    align-items: center;
+    padding: 1rem 0;
+    color: var(--secondColor);
 }
 
-.dialogsItems {
-    padding: 10px;
+.msgMain {
+    width: 100%;
+    height: 70vh;
+    background-color: var(--backgroundColor);
+    border-radius: var(--borderRadiusCustom);
+    display: flex;
+    flex-direction: row;
 }
 
-.active {
-    color: gold;
+.titleMsgBoxPage {
+    margin: 0 0 1rem 0;
 }
 
-.messages {
-    padding: 10px;
+.msgBoxLeft {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    color: var(--secondColor);
+    font-style: normal;
+    font-weight: bold;
+    font-size: 30px;
+    width: 40%;
+    padding: 1rem 0 1rem 1rem;
+
 }
 
-.message {
-
-}
-
-.postTextField {
-    resize: none;
-    height: 25px;
-    width: 250px;
-    word-break: break-word;
-    font-size: 17px;
-}
-
-.error {
-    color: #bf1650;
-    margin: 2px;
-}
-
-.error::before {
-    display: inline;
-    content: "⚠ ";
-}
-
-.submitBtn {
-    background: #ec5990;
-    color: white;
-    border: none;
-    margin-top: 4px;
-    padding: 6px 18px;
-    font-weight: 100;
-    border-radius: 5px;
-}
-
-.submitBtn:hover {
-    background: #bf1650;
-}
-
-.submitBtn:active {
-    transition: 0.3s all;
-    transform: translateY(3px);
-    border: 1px solid transparent;
-    opacity: 0.8;
-}
-
-.submitBtn:disabled {
-    opacity: 0.5;
+.msgBoxRight {
+    color: var(--secondColor);
+    font-style: normal;
+    font-weight: bold;
+    font-size: 30px;
+    width: 60%;
+    padding: 1rem;
 }

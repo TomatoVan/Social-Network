@@ -1,9 +1,9 @@
 import React from 'react';
 import s from './MyPosts.module.css';
 import {SubmitHandler, useForm} from 'react-hook-form';
-import {useAppDispatch} from '../../../common/hooks/useAppDispatch';
-import {useAppSelector} from '../../../common/hooks/useAppSelector';
-import {addPost} from '../profileReducer';
+import {useAppDispatch} from '../../../../common/hooks/useAppDispatch';
+import {useAppSelector} from '../../../../common/hooks/useAppSelector';
+import {addPost} from '../../profileReducer';
 import {Post} from './post/Post';
 
 type FormTypes = {

@@ -1,9 +1,9 @@
 import React from 'react';
-import {useAppSelector} from '../../common/hooks/useAppSelector';
+import {useAppSelector} from '../../../common/hooks/useAppSelector';
 import {Navigate, useParams} from 'react-router-dom';
-import {ProfileInfo} from './profileInfo/ProfileInfo';
+import {ProfileInfo} from '../profileInfo/ProfileInfo';
 import {MyPosts} from './myPosts/MyPosts';
-import {Preloader} from '../../common/components/preloader/Preloader';
+import {Preloader} from '../../../common/components/preloader/Preloader';
 
 export const MyProfile = () => {
 

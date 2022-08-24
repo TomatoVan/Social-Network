@@ -3,7 +3,7 @@ import s from './Dialogs.module.css';
 import {useAppSelector} from '../../common/hooks/useAppSelector';
 import {Navigate} from 'react-router-dom';
 import {DialogItem} from './dialogItem/DialogItem';
-import {Messages} from './message/Messages';
+import {Messages} from './messages/Messages';
 import {DialogDialogsDataElementType} from './dialogsReducer';
 
 type dialogsElementsMapType = {

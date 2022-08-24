@@ -1,12 +1,12 @@
 import React from 'react';
 import s from './Header.module.css';
 import {NavLink} from 'react-router-dom';
-import {useAppDispatch} from '../../common/hooks/useAppDispatch';
-import {useAppSelector} from '../../common/hooks/useAppSelector';
-import {logout} from '../login/authReducer';
-import moon from '../../assets/moon.png'
-import {Greetings} from '../../common/components/greetings/Greetings';
-import {Anonymous} from '../../common/utils/BigHeads';
+import {useAppDispatch} from '../../hooks/useAppDispatch';
+import {useAppSelector} from '../../hooks/useAppSelector';
+import {logout} from '../../../features/login/authReducer';
+import moon from '../../../assets/moon.png'
+import {Greetings} from '../greetings/Greetings';
+import {Anonymous} from '../../utils/BigHeads';
 
 export const Header = () => {
 

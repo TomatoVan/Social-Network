@@ -1,13 +1,13 @@
 import React from 'react';
 import {Anonymous} from '../../../../common/utils/BigHeads';
-import s from './MsgRight.module.css'
+import s from './MyMessages.module.css'
 import {useAppSelector} from '../../../../common/hooks/useAppSelector';
 import {Preloader} from '../../../../common/components/preloader/Preloader';
 
 type ChatRightPropsType = {
 	rightMessages: Array<{ id: number, message: string }>
 }
-export const MsgRight = (props: ChatRightPropsType) => {
+export const MyMessages = (props: ChatRightPropsType) => {
 
 	const profile = useAppSelector(state => state.profilePage.profile)
 	const time = `${new Date().getHours()}:${new Date().getMinutes()}`

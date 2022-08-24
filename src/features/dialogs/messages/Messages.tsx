@@ -3,9 +3,9 @@ import s from './Messages.module.css';
 import {MessageDataType, sendMessage} from '../dialogsReducer';
 import {useAppDispatch} from '../../../common/hooks/useAppDispatch';
 import {useAppSelector} from '../../../common/hooks/useAppSelector';
-import {MsgLeft} from './msgLeft/MsgLeft';
-import {MsgRight} from './msgRight/MsgRight';
 import {setError} from '../../../app/appReducer';
+import {UsersMessages} from './usersMessages/UsersMessages';
+import {MyMessages} from './myMessages/MyMessages';
 
 
 export const Messages: FC<any> = () => {
@@ -44,8 +44,8 @@ export const Messages: FC<any> = () => {
 			<div className={s.backChat}>
 				<div className={s.chatNameUser}>Elina Malina</div>
 				<div className={s.chat}>
-					<MsgLeft leftMessages={messagesData.left}/>
-					<MsgRight rightMessages={messagesData.right}/>
+					<UsersMessages leftMessages={messagesData.left}/>
+					<MyMessages rightMessages={messagesData.right}/>
 				</div>
 				<div className={s.sendMsgArea}>
                 <textarea className={s.sendMsgTextArea}

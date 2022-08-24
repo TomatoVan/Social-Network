@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import './App.module.css';
 import {useAppDispatch} from '../common/hooks/useAppDispatch';
 import {useAppSelector} from '../common/hooks/useAppSelector';
-import {Header} from '../features/header/Header';
+import {Header} from '../common/components/header/Header';
 import {getAuthUserData} from '../features/login/authReducer';
 import {ErrorSnackBar} from '../common/components/snackbars/ErrorSnackbar';
 import s from './App.module.css'

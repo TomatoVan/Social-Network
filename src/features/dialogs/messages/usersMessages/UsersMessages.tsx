@@ -1,12 +1,12 @@
 import React from 'react';
-import s from './MsgLeft.module.css'
+import s from './UserMessages.module.css'
 import {ElinaMalina} from '../../../../common/utils/BigHeads';
 
 type ChatLeftPropsType = {
 	leftMessages: Array<{ id: number, message: string }>
 }
 
-export const MsgLeft = function (props: ChatLeftPropsType) {
+export const UsersMessages = function (props: ChatLeftPropsType) {
 
 	return (
 		<div>

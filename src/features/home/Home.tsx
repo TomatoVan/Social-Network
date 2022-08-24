@@ -29,8 +29,8 @@ export const Home = () => {
 		<>
 			<div className={s.pageName}>HOME</div>
 			<div className={s.homeMain}>
-				<h1>News for you, {login}:</h1>
-				<h1>All users: <span className={s.totalUsers}>{totalUsersCount}</span></h1>
+				<h1>News for you, <span className={s.highlight}>{login}</span>:</h1>
+				<h1>All users: <span className={s.highlight}>{totalUsersCount}</span></h1>
 				<h1 style={{margin: '20px 0 0 0 '}}>New samurai's:</h1>
 				<div className={s.container}>
 					{users.map((user: UserType) => {

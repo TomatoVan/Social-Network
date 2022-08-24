@@ -4,11 +4,13 @@ import {Navigate, useParams} from 'react-router-dom';
 import {useAppDispatch} from '../../common/hooks/useAppDispatch';
 import {getUserProfile, getUserStatus} from './profileReducer';
 import {ProfileInfo} from './profileInfo/ProfileInfo';
+import {Preloader} from '../../common/components/preloader/Preloader';
 
 export const Profile = () => {
 
 	const dispatch = useAppDispatch()
 
+	const profile = useAppSelector(state => state.profilePage.profile)
 	const isAuth = useAppSelector(state => state.auth.isAuth)
 	const status = useAppSelector(state => state.app.status)
 
@@ -23,6 +25,7 @@ export const Profile = () => {
 
 	if (!isAuth && status === 'idle') return <Navigate to="/login"/>
 	if (!userId && status === 'idle') return <Navigate to="/404"/>
+	if (!profile) return <Preloader/>
 
 	return (
 		<div>

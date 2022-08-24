@@ -16,7 +16,7 @@ export type statusPageActiveType = 'PROFILE' | 'MESSAGES' | 'MUSIC' | 'FRIENDS' 
 export const Navbar = () => {
 
 	const isAuth = useAppSelector(state => state.auth.isAuth)
-
+	
 	const [activeItemMenu, setActiveItemMenu] = useState<string>('HOME')
 
 	const changeStatusItemMenu = (pageActive: statusPageActiveType) => {
@@ -42,10 +42,6 @@ export const Navbar = () => {
 					setActiveItemMenu('SETTINGS')
 					break;
 				}
-				case 'HOME': {
-					setActiveItemMenu('HOME')
-					break;
-				}
 				case 'ME': {
 					setActiveItemMenu('ME')
 					break;
@@ -55,7 +51,6 @@ export const Navbar = () => {
 					break;
 				}
 			}
-
 		}
 	}
 

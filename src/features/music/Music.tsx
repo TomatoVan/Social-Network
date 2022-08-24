@@ -2,6 +2,7 @@ import React from 'react';
 import {Navigate} from 'react-router-dom';
 import {Preloader} from '../../common/components/preloader/Preloader';
 import {useAppSelector} from '../../common/hooks/useAppSelector';
+import s from './Music.module.css';
 
 export const Music = () => {
 
@@ -13,7 +14,7 @@ export const Music = () => {
 
 	return (
 		<div>
-			Music
+			<div className={s.pageName}>Music</div>
 		</div>
 
 	)

@@ -1,10 +1,10 @@
 import React, {ChangeEvent, FC} from 'react';
 import s from './ProfileInfo.module.css';
 import {ProfileStatus} from './ProfileStatus';
-import userPhoto from '../../../assets/images/1.png'
 import {useAppDispatch} from '../../../common/hooks/useAppDispatch';
 import {useAppSelector} from '../../../common/hooks/useAppSelector';
 import {savePhoto} from '../profileReducer';
+import {Anonymous} from '../../../common/utils/BigHeads';
 
 
 type ProfileInfoType = {
@@ -25,7 +25,7 @@ export const ProfileInfo: FC<ProfileInfoType> = ({isOwner}) => {
 	return <div>
 		<div className={s.descriptionBlock}>
 			<div>
-				<img src={profile.photos.small || userPhoto} alt={''}/>
+				<img src={profile.photos.small || Anonymous()} alt={''}/>
 				{isOwner && <input type="file" onChange={inputFileHandler}/>}
 
 				<ProfileStatus isOwner={isOwner}/>

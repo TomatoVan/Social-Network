@@ -22,7 +22,7 @@ export const MePost: React.FC<PostPropsType> = ({message, likes, name, time, com
 			<div className={s.headerPost}>
 				{photo !== null
 					? <img className={s.userLogoPost} src={photo} alt={'avatar'}/>
-					: Anonymous()
+					: <div className={s.userLogoPostAnonymous}>{Anonymous()}</div>
 				}
 				<div className={s.dataPost}>
 					<div className={s.userNamePost}>{name}</div>
@@ -33,7 +33,6 @@ export const MePost: React.FC<PostPropsType> = ({message, likes, name, time, com
 					<div className={s.btnDotsPost}/>
 					<div className={s.btnDotsPost}/>
 				</div>
-
 			</div>
 			<div className={s.mainPost}>
 				{message}

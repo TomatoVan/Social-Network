@@ -49,7 +49,7 @@ export const CardUsers: FC<CardUserPropsType> = (
 				<Link to={'/profile/' + id}>
 					{photos.small !== null
 						? <img src={photos.small} alt={''} className={s.userLogoAvatar}/>
-						: Anonymous()
+						: <div className={s.userLogoAvatar}>{Anonymous()}</div>
 					}
 				</Link>
 			</div>

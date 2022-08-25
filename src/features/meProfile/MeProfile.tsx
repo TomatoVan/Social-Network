@@ -25,7 +25,7 @@ export const MeProfile = () => {
 	return (
 		<div>
 			<MeProfileInfo profile={profile} status={meStatusText} setEditCallback={changeEditModeProfileCallback}/>
-			{edit ? <ProfileEditForm/> : <MePosts/>}
+			{edit ? <ProfileEditForm setEditCallback={changeEditModeProfileCallback}/> : <MePosts/>}
 		</div>
 	);
 }

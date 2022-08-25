@@ -88,6 +88,20 @@ export const updateMyStatus = (status: string): AppThunkType => async (dispatch)
 	}
 }
 
+export const updateMyProfile = (userId: string, profileData: ProfileType): AppThunkType => async (dispatch) => {
+	dispatch(changeAppStatus('loading'));
+	try {
+		const response = await profileAPI.updateUserProfile(profileData)
+		if (response.data.resultCode === 0) {
+			dispatch(getMyProfile(userId))
+		}
+	} catch (err: any) {
+		dispatch(setError(err));
+	} finally {
+		dispatch(changeAppStatus('idle'));
+	}
+}
+
 export const saveMyPhoto = (file: File): AppThunkType => async (dispatch) => {
 	dispatch(changeAppStatus('loading'));
 	try {
@@ -101,6 +115,7 @@ export const saveMyPhoto = (file: File): AppThunkType => async (dispatch) => {
 		dispatch(changeAppStatus('idle'));
 	}
 }
+
 
 //types
 type AddPostType = ReturnType<typeof addMyPost>
@@ -127,6 +142,7 @@ type PhotosType = {
 }
 
 export type ProfileType = {
+	aboutMe: string | null
 	userId: number
 	lookingForAJob: boolean
 	lookingForAJobDescription: string

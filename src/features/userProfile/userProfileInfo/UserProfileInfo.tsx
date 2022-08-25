@@ -26,6 +26,9 @@ export const UserProfileInfo: FC<ProfileInfoType> = ({profile, status}) => {
 					<div className={s.containerText}>
 						<b>My skills:</b> {profile.lookingForAJobDescription}
 					</div>
+					<div className={s.containerText}>
+						<b>About me:</b> {profile.aboutMe}
+					</div>
 					<br/>
 					<div className={s.containerText}>
 						<b>Contacts:</b> <br/>

@@ -4,6 +4,7 @@ import {MeProfileStatus} from './meProfileStatus/MeProfileStatus';
 import {useAppDispatch} from '../../../common/hooks/useAppDispatch';
 import {Anonymous} from '../../../common/utils/BigHeads';
 import {ProfileType, saveMyPhoto} from '../meProfileReducer';
+import {Navigate} from 'react-router-dom';
 
 
 type ProfileInfoType = {
@@ -24,6 +25,8 @@ export const MeProfileInfo: FC<ProfileInfoType> = ({profile, status, setEditCall
 	const changeEditModeProfileCallback = () => {
 		setEditCallback()
 	}
+
+	if (!profile) return <Navigate to={'/login'}/>
 
 	return (
 		(

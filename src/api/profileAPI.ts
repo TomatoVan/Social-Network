@@ -1,4 +1,5 @@
 import {instance} from './instance/instance';
+import {ProfileType} from '../features/meProfile/meProfileReducer';
 
 export const profileAPI = {
 	getUserProfile(userId: string) {
@@ -6,6 +7,9 @@ export const profileAPI = {
 	},
 	getUserStatus(userId: string) {
 		return instance.get(`profile/status/` + userId)
+	},
+	updateUserProfile(profileData: ProfileType) {
+		return instance.put('profile', profileData)
 	},
 	updateUserStatus(status: string) {
 		return instance.put<ResponseType>(`profile/status/`, {status})

@@ -1,20 +1,26 @@
-import React from 'react';
+import React, {FC} from 'react';
 import {useAppSelector} from '../../hooks/useAppSelector';
 import {SubmitHandler, useForm} from 'react-hook-form';
-import {ProfileType} from '../../../features/meProfile/meProfileReducer';
+import {ProfileType, updateMyProfile} from '../../../features/meProfile/meProfileReducer';
 import s from './ProfileEditForm.module.css'
 import {Navigate} from 'react-router-dom';
+import {useAppDispatch} from '../../hooks/useAppDispatch';
 
-export const ProfileEditForm = () => {
+type PropsType = {
+	setEditCallback: () => void
+}
 
+export const ProfileEditForm: FC<PropsType> = ({setEditCallback}) => {
+
+	const dispatch = useAppDispatch()
 	const isAuth = useAppSelector(state => state.auth.isAuth)
 	const status = useAppSelector(state => state.app.status)
 	const profile = useAppSelector(state => state.meProfilePage.profile)
+	const myId = useAppSelector(state => state.auth.id)
 
 	const {
 		register,
-		handleSubmit,
-		reset,
+		handleSubmit
 	} = useForm<ProfileType>({
 		mode: 'onSubmit',
 		defaultValues: {
@@ -22,6 +28,7 @@ export const ProfileEditForm = () => {
 			lookingForAJob: profile.lookingForAJob,
 			lookingForAJobDescription: profile.lookingForAJobDescription,
 			fullName: profile.fullName,
+			aboutMe: profile.aboutMe,
 			contacts: {
 				github: profile.contacts.github,
 				vk: profile.contacts.vk,
@@ -35,9 +42,11 @@ export const ProfileEditForm = () => {
 		}
 	});
 	const onSubmit: SubmitHandler<ProfileType> = (profileData) => {
-		// dispatch(saveProfile(loginData, setError))
-		console.log(profileData)
-		reset()
+		if (myId) {
+			dispatch(updateMyProfile(myId.toString(), profileData))
+			setEditCallback()
+		}
+
 	};
 
 	if (!isAuth && status === 'idle') return <Navigate to="/login"/>
@@ -64,6 +73,12 @@ export const ProfileEditForm = () => {
 							<b>My skills: </b>
 							<input id={'lookingForAJobDescription'}
 										 {...register('lookingForAJobDescription')}
+										 className={s.inputElement}/>
+						</div>
+						<div className={s.element}>
+							<b>About me: </b>
+							<input id={'aboutMe'}
+										 {...register('aboutMe')}
 										 className={s.inputElement}/>
 						</div>
 					</div>

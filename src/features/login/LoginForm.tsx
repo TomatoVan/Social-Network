@@ -48,7 +48,6 @@ export const LoginForm = () => {
 								minLength: {
 									value: 5,
 									message: 'Minimum 5 characters'
-
 								},
 							})} type="text"/>
 					</label>

@@ -52,13 +52,10 @@ export const MePosts = () => {
 						</form>
 					</div>
 				</div>
-
 				<div className={s.myPostsBox}>
 					<div className={s.myPostsTitle}>My posts:</div>
 					{postsElements}
 				</div>
-
-
 			</div>
 		</div>
 	);

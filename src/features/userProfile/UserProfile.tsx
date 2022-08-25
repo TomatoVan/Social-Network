@@ -13,6 +13,7 @@ export const UserProfile = () => {
 	const profile = useAppSelector(state => state.userProfilePage.profile)
 	const isAuth = useAppSelector(state => state.auth.isAuth)
 	const status = useAppSelector(state => state.app.status)
+	const userStatus = useAppSelector(state => state.userProfilePage.status)
 
 	const {userId} = useParams()
 
@@ -29,7 +30,7 @@ export const UserProfile = () => {
 
 	return (
 		<div>
-			<UserProfileInfo profile={profile} status={status}/>
+			<UserProfileInfo profile={profile} status={userStatus}/>
 		</div>
 	);
 }

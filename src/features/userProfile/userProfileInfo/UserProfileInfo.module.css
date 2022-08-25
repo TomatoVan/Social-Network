@@ -25,6 +25,12 @@
     font-size: 25px;
     color: white;
     width: 50%;
+
+}
+
+.slogan {
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .userLogo {

@@ -43,7 +43,7 @@ export const UserProfileInfo: FC<ProfileInfoType> = ({profile, status}) => {
 			</div>
 			<div className={s.profileInfoRight}>
 				<b>Status:</b>
-				<div>{status}</div>
+				<div className={s.slogan}>{status}</div>
 			</div>
 		</div>
 	)

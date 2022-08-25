@@ -20,7 +20,7 @@ export const meProfileReducer = (state: profileStateType = initialState, action:
 		case 'ME/ADD-POST':
 			return {
 				...state,
-				postsData: [...state.postsData, {id: new Date().getTime(), message: action.payload.newPost, likes: 0}]
+				postsData: [...state.postsData, {id: new Date().getTime(), message: action.payload.newPost, likes: 0, comments: 0, shares: 0}]
 			}
 		case 'ME/SET-USER-PROFILE':
 			return {
@@ -139,6 +139,8 @@ type PostDataType = {
 	id: number,
 	message: string,
 	likes: number
+	shares: number
+	comments: number
 }
 
 export type profileStateType = {

@@ -1,7 +1,7 @@
 import React from 'react';
 import {SubmitHandler, useForm} from 'react-hook-form';
 import './Login.module.css'
-import f from './Login.module.css'
+import s from './Login.module.css'
 import {login} from './authReducer';
 import {Navigate} from 'react-router-dom';
 import {useAppSelector} from '../../common/hooks/useAppSelector';
@@ -37,12 +37,12 @@ export const LoginForm = () => {
 
 	return (
 		<>
-			<h1 className={f.login}>Login</h1>
-			<form onSubmit={handleSubmit(onSubmit)} className={f.form}>
+			<h1 className={s.login}>Login</h1>
+			<form onSubmit={handleSubmit(onSubmit)} className={s.form}>
 				<div>
-					<label className={f.labelTextInput}>
+					<label className={s.labelTextInput}>
 						Login
-						<input className={` ${errors.email ? f.errorBorder : f.textInput} `} {...register('email',
+						<input className={` ${errors.email ? s.errorBorder : s.textInput} `} {...register('email',
 							{
 								required: 'The field is required',
 								minLength: {
@@ -52,13 +52,13 @@ export const LoginForm = () => {
 							})} type="text"/>
 					</label>
 					<div>
-						{errors?.email && <p className={f.error}>{errors?.email?.message || 'Error!'}</p>}
+						{errors?.email && <p className={s.error}>{errors?.email?.message || 'Error!'}</p>}
 					</div>
 				</div>
 				<div>
-					<label className={f.labelTextInput}>
+					<label className={s.labelTextInput}>
 						Password
-						<input className={` ${errors.password ? f.errorBorder : f.textInput} `} {...register('password',
+						<input className={` ${errors.password ? s.errorBorder : s.textInput} `} {...register('password',
 							{
 								required: 'The field is required',
 								minLength: {
@@ -69,17 +69,17 @@ export const LoginForm = () => {
 							})} type="text"/>
 					</label>
 					<div>
-						{errors?.password && <p className={f.error}>{errors?.password?.message || 'Error!'}</p>}
+						{errors?.password && <p className={s.error}>{errors?.password?.message || 'Error!'}</p>}
 					</div>
 				</div>
 				<div>
-					<label className={f.labelCheckbox}>
+					<label className={s.labelCheckbox}>
 						Remember me
-						<input {...register('rememberMe')} type="checkbox"/>
+						<input className={s.checkbox} {...register('rememberMe')} type="checkbox"/>
 					</label>
 				</div>
 				<div>
-					<input className={f.submitInput} type="submit" value="SUBMIT"/>
+					<input className={s.submitInput} type="submit" value="SUBMIT"/>
 				</div>
 			</form>
 		</>

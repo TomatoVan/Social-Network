@@ -1,17 +1,14 @@
-
 .form {
     max-width: 500px;
     margin: 0 auto;
 }
 
 .login {
-    font-weight: 100;
-    color: white;
+    color: var(--generalColor);
     text-align: center;
     padding-bottom: 10px;
     border-bottom: 1px solid rgb(79, 98, 148);
 }
-
 
 .error {
     color: #bf1650;
@@ -19,14 +16,18 @@
 }
 
 .errorBorder {
-    border: 2px solid red;
     display: block;
     box-sizing: border-box;
     width: 100%;
-    border-radius: 4px;
-    padding: 10px 15px;
+    border-radius: var(--borderRadiusCustom);
+    color: var(--generalColor);
     margin-bottom: 10px;
-    font-size: 16px;
+    font-size: 23px;
+    padding: 0 10px;
+    height: 50px;
+    font-weight: 400;
+    outline: none;
+    border: 1px solid red;
 }
 
 .error::before {
@@ -34,23 +35,43 @@
     content: "⚠ ";
 }
 
-.textInput,
-.textareaInput,
 .submitInput {
+    margin-top: 10px;
+    width: 100%;
+    background-color: white;
+    padding: 10px 20px;
+    border: 2px solid var(--generalColor);
+    border-radius: var(--borderRadiusCustom);
+    font-size: 25px;
+    color: var(--generalColor);
+    cursor: pointer;
+    transition: 0.2s ease;
+    text-decoration: none;
+}
+
+.submitInput:hover {
+    background-color: var(--generalColor);
+    color: white;
+}
+
+.textInput,
+.textareaInput {
     display: block;
     box-sizing: border-box;
     width: 100%;
-    border-radius: 4px;
-    border: 1px solid white;
-    padding: 10px 15px;
+    border-radius: var(--borderRadiusCustom);
+    border: 1px solid var(--generalColor);
+    color: var(--generalColor);
     margin-bottom: 10px;
-    font-size: 16px;
-
+    font-size: 23px;
+    padding: 0 10px;
+    height: 50px;
+    font-weight: 400;
+    outline: none;
 }
 
 
-.submitBtn,
-.submitInput {
+.submitBtn {
     background: #ec5990;
     color: white;
     border: none;
@@ -61,22 +82,19 @@
     letter-spacing: 10px;
 }
 
-.submitBtn:hover,
-.submitInput:hover {
+.submitBtn:hover {
     background: #bf1650;
 }
 
 .submitBtn:active,
-.btnInput:active,
-.submitInput:active {
+.btnInput:active {
     transition: 0.3s all;
     transform: translateY(3px);
-    border: 1px solid transparent;
+    border: 1px solid var(--generalColor);
     opacity: 0.8;
 }
 
-.submitBtn:disabled,
-.submitInput:disabled {
+.submitBtn:disabled {
     opacity: 0.5;
 }
 
@@ -123,14 +141,17 @@ input[type="checkbox"] {
     display: block;
     margin-bottom: 13px;
     margin-top: 20px;
-    color: white;
-    font-size: 18px;
-    font-weight: 200;
+    color: var(--generalColor);
+    font-size: 26px;
 }
 
 .labelCheckbox {
     text-align: left;
-    color: white;
-    font-size: 18px;
-    font-weight: 200;
+    color: var(--generalColor);
+    font-size: 26px;
+}
+
+.checkbox {
+    margin-left: 10px;
+    transform: scale(1.3);
 }

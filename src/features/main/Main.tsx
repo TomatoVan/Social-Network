@@ -8,7 +8,7 @@ import {Users} from '../users/Users';
 import {Music} from '../music/Music';
 import {Settings} from '../settings/Settings';
 import {LoginForm} from '../login/LoginForm';
-import {NotFound} from '../../common/components/404/NotFound';
+import {NotFound404} from '../../common/components/404/NotFound404';
 import {MeProfile} from '../meProfile/MeProfile';
 
 export const Main = () => {
@@ -23,7 +23,7 @@ export const Main = () => {
 				<Route path="/music" element={<Music/>}/>
 				<Route path="/settings" element={<Settings/>}/>
 				<Route path="/login" element={<LoginForm/>}/>
-				<Route path={'/*'} element={<NotFound/>}/>
+				<Route path={'/*'} element={<NotFound404/>}/>
 			</Routes>
 		</div>
 	);

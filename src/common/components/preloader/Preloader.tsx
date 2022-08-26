@@ -1,5 +1,5 @@
 import React from 'react';
-import s from '../../../features/users/Users.module.css';
+import s from './Preloader.module.css'
 import preloader from '../../../assets/icons/Spin.svg';
 
 

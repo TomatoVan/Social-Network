@@ -11,10 +11,10 @@ import {Anonymous} from '../../utils/BigHeads';
 export const Header = () => {
 
 	const dispatch = useAppDispatch()
+
 	const isAuth = useAppSelector(state => state.auth.isAuth)
 	const avatar = useAppSelector(state => state.meProfilePage.profile?.photos.small)
 	const login = useAppSelector(state => state.auth.login)
-
 
 	const logOutHandler = () => {
 		dispatch(logout())
@@ -42,7 +42,7 @@ export const Header = () => {
 						<button className={s.buttonExit} onClick={logOutHandler}>Logout</button>
 						{avatar !== null
 							? <NavLink to={'/me'}><img className={s.logoUser} src={avatar} alt={'avatar'}/></NavLink>
-							: Anonymous()
+							: <div className={s.logoUser}>{Anonymous()}</div>
 						}
 					</div> :
 					<NavLink className={s.login_btn} to={'/login'}>Login</NavLink>

@@ -49,13 +49,13 @@ let initialState = {
 }
 
 //reducer
-export const dialogsReducer = (state: DialogsStateType = initialState, action: DialogActionsType) => {
+export const dialogsReducer = (state: DialogsStateType = initialState, action: DialogActionsType): DialogsStateType => {
 	switch (action.type) {
 		case 'SEND-MESSAGE':
 			return {
 				...state,
 				messagesData: {
-					...state.messagesData, right: [...state.messagesData.right, {id: v1(), message: action.payload.newPost}]
+					...state.messagesData, right: [...state.messagesData.right, {id: Number(v1()), message: action.payload.newPost}]
 				}
 			}
 		default:

@@ -11,7 +11,7 @@ type SetUserStatusType = ReturnType<typeof setUserStatus>
 export type ProfileActionsType = SetUserProfileType | SetUserStatusType
 
 
-export type profileStateType = {
+export type UserProfileStateType = {
 	profile: ProfileType | null
 	status: string
 }
@@ -23,7 +23,7 @@ let initialState = {
 }
 
 //reducer
-export const userProfileReducer = (state: profileStateType = initialState, action: ProfileActionsType) => {
+export const userProfileReducer = (state: UserProfileStateType = initialState, action: ProfileActionsType): UserProfileStateType => {
 
 	switch (action.type) {
 		case 'USER/SET-USER-PROFILE':
@@ -41,7 +41,7 @@ export const userProfileReducer = (state: profileStateType = initialState, actio
 }
 
 //AC
-export const setUserProfile = (profile: any) => ({type: 'USER/SET-USER-PROFILE', payload: {profile}} as const)
+export const setUserProfile = (profile: ProfileType) => ({type: 'USER/SET-USER-PROFILE', payload: {profile}} as const)
 export const setUserStatus = (status: string) => ({type: 'USER/SET-USER-STATUS', payload: {status}} as const)
 
 //TC

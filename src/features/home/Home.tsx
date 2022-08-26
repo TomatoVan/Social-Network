@@ -31,14 +31,13 @@ export const Home = () => {
 			<div className={s.homeMain}>
 				<h1>News for you, <span className={s.highlight}>{login}</span>:</h1>
 				<h1>All users: <span className={s.highlight}>{totalUsersCount}</span></h1>
-				<h1 style={{margin: '20px 0 0 0 '}}>New samurai's:</h1>
+				<h1 className={s.description}>New samurai's:</h1>
 				<div className={s.container}>
 					{users.map((user: UserType) => {
 							return (
 								<CardUsers name={user.name}
 													 key={user.id}
 													 id={user.id}
-													 uniqueUrlName={user.uniqueUrlName}
 													 photos={user.photos}
 													 status={user.status}
 													 followed={user.followed}

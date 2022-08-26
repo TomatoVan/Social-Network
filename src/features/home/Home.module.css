@@ -17,6 +17,10 @@
     padding: 1rem 0 0 0;
 }
 
+.description {
+    margin-top: 20px;
+}
+
 .container {
     display: flex;
     flex-wrap: wrap;

@@ -37,7 +37,6 @@ export const Users = () => {
 								<CardUsers name={user.name}
 													 key={user.id}
 													 id={user.id}
-													 uniqueUrlName={user.uniqueUrlName}
 													 photos={user.photos}
 													 status={user.status}
 													 followed={user.followed}

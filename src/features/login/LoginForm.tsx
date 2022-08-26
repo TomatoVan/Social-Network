@@ -8,7 +8,7 @@ import {useAppSelector} from '../../common/hooks/useAppSelector';
 import {useAppDispatch} from '../../common/hooks/useAppDispatch';
 import {Preloader} from '../../common/components/preloader/Preloader';
 
-type LoginFormType = {
+export type LoginFormType = {
 	email: string,
 	password: string,
 	rememberMe: boolean,

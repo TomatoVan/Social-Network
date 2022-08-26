@@ -1,4 +1,4 @@
-import React, {FC, useState} from 'react';
+import React, {useState} from 'react';
 import s from './Messages.module.css';
 import {MessageDataType, sendMessage} from '../dialogsReducer';
 import {useAppDispatch} from '../../../common/hooks/useAppDispatch';
@@ -8,7 +8,7 @@ import {UsersMessages} from './usersMessages/UsersMessages';
 import {MyMessages} from './myMessages/MyMessages';
 
 
-export const Messages: FC<any> = () => {
+export const Messages = () => {
 
 	const dispatch = useAppDispatch()
 

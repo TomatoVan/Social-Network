@@ -8,11 +8,11 @@ import {Anonymous} from '../../../../common/utils/BigHeads';
 type PostPropsType = {
 	message: string
 	likes: number
-	name: string
+	name?: string
 	time: string
 	comments: number
 	shares: number
-	photo: string
+	photo?: string | null
 }
 
 export const MePost: React.FC<PostPropsType> = ({message, likes, name, time, comments, shares, photo}) => {

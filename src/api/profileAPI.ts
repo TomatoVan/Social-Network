@@ -12,25 +12,31 @@ export const profileAPI = {
 		return instance.put('profile', profileData)
 	},
 	updateUserStatus(status: string) {
-		return instance.put<ResponseType>(`profile/status/`, {status})
+		return instance.put<ResponseType<{}>>(`profile/status/`, {status})
 	},
 	getPhotos(photoFile: File) {
 		const formData = new FormData()
 		formData.append('Image', photoFile)
-		return instance.put<any>(`profile/photo`, formData, {
+		return instance.put<ResponseType<{ photos: PhotosType }>>(`profile/photo`, formData, {
 			headers: {
 				'Content-Type': 'multipart/form-data'
 			}
 		})
 	},
 }
-type ResponseType = {
+type ResponseType<T> = {
 	resultCode: number
 	messages: Array<string>
-	data: {}
+	data: T
+}
+
+type PhotosType = {
+	small: string | null,
+	large: string | null
 }
 
 export type UserProfileResponseType = {
+	aboutMe: string
 	userId: number
 	lookingForAJob: boolean
 	lookingForAJobDescription: string
@@ -45,5 +51,5 @@ export type UserProfileResponseType = {
 		youtube: string,
 		mainLink: string,
 	}
-	photos: { small: string, large: string }
+	photos: PhotosType
 }

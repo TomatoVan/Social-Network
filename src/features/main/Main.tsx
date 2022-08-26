@@ -18,7 +18,7 @@ export const Main = () => {
 				<Route path="/" element={<Home/>}/>
 				<Route path="/me" element={<MeProfile/>}/>
 				<Route path="/profile/:userId" element={<UserProfile/>}/>
-				<Route path="/messages/*" element={<Dialogs/>}/>
+				<Route path="/messages" element={<Dialogs/>}/>
 				<Route path="/friends" element={<Users/>}/>
 				<Route path="/music" element={<Music/>}/>
 				<Route path="/settings" element={<Settings/>}/>

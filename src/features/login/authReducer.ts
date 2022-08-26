@@ -27,7 +27,7 @@ let initialState = {
 	isAuth: false,
 }
 //reducer
-export const authReducer = (state: LoginStateType = initialState, action: AuthUserActionsType) => {
+export const authReducer = (state: LoginStateType = initialState, action: AuthUserActionsType): LoginStateType => {
 	switch (action.type) {
 		case 'SET-USER-DATA':
 			return {
@@ -66,7 +66,7 @@ export const getAuthUserData = (): AppThunkType => async (dispatch) => {
 }
 
 
-export const login = (loginData: LoginDataType, setError: any): AppThunkType => async (dispatch) => {
+export const login = (loginData: LoginDataType, Error: any): AppThunkType => async (dispatch) => {
 	const {email, password, rememberMe} = loginData
 	dispatch(changeAppStatus('loading'));
 	try {
@@ -76,11 +76,11 @@ export const login = (loginData: LoginDataType, setError: any): AppThunkType => 
 			if (fieldsErrors.length > 0) {
 				for (let key in fieldsErrors) {
 					let message = fieldsErrors[key].error
-					setError(fieldsErrors[key].field, {type: 'server', message})
+					Error(fieldsErrors[key].field, {type: 'server', message})
 				}
 			} else for (let key in messages) {
 				let message = messages[key]
-				setError('password', {type: 'server', message})
+				Error('password', {type: 'server', message})
 			}
 		}
 		switch (resultCode) {
@@ -90,9 +90,8 @@ export const login = (loginData: LoginDataType, setError: any): AppThunkType => 
 			case 1:
 				setFieldsError()
 				break
-			case 10: /*!need add  CAPTCHA*/
-				/*authAPI.getCaptcha()*/
-				setError('password', {type: 'server', message: 'Incorrect anti-bot symbols'})
+			case 10:
+				Error('password', {type: 'server', message: 'Incorrect anti-bot symbols'})
 				break
 			default:
 				throw new Error('Error Auth')

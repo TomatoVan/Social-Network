@@ -15,9 +15,11 @@ export const App = () => {
 
 	const dispatch = useAppDispatch()
 	const id = useAppSelector(state => state.auth.id)
+
 	//navigate to home after page refresh if on different page
 	const navigate = useNavigate()
 
+	//get my profile
 	useEffect(() => {
 		if (id) {
 			dispatch(getMyProfile(id.toString()))
@@ -25,6 +27,7 @@ export const App = () => {
 		}
 	}, [dispatch, id])
 
+	//auth
 	useEffect(() => {
 		dispatch(getAuthUserData())
 		navigate('/')

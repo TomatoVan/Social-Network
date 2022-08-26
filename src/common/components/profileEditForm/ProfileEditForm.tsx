@@ -24,20 +24,20 @@ export const ProfileEditForm: FC<PropsType> = ({setEditCallback}) => {
 	} = useForm<ProfileType>({
 		mode: 'onSubmit',
 		defaultValues: {
-			userId: profile.userId,
-			lookingForAJob: profile.lookingForAJob,
-			lookingForAJobDescription: profile.lookingForAJobDescription,
-			fullName: profile.fullName,
-			aboutMe: profile.aboutMe,
+			userId: profile?.userId,
+			lookingForAJob: profile?.lookingForAJob,
+			lookingForAJobDescription: profile?.lookingForAJobDescription,
+			fullName: profile?.fullName,
+			aboutMe: profile?.aboutMe,
 			contacts: {
-				github: profile.contacts.github,
-				vk: profile.contacts.vk,
-				facebook: profile.contacts.facebook,
-				instagram: profile.contacts.instagram,
-				twitter: profile.contacts.twitter,
-				website: profile.contacts.website,
-				youtube: profile.contacts.youtube,
-				mainLink: profile.contacts.mainLink
+				github: profile?.contacts.github,
+				vk: profile?.contacts.vk,
+				facebook: profile?.contacts.facebook,
+				instagram: profile?.contacts.instagram,
+				twitter: profile?.contacts.twitter,
+				website: profile?.contacts.website,
+				youtube: profile?.contacts.youtube,
+				mainLink: profile?.contacts.mainLink
 			}
 		}
 	});

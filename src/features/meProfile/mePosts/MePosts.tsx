@@ -14,8 +14,8 @@ export const MePosts = () => {
 
 	const dispatch = useAppDispatch()
 	const postsData = useAppSelector(state => state.meProfilePage.postsData)
-	const mePhoto = useAppSelector(state => state.meProfilePage.profile.photos.small)
-	const name = useAppSelector(state => state.meProfilePage.profile.fullName)
+	const mePhoto = useAppSelector(state => state.meProfilePage.profile?.photos.small)
+	const name = useAppSelector(state => state.meProfilePage.profile?.fullName)
 
 	const time = `${new Date().getHours()}:${new Date().getMinutes()}`
 

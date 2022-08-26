@@ -5,12 +5,10 @@ import {setFollow} from '../../../features/users/usersReducer';
 import {useAppDispatch} from '../../hooks/useAppDispatch';
 import {Anonymous} from '../../utils/BigHeads';
 
-// types
+
 type CardUserPropsType = {
-	// api
 	name: string
 	id: number
-	uniqueUrlName: string | null
 	photos: photoType
 	status: string | null
 	followed: boolean
@@ -31,10 +29,8 @@ export const CardUsers: FC<CardUserPropsType> = (
 		followed,
 		status,
 		id,
-		uniqueUrlName,
 		name,
 		photos,
-		children
 	}) => {
 
 	const dispatch = useAppDispatch()

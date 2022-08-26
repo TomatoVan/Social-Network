@@ -1,7 +1,7 @@
-import {setCurrentPage, setFetching, setFollowing, setTotalUsersCount, setUsers, usersReducer, usersStateType} from '../../features/users/usersReducer';
+import {setCurrentPage, setFetching, setFollowing, setTotalUsersCount, setUsers, usersReducer, UsersStateType} from '../../features/users/usersReducer';
 
 
-let startState: usersStateType
+let startState: UsersStateType
 
 beforeEach(() =>
 	startState = {

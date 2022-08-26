@@ -6,7 +6,7 @@ type setErrorType = ReturnType<typeof setError>
 export type AppActionsTypes = initializedSuccessType | changeAppStatusType | setErrorType
 export type RequestStatusType = 'idle' | 'loading' | 'succeeded' | 'failed';
 
-type stateType = {
+type AppStateType = {
 	initialized: boolean
 	status: RequestStatusType
 	error: string | null
@@ -20,7 +20,7 @@ let initialState = {
 }
 
 //reducer
-export const appReducer = (state: stateType = initialState, action: AppActionsTypes): stateType => {
+export const appReducer = (state: AppStateType = initialState, action: AppActionsTypes): AppStateType => {
 	switch (action.type) {
 		case 'INITIALIZED-SUCCESS':
 			return {...state, initialized: true}

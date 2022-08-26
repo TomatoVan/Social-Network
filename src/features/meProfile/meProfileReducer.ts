@@ -5,16 +5,13 @@ import {changeAppStatus, setError} from '../../app/appReducer';
 
 // initial state
 let initialState = {
-	postsData: [
-		// {id: 1, message: 'Hi, how are you', likes: 15},
-		// {id: 2, message: 'My first post?', likes: 20},
-	],
+	postsData: [],
 	profile: null,
 	status: ''
 }
 
 //reducer
-export const meProfileReducer = (state: profileStateType = initialState, action: MeProfileActionsType) => {
+export const meProfileReducer = (state: MeProfileStateType = initialState, action: MeProfileActionsType): MeProfileStateType => {
 
 	switch (action.type) {
 		case 'ME/ADD-POST':
@@ -32,9 +29,12 @@ export const meProfileReducer = (state: profileStateType = initialState, action:
 				...state, status: action.payload.status
 			}
 		case 'ME/SAVE-PHOTOS-SUCCESS': {
-			return {
-				...state, profile: {...state.profile, photos: action.payload.photos}
+			if (state.profile) {
+				return {
+					...state, profile: {...state.profile, photos: action.payload.photos}
+				}
 			}
+			return state
 		}
 		default:
 			return state
@@ -43,9 +43,9 @@ export const meProfileReducer = (state: profileStateType = initialState, action:
 
 //AC
 export const addMyPost = (newPost: string) => ({type: 'ME/ADD-POST', payload: {newPost}} as const)
-export const setMyProfile = (profile: any) => ({type: 'ME/SET-USER-PROFILE', payload: {profile}} as const)
+export const setMyProfile = (profile: ProfileType) => ({type: 'ME/SET-USER-PROFILE', payload: {profile}} as const)
 export const setMyStatus = (status: string) => ({type: 'ME/SET-USER-STATUS', payload: {status}} as const)
-export const saveMyPhotoSuccess = (photos: any) => ({type: 'ME/SAVE-PHOTOS-SUCCESS', payload: {photos}} as const)
+export const saveMyPhotoSuccess = (photos: PhotosType) => ({type: 'ME/SAVE-PHOTOS-SUCCESS', payload: {photos}} as const)
 
 //TC
 export const getMyProfile = (userId: string): AppThunkType => async (dispatch) => {
@@ -142,7 +142,7 @@ type PhotosType = {
 }
 
 export type ProfileType = {
-	aboutMe: string | null
+	aboutMe: string
 	userId: number
 	lookingForAJob: boolean
 	lookingForAJobDescription: string
@@ -159,7 +159,7 @@ type PostDataType = {
 	comments: number
 }
 
-export type profileStateType = {
+export type MeProfileStateType = {
 	postsData: PostDataType[]
 	profile: ProfileType | null
 	status: string

@@ -14,7 +14,7 @@ type SetInProgressType = ReturnType<typeof setInProgress>
 export type UsersActionsType = FollowType | SetUsersType | SetCurrentPageType | SetTotalUsersCountType | SetFetchingType | SetInProgressType
 
 
-export type usersStateType = {
+export type UsersStateType = {
 	users: Array<UserType>
 	pageSize: number,
 	totalUsersCount: number,
@@ -34,13 +34,13 @@ let initialState = {
 }
 
 //reducer
-export const usersReducer = (state: usersStateType = initialState, action: UsersActionsType) => {
+export const usersReducer = (state: UsersStateType = initialState, action: UsersActionsType): UsersStateType => {
 
 	switch (action.type) {
 		case 'CHANGE-FOLLOWING': {
 			return {
 				...state,
-				users: state.users.map((u: any) => u.id === action.payload.userId ? {...u, followed: !u.followed} : u)
+				users: state.users.map((u: UserType) => u.id === action.payload.userId ? {...u, followed: !u.followed} : u)
 			}
 		}
 		case 'SET-USERS': {

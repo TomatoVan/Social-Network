@@ -1,7 +1,7 @@
-import {userProfileReducer, profileStateType, setUserProfile, setUserStatus} from '../../features/userProfile/userProfileReducer';
+import {userProfileReducer, UserProfileStateType, setUserProfile, setUserStatus} from '../../features/userProfile/userProfileReducer';
 
 
-let startState: profileStateType
+let startState: UserProfileStateType
 
 beforeEach(() =>
 	startState = {

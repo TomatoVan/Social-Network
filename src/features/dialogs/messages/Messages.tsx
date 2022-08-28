@@ -44,8 +44,8 @@ export const Messages = () => {
 			<div className={s.backChat}>
 				<div className={s.chatNameUser}>Elina Malina</div>
 				<div className={s.chat}>
-					<UsersMessages leftMessages={messagesData.left}/>
-					<MyMessages rightMessages={messagesData.right}/>
+					<UsersMessages messages={messagesData.left}/>
+					<MyMessages messages={messagesData.right}/>
 				</div>
 				<div className={s.sendMsgArea}>
                 <textarea className={s.sendMsgTextArea}

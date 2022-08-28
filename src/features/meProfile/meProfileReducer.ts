@@ -1,6 +1,7 @@
 import {AppThunkType} from '../../app/store';
 import {profileAPI} from '../../api/profileAPI';
 import {changeAppStatus, setError} from '../../app/appReducer';
+import {v1} from 'uuid';
 
 
 // initial state
@@ -17,7 +18,7 @@ export const meProfileReducer = (state: MeProfileStateType = initialState, actio
 		case 'ME/ADD-POST':
 			return {
 				...state,
-				postsData: [...state.postsData, {id: new Date().getTime(), message: action.payload.newPost, likes: 0, comments: 0, shares: 0}]
+				postsData: [...state.postsData, {id: Number(v1()), message: action.payload.newPost, likes: 0, comments: 0, shares: 0}]
 			}
 		case 'ME/SET-USER-PROFILE':
 			return {

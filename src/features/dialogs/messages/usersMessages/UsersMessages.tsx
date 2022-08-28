@@ -1,16 +1,16 @@
-import React from 'react';
+import React, {FC} from 'react';
 import s from './UserMessages.module.css'
 import {ElinaMalina} from '../../../../common/utils/BigHeads';
 
 type ChatLeftPropsType = {
-	leftMessages: Array<{ id: number, message: string }>
+	messages: Array<{ id: number, message: string }>
 }
 
-export const UsersMessages = function (props: ChatLeftPropsType) {
+export const UsersMessages: FC<ChatLeftPropsType> = React.memo(({messages}) => {
 
 	return (
 		<div>
-			{props.leftMessages.map(m => {
+			{messages.map(m => {
 				return (
 					<div className={s.msgLeft} key={m.id}>
 						<div className={s.msgAvatarFriend}>{ElinaMalina()}</div>
@@ -24,4 +24,4 @@ export const UsersMessages = function (props: ChatLeftPropsType) {
 			})}
 		</div>
 	)
-}
+})

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useCallback, useState} from 'react';
 import s from '../navbar/Navbar.module.css';
 import {ItemMenu} from './ItemMenu';
 import {RouteNames} from '../../enums/routes';
@@ -16,10 +16,10 @@ export type statusPageActiveType = 'PROFILE' | 'MESSAGES' | 'MUSIC' | 'FRIENDS' 
 export const Navbar = () => {
 
 	const isAuth = useAppSelector(state => state.auth.isAuth)
-	
+
 	const [activeItemMenu, setActiveItemMenu] = useState<string>('HOME')
 
-	const changeStatusItemMenu = (pageActive: statusPageActiveType) => {
+	const changeStatusItemMenu = useCallback((pageActive: statusPageActiveType) => {
 		if (isAuth) {
 			switch (pageActive) {
 				case 'PROFILE': {
@@ -52,7 +52,7 @@ export const Navbar = () => {
 				}
 			}
 		}
-	}
+	}, [isAuth])
 
 	return (
 		<div className={s.leftSideBar}>

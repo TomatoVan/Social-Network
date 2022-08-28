@@ -9,7 +9,7 @@ type DialogItemPropsType = {
 	active: boolean
 }
 
-export const DialogItem: React.FC<DialogItemPropsType> = ({name, message, active}) => {
+export const DialogItem: React.FC<DialogItemPropsType> = React.memo(({name, message, active}) => {
 
 	return (
 		<div className={active ? s.friendMsgTitle_ACTIVE : s.friendMsgTitle}>
@@ -28,5 +28,5 @@ export const DialogItem: React.FC<DialogItemPropsType> = ({name, message, active
 			</div>
 		</div>
 	)
-}
+})
 

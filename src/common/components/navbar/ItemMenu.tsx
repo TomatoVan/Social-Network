@@ -12,7 +12,7 @@ type PropsType = {
 	title: string
 }
 
-export const ItemMenu: FC<PropsType> = ({title, name, changeStatusItemMenu, activeItemMenu, img, link}) => {
+export const ItemMenu: FC<PropsType> = React.memo(({title, name, changeStatusItemMenu, activeItemMenu, img, link}) => {
 	return (
 		<Link className={activeItemMenu === name ? s.menuItem_active : s.menuItem}
 					onClick={() => changeStatusItemMenu(name)}
@@ -26,4 +26,4 @@ export const ItemMenu: FC<PropsType> = ({title, name, changeStatusItemMenu, acti
 			}
 		</Link>
 	)
-}
+})

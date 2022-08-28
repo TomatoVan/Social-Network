@@ -1,13 +1,13 @@
-import React from 'react';
+import React, {FC} from 'react';
 import {Anonymous} from '../../../../common/utils/BigHeads';
 import s from './MyMessages.module.css'
 import {useAppSelector} from '../../../../common/hooks/useAppSelector';
 import {Preloader} from '../../../../common/components/preloader/Preloader';
 
 type ChatRightPropsType = {
-	rightMessages: Array<{ id: number, message: string }>
+	messages: Array<{ id: number, message: string }>
 }
-export const MyMessages = (props: ChatRightPropsType) => {
+export const MyMessages: FC<ChatRightPropsType> = React.memo(({messages}) => {
 
 	const profile = useAppSelector(state => state.meProfilePage.profile)
 	const time = `${new Date().getHours()}:${new Date().getMinutes()}`
@@ -16,7 +16,7 @@ export const MyMessages = (props: ChatRightPropsType) => {
 
 	return (
 		<div>
-			{props.rightMessages.map((m) => {
+			{messages.map((m) => {
 				return (
 					<div className={s.msgRight} key={m.id}>
 						<div className={s.textMsg}>
@@ -31,6 +31,6 @@ export const MyMessages = (props: ChatRightPropsType) => {
 			})}
 		</div>
 	)
-}
+})
 
 

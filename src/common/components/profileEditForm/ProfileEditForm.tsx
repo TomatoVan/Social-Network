@@ -10,7 +10,7 @@ type PropsType = {
 	setEditCallback: () => void
 }
 
-export const ProfileEditForm: FC<PropsType> = ({setEditCallback}) => {
+export const ProfileEditForm: FC<PropsType> = React.memo(({setEditCallback}) => {
 
 	const dispatch = useAppDispatch()
 	const isAuth = useAppSelector(state => state.auth.isAuth)
@@ -144,5 +144,5 @@ export const ProfileEditForm: FC<PropsType> = ({setEditCallback}) => {
 			</form>
 		</>
 	)
-};
+});
 

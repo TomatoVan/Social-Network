@@ -11,7 +11,7 @@ type PropsType = {
 	login: string | null
 }
 
-export const Greetings: FC<PropsType> = ({isAuth, login}) => {
+export const Greetings: FC<PropsType> = React.memo(({isAuth, login}) => {
 
 	const dateHours = new Date().getHours()
 
@@ -33,5 +33,5 @@ export const Greetings: FC<PropsType> = ({isAuth, login}) => {
 			}
 		</>
 	)
-};
+})
 

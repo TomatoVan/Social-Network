@@ -21,7 +21,7 @@ type photoType = {
 	large: string | null
 }
 
-export const CardUsers: FC<CardUserPropsType> = (
+export const CardUsers: FC<CardUserPropsType> = React.memo((
 	{
 		cityUser,
 		countryUser,
@@ -62,5 +62,5 @@ export const CardUsers: FC<CardUserPropsType> = (
 			</button>
 		</div>
 	);
-};
+});
 

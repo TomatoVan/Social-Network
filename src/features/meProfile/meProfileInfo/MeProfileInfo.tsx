@@ -13,7 +13,7 @@ type ProfileInfoType = {
 	setEditCallback: () => void
 }
 
-export const MeProfileInfo: FC<ProfileInfoType> = ({profile, status, setEditCallback}) => {
+export const MeProfileInfo: FC<ProfileInfoType> = React.memo(({profile, status, setEditCallback}) => {
 
 	const dispatch = useAppDispatch()
 
@@ -74,4 +74,4 @@ export const MeProfileInfo: FC<ProfileInfoType> = ({profile, status, setEditCall
 			</div>
 		)
 	)
-}
+})

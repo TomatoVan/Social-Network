@@ -1,44 +1,44 @@
 /* CUSTOM COLORS */
 :root {
-    --generalColor: #63A4DC;
-    --secondColor: #1C4F7B;
+  --generalColor: #63a4dc;
+  --secondColor: #1c4f7b;
 
-    --backgroundColor: #e6e7ee;
-    --backgroundBox: #FFFFFF;
+  --backgroundColor: #e6e7ee;
+  --backgroundBox: #ffffff;
 
-    --gray: #F1F1F1;
-    --green: #369d3e;
+  --gray: #f1f1f1;
+  --green: #369d3e;
 
-    --shadow: 2px 2px 9px rgba(0, 0, 0, 0.25);
-    --borderRadiusCustom: 12px;
+  --shadow: 2px 2px 9px rgba(0, 0, 0, 0.25);
+  --borderRadiusCustom: 12px;
 
-    --grayColor: #aaaaaa;
+  --grayColor: #aaaaaa;
 }
 
 html {
-    background-color: white;
+  background-color: white;
 }
 
-h1, h2, h3, h4, h5, h6, p {
-    margin: 0;
-    padding: 0;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+  padding: 0;
 }
 
 body {
-    /*background-color: var(--backgroundColor);*/
+  /*background-color: var(--backgroundColor);*/
 }
 
 .app {
-    margin: auto;
+  margin: auto;
 }
 
 .flexMain {
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
 }
-
-
-
-
-
-

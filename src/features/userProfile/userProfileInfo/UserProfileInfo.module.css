@@ -1,142 +1,156 @@
 .profileInform {
-    margin: 1rem 0 0 0;
-    display: flex;
-    align-items: flex-start;
-    flex-direction: row;
-    border-radius: var(--borderRadiusCustom);
-    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../../../assets/walp.jpg');
-    background-size: cover;
-    padding: 2rem;
-    min-height: 400px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+
+  min-height: 400px;
+  margin: 1rem 0 0 0;
+  padding: 2rem;
+
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    url('../../../assets/walp.jpg');
+  background-size: cover;
+  border-radius: var(--borderRadiusCustom);
 }
 
 .profileInform:after {
-    background: rgba(0, 0, 0, 1.2);
+  background: rgba(0, 0, 0, 1.2);
 }
 
 .profileInfoLeft {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    width: 70%;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+
+  width: 70%;
 }
 
 .profileInfoRight {
-    font-size: 25px;
-    color: white;
-    width: 50%;
+  width: 50%;
 
+  font-size: 25px;
+  color: white;
 }
 
 .slogan {
-    overflow: hidden;
-    text-overflow: ellipsis;
+  overflow: hidden;
+
+  text-overflow: ellipsis;
 }
 
 .userLogo {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    height: 200px;
-    width: 200px;
-    padding: 10px 30px 10px 10px;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 200px;
+  height: 200px;
+  padding: 10px 30px 10px 10px;
 }
 
 .avatarUser {
-    width: 100%;
-    height: auto;
-    border-radius: 15px;
-    /*border: 5px solid white;*/
+  width: 100%;
+  height: auto;
+
+  border-radius: 15px;
+  /*border: 5px solid white;*/
 }
 
 .profileInfoTextBox {
-    padding: 10px 0 10px 0;
+  padding: 10px 0 10px 0;
 }
 
 .userName {
-    color: white;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 35px;
-    line-height: 38px;
-    margin: 0;
+  margin: 0;
+
+  font-size: 35px;
+  font-weight: bold;
+  font-style: normal;
+  line-height: 38px;
+  color: white;
 }
 
 .userAboutMe {
-
-    color: white;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 25px;
+  font-size: 25px;
+  font-weight: normal;
+  font-style: normal;
+  color: white;
 }
 
 .editStatusInput {
-    font-size: 30px;
-    padding: 10px;
-    height: 40px;
-    width: 400px;
+  width: 400px;
+  height: 40px;
+  padding: 10px;
+
+  font-size: 30px;
 }
 
 .userLocation {
-    color: white;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 23px;
+  font-size: 23px;
+  font-weight: normal;
+  font-style: normal;
+  color: white;
 }
 
 .containerText {
-    color: white;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 23px;
+  font-size: 23px;
+  font-weight: normal;
+  font-style: normal;
+  color: white;
 }
 
 .containerText a {
-    text-decoration: none;
-    color: white;
-    transition: 0.1s;
+  color: white;
+  text-decoration: none;
+
+  transition: 0.1s;
 }
 
 .containerText a:hover {
-    text-decoration: none;
-    color: var(--generalColor);
+  color: var(--generalColor);
+  text-decoration: none;
 }
 
 .userWebsite {
-    color: white;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 20px;
+  font-size: 20px;
+  font-weight: normal;
+  font-style: normal;
+  color: white;
 }
 
 .userWebsite a {
-    text-decoration: none;
-    color: white;
-    transition: 0.2s;
+  color: white;
+  text-decoration: none;
+
+  transition: 0.2s;
 }
 
 .userWebsite a:hover {
-    color: var(--generalColor);
+  color: var(--generalColor);
 }
 
 .userSlogan {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    font-style: normal;
-    font-size: 30px;
-    font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 30px;
+  font-weight: 700;
+  font-style: normal;
+  color: white;
 }
 
 .editStatusInput {
-    font-size: 30px;
-    font-weight: 700;
-    padding: 10px;
-    height: 40px;
-    width: 90%;
-    border-radius: var(--borderRadiusCustom);
-    border: 2px solid var(--generalColor);
-    color: var(--generalColor);
+  width: 90%;
+  height: 40px;
+  padding: 10px;
+
+  font-size: 30px;
+  font-weight: 700;
+  color: var(--generalColor);
+
+  border: 2px solid var(--generalColor);
+  border-radius: var(--borderRadiusCustom);
 }

@@ -1,40 +1,49 @@
 .userSlogan {
-    color: white;
-    font-style: normal;
-    font-size: 25px;
-    font-weight: 700;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 80%;
+  overflow: hidden;
 
+  max-width: 80%;
+
+  font-size: 25px;
+  font-weight: 700;
+  font-style: normal;
+  color: white;
+  text-overflow: ellipsis;
 }
 
 .editStatusInput {
-    outline: none;
-    font-size: 20px;
-    font-weight: 700;
-    padding: 10px;
-    height: 25px;
-    width: 90%;
-    border-radius: var(--borderRadiusCustom);
-    border: 2px solid var(--generalColor);
-    color: var(--generalColor);
+  width: 90%;
+  height: 25px;
+  padding: 10px;
+
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--generalColor);
+
+  border: 2px solid var(--generalColor);
+  border-radius: var(--borderRadiusCustom);
+  outline: none;
 }
 
 .setStatusButton {
-    margin-top: 5px;
-    float: right;
-    font-size: 20px;
-    font-weight: 700;
-    padding: 7px 10px;
-    cursor: pointer;
-    border-radius: var(--borderRadiusCustom);
-    border: 2px solid var(--generalColor);
-    color: var(--generalColor);
-    transition: 0.2s;
+  cursor: pointer;
+
+  float: right;
+
+  margin-top: 5px;
+  padding: 7px 10px;
+
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--generalColor);
+
+  border: 2px solid var(--generalColor);
+  border-radius: var(--borderRadiusCustom);
+
+  transition: 0.2s;
 }
 
 .setStatusButton:hover {
-    background-color: var(--generalColor);
-    color: white;
+  color: white;
+
+  background-color: var(--generalColor);
 }

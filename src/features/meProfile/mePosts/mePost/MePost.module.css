@@ -1,142 +1,155 @@
 .post {
-    box-shadow: var(--shadow);
-    background-color: white;
-    border-radius: var(--borderRadiusCustom);
-    padding: 1.2rem;
-    margin: 0 0 1rem 0;
-    font-family: Roboto, serif;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 30px;
-    line-height: 27px;
+  margin: 0 0 1rem 0;
+  padding: 1.2rem;
+
+  font-family: Roboto, serif;
+  font-size: 30px;
+  font-weight: normal;
+  font-style: normal;
+  line-height: 27px;
+
+  background-color: white;
+  border-radius: var(--borderRadiusCustom);
+  box-shadow: var(--shadow);
 }
 
 .headerPost {
-    display: flex;
-    align-items: center;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 .mainPost {
-    margin: 0.5rem 0 1rem 0;
-    word-wrap: break-word;
-    font-family: Calibri, serif;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 27px;
-    line-height: 27px;
+  margin: 0.5rem 0 1rem 0;
 
+  font-family: Calibri, serif;
+  font-size: 27px;
+  font-weight: normal;
+  font-style: normal;
+  line-height: 27px;
+  word-wrap: break-word;
 }
 
-
 .footerPost {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 .userLogoPost {
-    height: 40px;
-    width: 40px;
-    border-radius: 100%;
-    margin-right: 5px;
+  width: 40px;
+  height: 40px;
+  margin-right: 5px;
+
+  border-radius: 100%;
 }
 
 .userLogoPostAnonymous {
-    height: 50px;
-    width: 50px;
-    margin-bottom: 10px;
+  width: 50px;
+  height: 50px;
+  margin-bottom: 10px;
 }
 
 .dataPost {
-
 }
 
 .userNamePost {
-    font-family: Rajdhani, sans-serif;
-    color: var(--secondColor);
-    font-style: normal;
-    font-weight: bold;
-    font-size: 25px;
-    display: flex;
-    align-items: center;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  font-family: Rajdhani, sans-serif;
+  font-size: 25px;
+  font-weight: bold;
+  font-style: normal;
+  color: var(--secondColor);
 }
 
 .datePost {
-    font-family: Rajdhani, sans-serif;
-    color: #898989;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 15px;
-    line-height: 17px;
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
+
+  font-family: Rajdhani, sans-serif;
+  font-size: 15px;
+  font-weight: bold;
+  font-style: normal;
+  line-height: 17px;
+  color: #898989;
 }
 
 .likesPost {
-    display: flex;
-    align-items: center;
-    margin: 0 1rem 0 0;
+  display: flex;
+  align-items: center;
 
+  margin: 0 1rem 0 0;
 }
 
 .likeCount {
-    color: #EA313F;
-    font-family: Roboto sans-serif;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 15px;
-    line-height: 18px;
-    margin: 0 0 0 0.4rem;
+  margin: 0 0 0 0.4rem;
+
+  font-family: Roboto sans-serif;
+  font-size: 15px;
+  font-weight: bold;
+  font-style: normal;
+  line-height: 18px;
+  color: #ea313f;
 }
 
 .commentsPost {
-    display: flex;
-    align-items: center;
-    margin: 0 1rem 0 0;
+  display: flex;
+  align-items: center;
+
+  margin: 0 1rem 0 0;
 }
 
 .commentsCount {
-    color: #1A9BE2;
-    font-family: Roboto sans-serif;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 15px;
-    line-height: 18px;
-    margin: 0 0 0 0.4rem;
+  margin: 0 0 0 0.4rem;
+
+  font-family: Roboto sans-serif;
+  font-size: 15px;
+  font-weight: bold;
+  font-style: normal;
+  line-height: 18px;
+  color: #1a9be2;
 }
 
 .sharePost {
-    display: flex;
-    align-items: center;
-    margin: 0 1rem 0 0;
+  display: flex;
+  align-items: center;
+
+  margin: 0 1rem 0 0;
 }
 
 .shareCount {
-    color: #1A9BE2;
-    font-family: Roboto sans-serif;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 15px;
-    line-height: 18px;
-    margin: 0 0 0 0.4rem;
+  margin: 0 0 0 0.4rem;
+
+  font-family: Roboto sans-serif;
+  font-size: 15px;
+  font-weight: bold;
+  font-style: normal;
+  line-height: 18px;
+  color: #1a9be2;
 }
 
-.likesPost, .commentsPost, .sharePost img {
-    cursor: pointer;
+.likesPost,
+.commentsPost,
+.sharePost img {
+  cursor: pointer;
 }
 
 .boxButtonsDots {
-    display: flex;
-    margin: 0 0 1rem 17rem;
-    cursor: pointer;
+  cursor: pointer;
+
+  display: flex;
+
+  margin: 0 0 1rem 17rem;
 }
 
 .btnDotsPost {
-    margin: 0 5px;
-    border-radius: 10px;
-    height: 8px;
-    width: 8px;
-    background-color: #cdcdcd;
+  width: 8px;
+  height: 8px;
+  margin: 0 5px;
+
+  background-color: #cdcdcd;
+  border-radius: 10px;
 }

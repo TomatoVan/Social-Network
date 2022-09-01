@@ -1,88 +1,106 @@
 .editProfileTitle {
-    font-style: normal;
-    font-weight: bold;
-    font-size: 30px;
+  font-size: 30px;
+  font-weight: bold;
+  font-style: normal;
 }
 
 .profileEditBox {
-    color: var(--secondColor);
-    display: flex;
-    justify-content: flex-start;
-    flex-direction: column;
-    margin: 2rem 0 0 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  margin: 2rem 0 0 0;
+
+  color: var(--secondColor);
 }
 
 .element {
-    margin: 10px 0 10px 0;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    font-size: 28px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  margin: 10px 0 10px 0;
+
+  font-size: 28px;
 }
 
 .inputElement {
-    width: 400px;
-    outline: none;
-    font-size: 20px;
-    font-weight: 700;
-    padding: 10px;
-    height: 20px;
-    margin: 0 0 0 20px;
-    border-radius: var(--borderRadiusCustom);
-    border: 2px solid var(--generalColor);
-    color: var(--generalColor);
+  width: 400px;
+  height: 20px;
+  margin: 0 0 0 20px;
+  padding: 10px;
+
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--generalColor);
+
+  border: 2px solid var(--generalColor);
+  border-radius: var(--borderRadiusCustom);
+  outline: none;
 }
 
 .checkboxElement {
-    cursor: pointer;
-    margin: 5px 0 0 10px;
-    transform: scale(1.8);
+  cursor: pointer;
+
+  transform: scale(1.8);
+
+  margin: 5px 0 0 10px;
 }
 
 .elementContacts {
-    margin: 10px 0 10px 0;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    font-size: 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  margin: 10px 0 10px 0;
+
+  font-size: 28px;
 }
 
 .elementCont {
-    margin: 10px 0;
+  margin: 10px 0;
 }
 
 .containerLeft {
-    width: 50%;
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
+
+  width: 50%;
 }
 
 .containerRight {
-    width: 50%;
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
+
+  width: 50%;
 }
 
 .main {
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
 }
 
 .buttonSaveProfile {
-    float: right;
-    font-size: 20px;
-    font-weight: 700;
-    padding: 7px 10px;
-    cursor: pointer;
-    background: white;
-    border-radius: var(--borderRadiusCustom);
-    border: 2px solid var(--generalColor);
-    color: var(--generalColor);
-    transition: 0.2s;
-    width: 200px;
+  cursor: pointer;
+
+  float: right;
+
+  width: 200px;
+  padding: 7px 10px;
+
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--generalColor);
+
+  background: white;
+  border: 2px solid var(--generalColor);
+  border-radius: var(--borderRadiusCustom);
+
+  transition: 0.2s;
 }
 
 .buttonSaveProfile:hover {
-    background-color: var(--generalColor);
-    color: white;
+  color: white;
+
+  background-color: var(--generalColor);
 }

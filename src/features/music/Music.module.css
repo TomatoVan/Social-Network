@@ -1,9 +1,11 @@
 .pageName {
-    font-style: normal;
-    font-weight: bold;
-    font-size: 36px;
-    display: flex;
-    align-items: center;
-    padding: 1rem 0;
-    color: var(--secondColor);
+  display: flex;
+  align-items: center;
+
+  padding: 1rem 0;
+
+  font-size: 36px;
+  font-weight: bold;
+  font-style: normal;
+  color: var(--secondColor);
 }

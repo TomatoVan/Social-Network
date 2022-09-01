@@ -1,15 +1,20 @@
 .cardUser {
+    cursor: pointer;
+
+    display: flex;
+    justify-content: space-between;
+
+    width: 45%;
+    margin: 0 1rem 0.5rem 0;
+    padding: 0.5rem;
+
+    text-decoration: none;
+
     background: var(--backgroundBox);
     border: 2px solid var(--backgroundColor);
     border-radius: var(--borderRadiusCustom);
-    display: flex;
-    justify-content: space-between;
-    margin: 0 1rem 0.5rem 0;
-    padding: 0.5rem;
-    width: 45%;
+
     transition: 0.05s;
-    cursor: pointer;
-    text-decoration: none;
 }
 
 .cardUser:hover {
@@ -20,24 +25,27 @@
 .userLogo {
     width: 80px;
     height: 80px;
+
     border-radius: var(--borderRadiusCustom);
 }
 
 .userLogoAvatar {
     width: 80px;
     height: 80px;
+
     border-radius: var(--borderRadiusCustom);
 }
 
 .userInformText {
     display: flex;
-    justify-content: center;
     flex-direction: column;
+    justify-content: center;
 }
 
 .userName {
-    color: var(--secondColor);
     overflow: hidden;
+
+    color: var(--secondColor);
     text-overflow: ellipsis;
 }
 
@@ -46,32 +54,38 @@
 }
 
 .userPhrase {
+    overflow: hidden;
+
     font-weight: 800;
     color: var(--secondColor);
-    overflow: hidden;
     text-overflow: ellipsis;
 }
 
 .userInformText2 {
-    width: 50%;
     display: flex;
     align-items: center;
     justify-content: flex-end;
+
+    width: 50%;
 }
 
 .followButton_TRUE {
+    cursor: pointer;
+
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    cursor: pointer;
+
     width: 50px;
     margin: 0 0 0 20px;
-    border-radius: var(--borderRadiusCustom);
-    border: 2px solid var(--generalColor);
+
     font-size: 1.5em;
     font-weight: 600;
     color: var(--generalColor);
+
+    border: 2px solid var(--generalColor);
+    border-radius: var(--borderRadiusCustom);
 }
 
 .followButton_TRUE:disabled {
@@ -79,19 +93,23 @@
 }
 
 .followButton_FALSE {
+    cursor: pointer;
+
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    cursor: pointer;
+
     width: 50px;
     margin: 0 0 0 20px;
-    border-radius: var(--borderRadiusCustom);
-    border: 2px solid var(--generalColor);
-    background-color: var(--generalColor);
+
     font-size: 1.5em;
     font-weight: 600;
     color: white;
+
+    background-color: var(--generalColor);
+    border: 2px solid var(--generalColor);
+    border-radius: var(--borderRadiusCustom);
 }
 
 .followButton_FALSE:disabled {

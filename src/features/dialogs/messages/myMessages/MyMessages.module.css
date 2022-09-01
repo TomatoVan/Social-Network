@@ -1,53 +1,63 @@
 .msgRight {
-    display: flex;
-    justify-content: flex-end;
-    flex-direction: row;
-    align-items: flex-end;
-    margin: 0 0 0.8rem 0;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: flex-end;
+
+  margin: 0 0 0.8rem 0;
 }
 
 .msgAvatarFriend {
-    cursor: pointer;
-    border-radius: 100px;
-    transition: ease-in-out 0.2s;
-    height: 45px;
-    width: 45px;
-    margin: 0 0.5rem 0 0.5rem;
+  cursor: pointer;
+
+  width: 45px;
+  height: 45px;
+  margin: 0 0.5rem 0 0.5rem;
+
+  border-radius: 100px;
+
+  transition: ease-in-out 0.2s;
 }
 
 .msgAvatarFriend:hover {
-    transform: scale(1.2);
+  transform: scale(1.2);
 }
 
 .msgAvatarFriendAnonymous {
-    height: 50px;
-    width: 50px;
-    margin: 0 0.5rem 0 0;
+  width: 50px;
+  height: 50px;
+  margin: 0 0.5rem 0 0;
 }
 
 .msgAvatarFriendAnonymous:hover {
-    transform: scale(1.2);
+  transform: scale(1.2);
 }
 
 .textMsg {
-    display: flex;
-    justify-content: flex-start;
-    flex-direction: row;
-    position: relative;
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 26px;
-    background-color: var(--backgroundColor);
-    padding: 0.5rem 0.8rem 0.5rem 0.8rem;
-    border-radius: var(--borderRadiusCustom) var(--borderRadiusCustom) 0 var(--borderRadiusCustom);
-    max-width: 60%;
+  position: relative;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+
+  max-width: 60%;
+  padding: 0.5rem 0.8rem 0.5rem 0.8rem;
+
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 26px;
+
+  background-color: var(--backgroundColor);
+  border-radius: var(--borderRadiusCustom) var(--borderRadiusCustom) 0 var(--borderRadiusCustom);
 }
 
 .timeMsg {
-    background-color: var(--backgroundColor);
-    font-weight: 500;
-    font-size: 18px;
-    margin: 0 0 0 0.4rem;
-    color: var(--grayColor);
-    border-radius: 0 var(--borderRadiusCustom);
+  margin: 0 0 0 0.4rem;
+
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--grayColor);
+
+  background-color: var(--backgroundColor);
+  border-radius: 0 var(--borderRadiusCustom);
 }

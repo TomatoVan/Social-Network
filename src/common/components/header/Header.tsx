@@ -8,6 +8,7 @@ import { useAppDispatch } from '../../hooks/useAppDispatch'
 import { useAppSelector } from '../../hooks/useAppSelector'
 import { Anonymous } from '../../utils/BigHeads'
 import { Greetings } from '../greetings/Greetings'
+import { Preloader } from '../preloader/Preloader'
 
 import s from './Header.module.css'
 
@@ -17,10 +18,12 @@ export const Header = () => {
   const isAuth = useAppSelector(state => state.auth.isAuth)
   const avatar = useAppSelector(state => state.meProfilePage.profile?.photos.small)
   const login = useAppSelector(state => state.auth.login)
-
+  const status = useAppSelector(state => state.app.status)
   const logOutHandler = () => {
     dispatch(logout())
   }
+
+  if (!avatar && status === 'loading') return <Preloader />
 
   return (
     <div className={s.header}>

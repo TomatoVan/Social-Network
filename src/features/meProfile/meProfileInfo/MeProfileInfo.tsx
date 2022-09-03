@@ -45,6 +45,8 @@ export const MeProfileInfo: FC<ProfileInfoType> = memo(({ profile, status, setEd
               onChange={photoChangeFileHandler}
               type="file"
               name="file"
+              accept={'image/*'}
+              multiple={false}
               id="input__file"
               className={s.input__file}
             />

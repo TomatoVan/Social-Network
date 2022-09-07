@@ -1,4 +1,4 @@
-import React, { FC, memo } from 'react'
+import React, { memo } from 'react'
 
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { Navigate } from 'react-router-dom'
@@ -13,7 +13,7 @@ type PropsType = {
   setEditCallback: () => void
 }
 
-export const ProfileEditForm: FC<PropsType> = memo(({ setEditCallback }) => {
+export const ProfileEditForm = memo(({ setEditCallback }: PropsType) => {
   const dispatch = useAppDispatch()
   const isAuth = useAppSelector(state => state.auth.isAuth)
   const status = useAppSelector(state => state.app.status)

@@ -1,46 +1,37 @@
-# Getting Started with Create React App
+## Project Name & Pitch
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+#### Social-Network
 
-## Available Scripts
+An application used to communicate, find work, meet people who have similar interests, as well as for entertainment (music) and work. Built with <b>React</b>, <b>Redux</b>, <b>TypeScript</b>, <b>CSS Modules</b> and more.
 
-In the project directory, you can run:
+## Project Screen Shot(s)
 
-### `yarn start`
+![1](https://user-images.githubusercontent.com/70485490/188264553-f93922b3-6ed1-4c46-b96d-204379567958.jpg)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+![2](https://user-images.githubusercontent.com/70485490/188264554-31947dde-0b6e-4fa4-873a-c1746094b399.jpg)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+![3](https://user-images.githubusercontent.com/70485490/188264557-48fc0258-b9e8-4e36-9a8d-2b26b2f8b7ca.jpg)
 
-### `yarn test`
+![4](https://user-images.githubusercontent.com/70485490/188264560-37a02e27-6b5a-4999-a5d3-74ef18ad0326.jpg)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+![5](https://user-images.githubusercontent.com/70485490/188264562-3b6cb8c8-89a1-4ffa-b365-a3e999e3e2e3.jpg)
 
-### `yarn build`
+## Installation and Setup Instructions
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Clone down this repository. You will need `node` and `yarn` installed globally on your machine.  
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Installation:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+`yarn` or `yarn install`  
 
-### `yarn eject`
+To Run Test Suite:  
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+`yarn test`  
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+To Start Server:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+`yarn start`  
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+To Visit App:
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+`localhost:3000/Social-Network`  

@@ -61,6 +61,7 @@
     border: 2px solid var(--generalColor);
     border-radius: var(--borderRadiusCustom);
     box-shadow: var(--shadow);
+
 }
 
 .menuItem_active img {
@@ -81,4 +82,21 @@
 
     background-color: white;
     border-radius: 50px;
+}
+
+@media screen and (max-width: 1024px){
+    .menuItem {
+        width: 50px;
+        padding: 1rem 1rem 1rem 1.5rem;
+    }
+    .menuItem_active img {
+        margin: 0;
+    }
+    .menuItem_active {
+        width: 50px;
+        padding: 1rem 1rem 1rem 1.5rem;
+    }
+    .menuTitle {
+        display: none;
+    }
 }
